@@ -81,7 +81,7 @@ RxJS (and reactive programming in general) can be thought of as writing assembly
 
 ## EOSIO Microforks
 
-Due to the distributed nature of the blockchain and its high speed, there are times in which block producers can slightly get out of sync because of subsecond network latency, creating two or more competing versions of the original chain that share the same history up to a certain point. The chainbase code is programmed to quickly solve this problem taking the largest version as the ‘winning’ version of the blockchain, discarding all other versions. 
+Due to the distributed nature of the blockchain and its high speed, there are times in which block producers can get slightly out of sync because of subsecond network latency, creating two or more competing versions of the original chain that share the same history up to a certain point. The blockchain code is programmed to quickly solve this problem taking the largest version as the ‘winning’ version of the blockchain, discarding all other versions. ( Chainbase, chain_kv, chainlib, chain plugin, fork db, producer plugin and net plugin are involved with switching forks internally. )
 
 When this happens, and happens often, your queryable read databases have to rollback discarded blocks too. rxDemux will notify when these microforks occur, the hasura updater will rollback the changes on your read postgres database and all your application clients listening to postgres state through graphql subscription will get new state in real-time as well.
 
