@@ -1,0 +1,20 @@
+import { Serialize } from 'eosjs'
+import { TextDecoder, TextEncoder } from 'util'
+import { Types } from './types'
+// serialization and deserialization helpers
+const serializer = new Serialize.SerializerState({ bytesAsUint8Array: true })
+const encoding = { textEncoder: new TextEncoder(), textDecoder: new TextDecoder() }
+
+export function serialize(types: Types, type: string, value: {}) {
+  const buffer = new Serialize.SerialBuffer(encoding)
+  Serialize.getType(types, type).serialize(buffer, value)
+  return buffer.asUint8Array()
+}
+
+export function deserialize(types: Types, type: string, array: Uint8Array) {
+  const buffer = new Serialize.SerialBuffer({ ...encoding, array })
+  const result = Serialize.getType(types, type).deserialize(buffer, serializer)
+
+  if (buffer.readPos !== array.length) throw new Error(`oops: ${type}`)
+  return result
+}

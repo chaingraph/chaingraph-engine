@@ -1,13 +1,13 @@
 {
-  "name": "blockmatic-nodejs-template",
+  "name": "@blockmatic/rxdemux",
   "version": "1.0.0",
-  "description": "blockmatic nodejs template",
+  "description": "Reactive deterministic event-sourced state and side effect handling for blockchain applications",
   "main": "index.js",
-  "repository": "git@github.com:blockmatic/nodejs-template.git",
+  "repository": "git@github.com:telosdreasmtack/dreamstack-rxdemux.git",
   "author": "blockmatic.io",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --no-deps --respawn src/index",
+    "dev": "env-cmd ts-node-dev --no-deps --respawn src/index",
     "build": "tsc",
     "lint": "eslint --ignore-path .gitignore \"**/*.+(js|ts|tsx)\"",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\""
@@ -28,9 +28,17 @@
     "@blockmatic/prettier-config": "^1.2.3",
     "@blockmatic/tsconfig": "^1.7.0",
     "@types/node": "^13.5.2",
+    "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.1",
     "lint-staged": "^10.0.4",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@types/ws": "^7.2.2",
+    "eosjs": "^20.0.3",
+    "rxjs": "^6.5.4",
+    "ws": "^7.2.1"
   }
 }
