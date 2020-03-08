@@ -23,6 +23,13 @@ Reactive deterministic event-sourced state and side effect handling for blockcha
 This is a work in progress. Feel free to reach us out on telegram for clarification.
 https://t.me/telosdreamstack
 
+## Features
+
+- subscribe to real-time action events and state changes.
+- automated eosio microfork handling.
+- postgres hasura graphql updater package.
+- functional reactive programming code style with TypeScript type safety.
+
 ## Demux Pattern
 
 Demux is a backend infrastructure pattern for sourcing blockchain events to deterministically update queryable datastores and trigger side effects. In computer science, a deterministic algorithm is an algorithm which, given a particular input, will always produce the same output, with the underlying machine always passing through the same sequence of states.
@@ -71,6 +78,14 @@ RxJS (and reactive programming in general) can be thought of as writing assembly
 [Intro to RxJS](https://www.youtube.com/watch?v=flj-OprlogY)   
 [RxJS: Mastering the Operators](https://www.youtube.com/watch?v=ou3oRHaUpQA)   
 [learnrxjs.io](https://www.learnrxjs.io/)   
+
+## EOSIO Microforks
+
+Due to the distributed nature of the blockchain and its high speed, there are times in which block producers can slightly get out of sync because of subsecond network latency, creating two or more competing versions of the original chain that share the same history up to a certain point. The chainbase code is programmed to quickly solve this problem taking the largest version as the ‘winning’ version of the blockchain, discarding all other versions. 
+
+When this happens, and happens often, your queryable read databases have to rollback discarded blocks too. rxDemux will notify when these microforks occur, the hasura updater will rollback the changes on your read postgres database and all your application clients listening to postgres state through graphql subscription will get new state in real-time as well.
+
+[Everything You Need to Know About Microforks by EOS Canada](https://www.youtube.com/watch?v=n-LRxhFEQg4)
 
 ## Getting Started
 
