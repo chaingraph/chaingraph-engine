@@ -18,3 +18,5 @@ export type shipSubjectConfig = {
 }
 
 export type Types = Map<string, Serialize.Type>
+
+export type SocketMessage = string | Uint8Array

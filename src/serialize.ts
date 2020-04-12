@@ -1,7 +1,8 @@
+// serialization and deserialization helpers
 import { Serialize } from 'eosjs'
 import { TextDecoder, TextEncoder } from 'util'
 import { Types } from './types'
-// serialization and deserialization helpers
+
 const serializer = new Serialize.SerializerState({ bytesAsUint8Array: true })
 const encoding = { textEncoder: new TextEncoder(), textDecoder: new TextDecoder() }
 
