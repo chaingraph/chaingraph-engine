@@ -2,11 +2,6 @@
 
 Reactive deterministic event-sourced state and side effect handling for blockchain applications.
 
-## Disclaimer
-
-This is a work in progress. Feel free to reach us out on telegram for clarification.
-https://t.me/telosdreamstack
-
 ## Features
 
 - subscribe to real-time action events and state changes.
@@ -74,18 +69,6 @@ When this happens, and happens often, your queryable read databases have to roll
 ## Getting Started
 
 ...
-
-## TELOS
-
-Best in class C++ EOSIO protocol technology providing fast, scalable and eco-friendly blockchain augmented by a growing library of Telos services and innovations. Free accounts, work proposals, dapp grants, decentralized exchange, dstor, bancor protocol, the telos community and foundation.
-
-[Learn more](https://docs.telosdreamstack.io/smart-contracts/telos-blockchain)
-
-## TELOS DreamStack
-
-This repository is part of the TELOS DreamStack Project which provides a set of guidelines, tools, and starters to speed up dApp development following best practices for security, performance, and maintainability of your application.
-
-The code style convention aims to maximize reusability and facilitate collaboration. We have chosen the stack carefully so that it allows us to write robust and performant applications with a more concise and readable code.
 
 ## Contributing
 
