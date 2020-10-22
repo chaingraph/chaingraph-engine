@@ -69,8 +69,21 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
     // SHiP sends the abi on first message, we need to get the types from it
     // types are necessary to deserialize subsequent messages
     abi = JSON.parse(message as string) as RpcInterfaces.Abi
+
+    // const fs = require('fs')
+    // fs.writeFile('abi.json', message, (err: Error) => {
+    //   if (err) return console.log(err)
+    // })
+
     types = Serialize.getTypesFromAbi(Serialize.createInitialTypes(), abi) as Types
-    const serializedRequest = serialize(types, 'get_blocks_request_v0', { ...defaultShipRequest, ...request })
+
+    // const fs = require('fs')
+    // fs.writeFile('ship-keys.ts', Array.from(types.keys()), (err: Error) => {
+    //   if (err) return console.log(err)
+    //   console.log('Hello World > helloworld.txt')
+    // })
+
+    const serializedRequest = serialize(types, 'get_blocks_result_v0', { ...defaultShipRequest, ...request })
     socket.send(serializedRequest)
   })
 
@@ -78,11 +91,12 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
     if (!types) throw new Error('missing types')
 
     // deserialize SHiP messages
-    const result = deserialize(types, 'result', message as Uint8Array) // get_blocks_result_v0 doesn't work
+    const result = deserialize(types, 'get_blocks_result_v0', message as Uint8Array) // get_blocks_result_v0 doesn't work
     console.log('result', result, Object.keys(result[1]))
 
     // send acknowledgement to SHiP once the message has been proccesed
     socket.send(['get_blocks_ack_request_v0', { num_messages: 1 }])
+    process.exit()
   })
 
   // start

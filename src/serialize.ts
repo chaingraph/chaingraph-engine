@@ -8,14 +8,21 @@ const encoding = { textEncoder: new TextEncoder(), textDecoder: new TextDecoder(
 
 export function serialize(types: Types, type: string, value: {}) {
   const buffer = new Serialize.SerialBuffer(encoding)
+  console.log('------------------------ serialize ---------------------------')
+  console.log(type)
+  console.log(Serialize.getType(types, type))
+  console.log(value)
   Serialize.getType(types, type).serialize(buffer, value)
+  console.log('----------------------------------------------------------------')
+
   return buffer.asUint8Array()
 }
 
 export function deserialize(types: Types, type: string, array: Uint8Array) {
   const buffer = new Serialize.SerialBuffer({ ...encoding, array })
+  console.log('------------------------ deserialize ---------------------------')
   const result = Serialize.getType(types, type).deserialize(buffer, serializer)
-
+  console.log('----------------------------------------------------------------')
   if (buffer.readPos !== array.length) throw new Error(`oops: ${type}`)
   return result
 }
