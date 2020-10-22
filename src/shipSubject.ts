@@ -65,25 +65,13 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
   const stringMessages$ = messages$.pipe(filter((message: SocketMessage) => typeof message === 'string'))
   const serializedMessages$ = messages$.pipe(filter((message: SocketMessage) => typeof message !== 'string'))
 
+  // SHiP sends the abi as string on first message, we need to build get the SHiP types from it
+  // types are necessary to deserialize subsequent messages
   stringMessages$.subscribe((message: SocketMessage) => {
-    // SHiP sends the abi on first message, we need to get the types from it
-    // types are necessary to deserialize subsequent messages
     abi = JSON.parse(message as string) as RpcInterfaces.Abi
-
-    // const fs = require('fs')
-    // fs.writeFile('abi.json', message, (err: Error) => {
-    //   if (err) return console.log(err)
-    // })
-
     types = Serialize.getTypesFromAbi(Serialize.createInitialTypes(), abi) as Types
 
-    // const fs = require('fs')
-    // fs.writeFile('ship-keys.ts', Array.from(types.keys()), (err: Error) => {
-    //   if (err) return console.log(err)
-    //   console.log('Hello World > helloworld.txt')
-    // })
-
-    const serializedRequest = serialize(types, 'get_blocks_result_v0', { ...defaultShipRequest, ...request })
+    const serializedRequest = serialize(types, 'get_blocks_request_v0', { ...defaultShipRequest, ...request })
     socket.send(serializedRequest)
   })
 

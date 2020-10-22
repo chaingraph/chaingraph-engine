@@ -8,12 +8,7 @@ const encoding = { textEncoder: new TextEncoder(), textDecoder: new TextDecoder(
 
 export function serialize(types: Types, type: string, value: {}) {
   const buffer = new Serialize.SerialBuffer(encoding)
-  console.log('------------------------ serialize ---------------------------')
-  console.log(type)
-  console.log(Serialize.getType(types, type))
-  console.log(value)
   Serialize.getType(types, type).serialize(buffer, value)
-  console.log('----------------------------------------------------------------')
 
   return buffer.asUint8Array()
 }
