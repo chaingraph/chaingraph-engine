@@ -1,8 +1,8 @@
 import WebSocket, { OpenEvent, CloseEvent, ErrorEvent } from 'ws'
 import { Subject } from 'rxjs'
-import { filter } from 'rxjs/operators'
+import { filter, min } from 'rxjs/operators'
 import { Serialize, RpcInterfaces } from 'eosjs'
-import { shipRequest, shipSubjectConfig, Types, SocketMessage } from './types'
+import { shipRequest, shipSubjectConfig, Types, SocketMessage, ShipBlockData } from './types'
 import { serialize, deserialize } from './serialize'
 
 const defaultShipRequest: shipRequest = {
@@ -28,6 +28,7 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
   const errors$ = new Subject<ErrorEvent>()
   const close$ = new Subject<CloseEvent>()
   const open$ = new Subject<OpenEvent>()
+  const ship$ = new Subject<any>()
 
   // create socket connection with nodeos and push event data through subjects
   function connect() {
@@ -79,15 +80,17 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
     if (!types) throw new Error('missing types')
 
     // deserialize SHiP messages
-    const result = deserialize(types, 'get_blocks_result_v0', message as Uint8Array) // get_blocks_result_v0 doesn't work
-    console.log('result', result, Object.keys(result[1]))
+    const blockData = deserialize(types, 'get_blocks_result_v0', message as Uint8Array) // get_blocks_result_v0 doesn't work
+
+    // push block data
+    ship$.next(blockData)
 
     // send acknowledgement to SHiP once the message has been proccesed
     socket.send(['get_blocks_ack_request_v0', { num_messages: 1 }])
-    process.exit()
   })
 
-  // start
-  connect()
-  return {}
+  return {
+    connect,
+    ship$,
+  }
 }
