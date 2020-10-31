@@ -1,14 +1,14 @@
 import WebSocket, { OpenEvent, CloseEvent, ErrorEvent } from 'ws'
 import { Subject } from 'rxjs'
-import { filter, min } from 'rxjs/operators'
+import { filter } from 'rxjs/operators'
 import { Serialize, RpcInterfaces } from 'eosjs'
-import { shipRequest, shipSubjectConfig, Types, SocketMessage, ShipBlockData } from './types'
+import { shipRequest, shipSubjectConfig, Types, SocketMessage } from './types'
 import { serialize, deserialize } from './serialize'
 
 const defaultShipRequest: shipRequest = {
   start_block_num: 0,
-  end_block_num: 0,
-  max_messages_in_flight: 1,
+  end_block_num: 0xffffffff,
+  max_messages_in_flight: 10,
   have_positions: [],
   irreversible_only: false,
   fetch_block: true,
@@ -72,18 +72,19 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
     abi = JSON.parse(message as string) as RpcInterfaces.Abi
     types = Serialize.getTypesFromAbi(Serialize.createInitialTypes(), abi) as Types
 
-    const serializedRequest = serialize(types, 'get_blocks_request_v0', { ...defaultShipRequest, ...request })
+    const serializedRequest = serialize('request', ['get_blocks_request_v0', { ...defaultShipRequest, ...request }], types)
     socket.send(serializedRequest)
   })
 
-  serializedMessages$.subscribe((message: SocketMessage) => {
+  serializedMessages$.subscribe((serializeData: SocketMessage) => {
     if (!types) throw new Error('missing types')
 
     // deserialize SHiP messages
-    const blockData = deserialize(types, 'get_blocks_result_v0', message as Uint8Array) // get_blocks_result_v0 doesn't work
+    const deserializedData = deserialize('result', serializeData as Uint8Array, types)
 
     // push block data
-    ship$.next(blockData)
+    console.log(deserializedData[0], Object.keys(deserializedData[1]))
+    ship$.next(deserializedData[1])
 
     // send acknowledgement to SHiP once the message has been proccesed
     socket.send(['get_blocks_ack_request_v0', { num_messages: 1 }])

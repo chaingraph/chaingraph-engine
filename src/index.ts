@@ -8,7 +8,7 @@ if (!EOSIO_SOCKET_ENDPOINT) throw new Error('Missing EOSIO_SOCKET_ENDPOINT env v
 
 const shipSubject = createShipSubject({
   url: EOSIO_SOCKET_ENDPOINT,
-  request: { start_block_num: 148394875, end_block_num: 0xffffffff },
+  request: { start_block_num: 150072626, end_block_num: 0xffffffff },
 })
 
 const { ship$ } = shipSubject
@@ -40,12 +40,19 @@ const getTableRow = (blockData: ShipBlockData) => {
   return table_row
 }
 
-ship$.subscribe((blockData) => {
+ship$.subscribe((shipData) => {
+  if (shipData.block && shipData.traces && shipData.deltas) {
+    console.log(
+      `block_num: ${shipData.head.block_num}, block_size: ${shipData.block.length}, traces_size: ${shipData.traces.length}, deltas_size: ${shipData.deltas.length}`,
+    )
+  } else {
+    console.log(shipData)
+  }
+
   // massage blockData
-  const table_row = getTableRow(blockData)
-  // TODO : push data to postgres
-  hasura.upsert_table_row({ table_row })
-  console.log(blockData)
+  // const table_row = getTableRow(blockData)
+  // // TODO : push data to postgres
+  // hasura.upsert_table_row({ table_row })
 })
 
 shipSubject.connect()

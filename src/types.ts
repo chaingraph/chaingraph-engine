@@ -1,6 +1,5 @@
 import { Serialize } from 'eosjs'
 
-// struct get_blocks_request_v0 https://git.io/Jvrru
 export type shipRequest = {
   start_block_num: number
   end_block_num: number

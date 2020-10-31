@@ -54,13 +54,13 @@ class Connection {
         this.send([
           'get_blocks_request_v0',
           {
-            max_messages_in_flight: 10,
+            max_messages_in_flight: 5,
             have_positions: [],
             irreversible_only: false,
             fetch_block: true,
             fetch_traces: true,
             fetch_deltas: true,
-            start_block_num: 100000000,
+            start_block_num: 150072626,
             end_block_num: 0xffffffff,
           },
         ])
@@ -81,7 +81,9 @@ class Connection {
   // Report status
   get_blocks_result_v0(response) {
     console.log('get_blocks_result_v0:')
-    console.log(JSON.stringify(response, null, 4))
+    console.log(
+      `block_num: ${response.head.block_num}, block_size: ${response.block.length}, traces_size: ${response.traces.length}, deltas_size: ${response.deltas.length}`,
+    )
   }
 } // Connection
 
