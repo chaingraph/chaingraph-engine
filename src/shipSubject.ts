@@ -71,7 +71,7 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
   stringMessages$.subscribe((message: SocketMessage) => {
     abi = JSON.parse(message as string) as RpcInterfaces.Abi
     types = Serialize.getTypesFromAbi(Serialize.createInitialTypes(), abi) as Types
-
+    console.log(JSON.stringify({ ...defaultShipRequest, ...request }))
     const serializedRequest = serialize('request', ['get_blocks_request_v0', { ...defaultShipRequest, ...request }], types)
     socket.send(serializedRequest)
   })
@@ -81,7 +81,7 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
     const serializedData = message as Uint8Array
 
     // send acknowledgement to SHiP
-    // console.log('get_blocks_ack_request_v0', { num_messages: serializedData.length })
+    console.log('get_blocks_ack_request_v0', { num_messages: serializedData.length })
     socket.send(serialize('request', ['get_blocks_ack_request_v0', { num_messages: 1 }], types))
 
     // deserialize SHiP messages

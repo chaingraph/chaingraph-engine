@@ -8,7 +8,7 @@ if (!EOSIO_SOCKET_ENDPOINT) throw new Error('Missing EOSIO_SOCKET_ENDPOINT env v
 
 const shipSubject = createShipSubject({
   url: EOSIO_SOCKET_ENDPOINT,
-  request: { start_block_num: 150072626, end_block_num: 0xffffffff },
+  request: { start_block_num: 150089933, end_block_num: 0xffffffff },
 })
 
 const { ship$ } = shipSubject
