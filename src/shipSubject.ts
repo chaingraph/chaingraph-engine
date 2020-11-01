@@ -76,18 +76,19 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
     socket.send(serializedRequest)
   })
 
-  serializedMessages$.subscribe((serializeData: SocketMessage) => {
+  serializedMessages$.subscribe((message: SocketMessage) => {
     if (!types) throw new Error('missing types')
+    const serializedData = message as Uint8Array
+
+    // send acknowledgement to SHiP
+    // console.log('get_blocks_ack_request_v0', { num_messages: serializedData.length })
+    socket.send(serialize('request', ['get_blocks_ack_request_v0', { num_messages: 1 }], types))
 
     // deserialize SHiP messages
-    const deserializedData = deserialize('result', serializeData as Uint8Array, types)
+    const deserializedData = deserialize('result', serializedData, types)
+    // console.log(deserializedData[0], Object.keys(deserializedData[1]))
 
-    // push block data
-    console.log(deserializedData[0], Object.keys(deserializedData[1]))
     ship$.next(deserializedData[1])
-
-    // send acknowledgement to SHiP once the message has been proccesed
-    socket.send(['get_blocks_ack_request_v0', { num_messages: 1 }])
   })
 
   return {

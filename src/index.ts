@@ -46,7 +46,7 @@ ship$.subscribe((shipData) => {
       `block_num: ${shipData.head.block_num}, block_size: ${shipData.block.length}, traces_size: ${shipData.traces.length}, deltas_size: ${shipData.deltas.length}`,
     )
   } else {
-    console.log(shipData)
+    // console.log(shipData)
   }
 
   // massage blockData
