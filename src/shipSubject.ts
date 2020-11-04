@@ -8,7 +8,7 @@ import { serialize, deserialize } from './serialize'
 const defaultShipRequest: shipRequest = {
   start_block_num: 0,
   end_block_num: 0xffffffff,
-  max_messages_in_flight: 10,
+  max_messages_in_flight: 20,
   have_positions: [],
   irreversible_only: false,
   fetch_block: true,
@@ -81,12 +81,11 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
     const serializedData = message as Uint8Array
 
     // send acknowledgement to SHiP
-    console.log('get_blocks_ack_request_v0', { num_messages: serializedData.length })
+    // TODO: confirm every 20 messages insted every single message
     socket.send(serialize('request', ['get_blocks_ack_request_v0', { num_messages: 1 }], types))
 
     // deserialize SHiP messages
     const deserializedData = deserialize('result', serializedData, types)
-    // console.log(deserializedData[0], Object.keys(deserializedData[1]))
 
     ship$.next(deserializedData[1])
   })
