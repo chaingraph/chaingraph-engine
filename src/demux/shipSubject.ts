@@ -2,7 +2,7 @@ import WebSocket, { OpenEvent, CloseEvent, ErrorEvent } from 'ws'
 import { Subject } from 'rxjs'
 import { filter } from 'rxjs/operators'
 import { Serialize, RpcInterfaces } from 'eosjs'
-import { shipRequest, shipSubjectConfig, Types, SocketMessage } from './types'
+import { shipRequest, shipSubjectConfig, Types, SocketMessage } from '../types'
 import { serialize, deserialize } from './serialize'
 
 const defaultShipRequest: shipRequest = {
@@ -30,8 +30,8 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
   const open$ = new Subject<OpenEvent>()
   const ship$ = new Subject<any>()
 
-  // create socket connection with nodeos and push event data through subjects
-  function connect() {
+  // create socket connection with nodeos ship and push event data through rx subjects
+  const connect = () => {
     socket = new WebSocket(url, { perMessageDeflate: false })
     socket.on('open', (e: OpenEvent) => open$.next(e))
     socket.on('close', (e: CloseEvent) => close$.next(e))
@@ -40,38 +40,30 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
   }
 
   // handle open connection
-  open$.subscribe(() => {
-    console.log('connection opened')
-  })
+  open$.subscribe(() => console.log('connection opened'))
 
   // TODO: handle errors
-  errors$.subscribe((e: ErrorEvent) => {
-    console.log(e)
-  })
+  errors$.subscribe((e: ErrorEvent) => console.log(e))
 
   // handle socket close event
   close$.subscribe((e: CloseEvent) => {
     console.log('connection closed', e)
-    // avoid memory leaks
     socket.removeAllListeners()
-    // reset abi and types
+
     abi = null
     types = null
-    // TODO: review reconnection
-    console.log('reconnecting...')
-    connect()
   })
 
-  // filter incomming message stream by type
-  const stringMessages$ = messages$.pipe(filter((message: SocketMessage) => typeof message === 'string'))
-  const serializedMessages$ = messages$.pipe(filter((message: SocketMessage) => typeof message !== 'string'))
+  // filter ship socket messages stream by type (string for abi and )
+  const abiMessages$ = messages$.pipe(filter((message: SocketMessage) => typeof message === 'string'))
+  const serializedMessages$ = messages$.pipe(filter((message: SocketMessage) => typeof message !== 'string')) // Uint8Array?
 
-  // SHiP sends the abi as string on first message, we need to build get the SHiP types from it
+  // SHiP sends the abi as string on first message, we need to get the SHiP types from it
   // types are necessary to deserialize subsequent messages
-  stringMessages$.subscribe((message: SocketMessage) => {
+  abiMessages$.subscribe((message: SocketMessage) => {
     abi = JSON.parse(message as string) as RpcInterfaces.Abi
     types = Serialize.getTypesFromAbi(Serialize.createInitialTypes(), abi) as Types
-    console.log(JSON.stringify({ ...defaultShipRequest, ...request }))
+
     const serializedRequest = serialize('request', ['get_blocks_request_v0', { ...defaultShipRequest, ...request }], types)
     socket.send(serializedRequest)
   })
