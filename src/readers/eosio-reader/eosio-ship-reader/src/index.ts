@@ -2,22 +2,10 @@ import WebSocket, { OpenEvent, CloseEvent, ErrorEvent } from 'ws'
 import { Subject } from 'rxjs'
 import { filter } from 'rxjs/operators'
 import { Serialize, RpcInterfaces } from 'eosjs'
-import { shipRequest, shipSubjectConfig, Types, SocketMessage } from '../types'
+import { EosioShipRequest, EosioShipReaderConfig, Types, SocketMessage } from './types'
 import { serialize, deserialize } from './serialize'
 
-const defaultShipRequest: shipRequest = {
-  start_block_num: 0,
-  end_block_num: 0xffffffff,
-  max_messages_in_flight: 20,
-  have_positions: [],
-  irreversible_only: false,
-  fetch_block: true,
-  fetch_traces: true,
-  fetch_deltas: true,
-}
-
-// EOSIO SHiP Subject Factory
-export default function createShipSubject({ url, request }: shipSubjectConfig) {
+export default function createEosioShipReader({ url, request }: EosioShipReaderConfig) {
   // SHiP Subject State
   let socket: WebSocket
   let abi: RpcInterfaces.Abi | null
@@ -28,7 +16,7 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
   const errors$ = new Subject<ErrorEvent>()
   const close$ = new Subject<CloseEvent>()
   const open$ = new Subject<OpenEvent>()
-  const ship$ = new Subject<any>()
+  const blocks$ = new Subject<any>()
 
   // create socket connection with nodeos ship and push event data through rx subjects
   const connect = () => {
@@ -63,7 +51,16 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
   abiMessages$.subscribe((message: SocketMessage) => {
     abi = JSON.parse(message as string) as RpcInterfaces.Abi
     types = Serialize.getTypesFromAbi(Serialize.createInitialTypes(), abi) as Types
-
+    const defaultShipRequest: EosioShipRequest = {
+      start_block_num: 0,
+      end_block_num: 0xffffffff,
+      max_messages_in_flight: 20,
+      have_positions: [],
+      irreversible_only: false,
+      fetch_block: true,
+      fetch_traces: true,
+      fetch_deltas: true,
+    }
     const serializedRequest = serialize('request', ['get_blocks_request_v0', { ...defaultShipRequest, ...request }], types)
     socket.send(serializedRequest)
   })
@@ -79,11 +76,14 @@ export default function createShipSubject({ url, request }: shipSubjectConfig) {
     // deserialize SHiP messages
     const deserializedData = deserialize('result', serializedData, types)
 
-    ship$.next(deserializedData[1])
+    blocks$.next(deserializedData[1])
   })
 
   return {
     connect,
-    ship$,
+    blocks$,
+    open$,
+    close$,
+    errors$,
   }
 }

@@ -1,4 +1,67 @@
-import { EosioTableRow } from './eosio'
+import { Serialize } from 'eosjs'
+
+export interface EosioShipRequest {
+  start_block_num: number
+  end_block_num: number
+  max_messages_in_flight?: number
+  have_positions?: []
+  irreversible_only?: boolean
+  fetch_block?: boolean
+  fetch_traces?: boolean
+  fetch_deltas?: boolean
+}
+
+export interface EosioShipReaderConfig {
+  ws_url: string
+  ds_threads: number
+  ds_experimental: boolean
+  request: EosioShipRequest
+}
+
+export type EosioShipTypes = Map<string, Serialize.Type>
+
+export type SocketMessage = string | Uint8Array
+
+export type ShipBlockData = any
+
+export declare type EosTable = {
+  code: string
+  scope: string
+  table: string
+}
+
+// ==============================
+
+export type EosioAction<T = { [key: string]: any } | string> = {
+  account: string
+  name: string
+  authorization: Array<{ actor: string; permission: string }>
+  data: T
+}
+
+export type EosioActionTrace<T = { [key: string]: any } | string> = {
+  action_ordinal: number
+  creator_action_ordinal: number
+  global_sequence: string
+  account_ram_deltas: Array<{ account: string; delta: number }>
+  act: EosioAction<T>
+}
+
+export type EosioTransaction = {
+  id: string
+  cpu_usage_us: number
+  net_usage_words: number
+}
+
+export type EosioTableRow = {
+  code: string
+  scope: string
+  table: string
+  primary_key: string
+  payer: string
+  present: boolean
+  value: { [key: string]: any } | string
+}
 
 export interface BlockRequestType {
   start_block_num?: number

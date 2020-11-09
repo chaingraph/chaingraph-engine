@@ -1,8 +1,10 @@
-# Reactive EOSIO Demux (RxDemux)
+# Reactive EOSIO State Reader
 
-Reactive deterministic event-sourced state and side effect handling for blockchain applications.
+eosio-ship is a multi-threaded reactive eosio state reader written in typescript using on rxjs and thread_workers.
 
 ## Demux Pattern
+
+Deterministic event-sourced state and side effect handling for blockchain applications.
 
 Demux is a backend infrastructure pattern for sourcing blockchain events to deterministically update queryable datastores and trigger side effects. In computer science, a deterministic algorithm is an algorithm which, given a particular input, will always produce the same output, with the underlying machine always passing through the same sequence of states.
 

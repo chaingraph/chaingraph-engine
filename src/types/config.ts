@@ -1,4 +1,4 @@
-export interface IConnectionsConfig {
+export interface ConnectionsConfig {
   postgres: {
     host: string
     port: number
@@ -10,15 +10,9 @@ export interface IConnectionsConfig {
     host: string
     port: number
   }
-  chain: {
-    name: string
-    chain_id: string
-    http: string
-    ship: string
-  }
 }
 
-export interface IServerConfig {
+export interface ServerConfig {
   provider_name: string
   provider_url: string
 
@@ -41,18 +35,13 @@ export interface IServerConfig {
 
   ip_whitelist: string[]
   slow_query_threshold: number
-
-  namespaces: INamespaceConfig[]
 }
 
-export interface INamespaceConfig {
+export interface EosioReaderConfig {
   name: string
-  path: string
-  args: { [key: string]: any }
-}
 
-export interface IReaderConfig {
-  name: string
+  chain_id: string
+  ws_url: string
 
   start_block: number
   stop_block: number
@@ -65,13 +54,8 @@ export interface IReaderConfig {
   ds_experimental: boolean
 
   delete_data: boolean
-
-  contracts: IContractConfig[]
 }
 
-export interface IContractConfig {
-  handler: string
-  start_on?: number
-
-  args: any
+export interface ReadersConfig {
+  eosio: EosioReaderConfig[]
 }
