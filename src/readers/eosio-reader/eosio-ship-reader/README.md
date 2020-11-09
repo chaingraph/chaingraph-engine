@@ -1,6 +1,6 @@
 # Reactive EOSIO State Reader
 
-eosio-ship is a multi-threaded reactive eosio state reader written in typescript using on rxjs and thread_workers.
+`eosio-ship-reader` is a multi-threaded reactive eosio state reader written in typescript using on rxjs and thread_workers.
 
 ## Demux Pattern
 
