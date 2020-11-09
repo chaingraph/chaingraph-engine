@@ -2,6 +2,8 @@ import { EosioReaderConfig } from 'types/config'
 import createEosioShipReader from './eosio-ship-reader/src'
 import { EosioShipReaderConfig, EosioShipRequest } from './eosio-ship-reader/src/types'
 
+const processBlock = () => {}
+
 export const startEosioReader = (eosioReaderConfig: EosioReaderConfig) => {
   const eosioShipReaderConfig: EosioShipReaderConfig = {
     ws_url: eosioReaderConfig.ws_url,
@@ -26,4 +28,9 @@ export const startEosioReader = (eosioReaderConfig: EosioReaderConfig) => {
   // get have_transactions from database
 
   const { connect, blocks$, close$ } = createEosioShipReader(eosioShipReaderConfig)
+
+  blocks$.subscribe(() => {})
+  close$.subscribe(() => {})
+
+  connect()
 }
