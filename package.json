@@ -52,6 +52,8 @@
     "graphql": "^15.3.0",
     "graphql-request": "3.1.0",
     "node-fetch": "^2.6.1",
+    "node-worker-threads-pool": "^1.4.3",
+    "p-queue": "^6.6.2",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.5",
     "text-encoding": "^0.7.0",

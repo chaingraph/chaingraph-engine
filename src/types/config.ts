@@ -52,8 +52,6 @@ export interface EosioReaderConfig {
 
   ds_threads: number
   ds_experimental: boolean
-
-  delete_data: boolean
 }
 
 export interface ReadersConfig {

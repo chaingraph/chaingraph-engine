@@ -13,7 +13,6 @@ const readersConfig: ReadersConfig = {
       ship_min_block_confirmation: 30,
       ds_threads: 4,
       ds_experimental: false,
-      delete_data: false,
     },
   ],
 }

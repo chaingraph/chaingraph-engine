@@ -13,6 +13,7 @@ export interface EosioShipRequest {
 
 export interface EosioShipReaderConfig {
   ws_url: string
+  tick_seconds: number
   ds_threads: number
   ds_experimental: boolean
   request: EosioShipRequest
@@ -20,7 +21,12 @@ export interface EosioShipReaderConfig {
 
 export type EosioShipTypes = Map<string, Serialize.Type>
 
-export type SocketMessage = string | Uint8Array
+export type EosioShipSocketMessage = string | Uint8Array
+
+export type EosioShipTickData = {
+  lastBlock: number
+  currentBlock: number
+}
 
 export type ShipBlockData = any
 

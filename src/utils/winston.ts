@@ -17,9 +17,7 @@ const options = {
   ),
 }
 
-const logger = createLogger(options)
+export const logger = createLogger(options)
 
 logger.add(new transports.Console(process.env.NODE_ENV === 'production' ? {} : { level: 'debug' }))
 logger.add(new transports.File({ filename: './logs/error.log', level: 'error' }))
-
-export default logger
