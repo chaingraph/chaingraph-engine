@@ -1,7 +1,7 @@
 import { EosioReaderConfig } from 'types/config'
 import { ErrorEvent } from 'ws'
-import { createEosioShipReader } from './eosio-ship-reader/src'
-import { EosioShipReaderConfig, ShipBlockResponse } from './eosio-ship-reader/src/types'
+import { createEosioShipReader } from '@blockmatic/eosio-ship-reader'
+import { EosioShipReaderConfig, ShipBlockResponse } from '@blockmatic/eosio-ship-reader'
 import { logger } from 'utils/winston'
 import { formatSecondsLeft } from 'utils/time'
 

@@ -1,9 +1,9 @@
 {
-  "name": "@blockmatic/rxdemux",
+  "name": "chaingraph",
   "version": "1.0.0",
-  "description": "Reactive deterministic event-sourced state and side effect handling for blockchain applications",
+  "description": "Chaingraph Community Edition",
   "main": "index.js",
-  "repository": "git@github.com:telosdreasmtack/dreamstack-rxdemux.git",
+  "repository": "git@github.com:chaingraph/chaingraph.git",
   "author": "blockmatic.io",
   "license": "MIT",
   "scripts": {
