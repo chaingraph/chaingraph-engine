@@ -1,0 +1,6 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: alter table "public"."transactions" add constraint "transactions_chain_block_num_key"
+      unique ("chain", "block_num");
+  type: run_sql

@@ -1,0 +1,10 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE TABLE "public"."blocks"("chain" text NOT NULL, "block_num" text NOT
+      NULL, PRIMARY KEY ("chain","block_num") );
+  type: run_sql
+- args:
+    name: blocks
+    schema: public
+  type: add_existing_table_or_view

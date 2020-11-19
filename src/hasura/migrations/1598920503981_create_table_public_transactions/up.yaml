@@ -1,0 +1,11 @@
+- args:
+    cascade: false
+    read_only: false
+    sql: CREATE TABLE "public"."transactions"("chain" text NOT NULL, "block" text
+      NOT NULL, "trx_id" text NOT NULL, "data" jsonb NOT NULL, PRIMARY KEY ("trx_id")
+      );
+  type: run_sql
+- args:
+    name: transactions
+    schema: public
+  type: add_existing_table_or_view
