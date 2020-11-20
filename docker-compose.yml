@@ -1,0 +1,75 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: chaingraph_postgres
+    image: postgres:10.4
+    volumes:
+      - chaingraph-postgres-data-volume:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      DB_NAME: chaingraph
+      DB_USER: user
+      DB_PASSWORD: pass
+      POSTGRES_DB: chaingraph
+
+  hasura:
+    container_name: chaingraph_hasura
+    image: hasura/graphql-engine:v1.3.3.cli-migrations
+    ports:
+      - '8088:8080'
+    depends_on:
+      - postgres
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/eosgreetings?sslmode=disable
+      HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
+    volumes:
+      - ./src/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
+    command:
+      - graphql-engine
+      - serve
+      - --enable-console
+
+  core:
+    container_name: chaingraph_core
+    build:
+      context: ./
+    volumes:
+      - ./:/usr/src/app # mount chaingraph source
+      - ./node_modules # prevents host/container conflicts
+    depends_on:
+      - postgres
+    environment:
+      DB_USER: user
+      DB_PASSWORD: pass
+      DB_PORT: 5432
+      DB_NAME: chaingraph
+      DB_HOST: postgres
+      DB_SCHEMA: public
+      WAIT_HOSTS: postgres:5432
+      WAIT_HOSTS_TIMEOUT: 60
+    ports:
+      - '3030:3030'
+
+  # nginx reverse proxy that allows accesing the services directly on the host machine
+  # the wildcard *.esolocal.io that points to 127.0.0.1,
+  # therefore as long as you can hit the dns server it will redirect all requests to your machine
+  # and nginx-proxy does the internal docker network routing to the right service
+  nginx:
+    container_name: chaingraph_nginx
+    image: jwilder/nginx-proxy:alpine
+    ports:
+      - '80:80'
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+volumes:
+  chaingraph-postgres-data-volume:
+
+networks:
+  default:
+    name: chaingraph
