@@ -1,5 +1,5 @@
 overwrite: true
-schema: 'https://chaingraph.herokuapp.com/v1/graphql'
+schema: 'http://localhost:8088/v1/graphql'
 documents: src/**/*.graphql
 generates:
   src/generated/graphql.ts:

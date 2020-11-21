@@ -1,11 +1,15 @@
-mutation insert_action_one($action: actions_insert_input!) {
-  insert_actions_one(object: $action) {
-    id
-  }
-}
-
-mutation upsert_table_row($table_row: table_rows_insert_input!) {
-  insert_table_rows_one(object: $table_row, on_conflict: { constraint: table_rows_pkey, update_columns: [data] }) {
-    data
+mutation upsert_tables($tables_insert_input: tables_insert_input!) {
+  insert_tables(
+    objects: [$tables_insert_input] # on_conflict: { constraint: article_title_key, update_columns: [content] }
+  ) {
+    returning {
+      chain
+      code
+      created_at
+      data
+      primary_key
+      scope
+      updated_at
+    }
   }
 }
