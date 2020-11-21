@@ -12,22 +12,6 @@ tables:
       filter: {}
 - table:
     schema: public
-    name: api_keys
-  select_permissions:
-  - role: system
-    permission:
-      columns:
-      - key
-      - domains
-      - created_at
-      - updated_at
-      - user_id
-      filter: {}
-- table:
-    schema: public
-    name: chaingraph_users
-- table:
-    schema: public
     name: chains
   select_permissions:
   - role: user
