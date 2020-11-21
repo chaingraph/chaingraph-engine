@@ -25,7 +25,7 @@ services:
       - postgres
     restart: always
     environment:
-      HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/eosgreetings?sslmode=disable
+      HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
     volumes:
       - ./src/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
