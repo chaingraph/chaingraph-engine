@@ -56,11 +56,15 @@ Once you adquire a ChainGraph key you will be able to add any smart contract to 
 
 ChainGraph CLI and the Satellite framework allow you quickly get started with high quality scoffolds for mobile, desktop and web clients as well as complementary backend services ( satellites ).
 
-## Configuration
+## Usage
 
-### Dependencies
+You need to an EOSIO node with SHiP configuration.
 
-EOSIO node with SHiP configuration.
+Setup Docker and Docker Compose
+
+https://www.educative.io/edpresso/how-to-install-docker-on-ubuntu-1804
+https://phoenixnap.com/kb/install-docker-compose-on-ubuntu-20-04
+
 
 ## Directory Structure
 
