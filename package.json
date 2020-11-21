@@ -12,7 +12,8 @@
     "lint": "eslint --ignore-path .gitignore \"**/*.+(js|ts|tsx)\"",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
     "hasura": "hasura console --project src/hasura",
-    "gen": "rimraf src/generated && graphql-codegen --config codegen.yml"
+    "gen": "rimraf src/generated && graphql-codegen --config codegen.yml",
+    "doctoc": "doctoc ./README.md --github "
   },
   "lint-staged": {
     "*.{ts,tsx,js}": [
@@ -33,6 +34,7 @@
     "@types/text-encoding": "^0.0.35",
     "@types/ws": "^7.2.7",
     "commander": "^6.2.0",
+    "doctoc": "^1.4.0",
     "env-cmd": "^10.1.0",
     "eslint": "^6.8.0",
     "husky": "^4.2.5",

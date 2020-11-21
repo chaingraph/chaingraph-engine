@@ -2,6 +2,22 @@
 
 A realtime GraphQL API and indexing service for blockchain applications.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+- [Features](#features)
+- [Architecture](#architecture)
+- [rxDemux](#rxdemux)
+- [Why GraphQL](#why-graphql)
+- [ChaingGraph as a Service](#chainggraph-as-a-service)
+- [Usage](#usage)
+- [Docker-Compose Commands](#docker-compose-commands)
+- [Directory Structure](#directory-structure)
+- [Contributing](#contributing)
+- [Blockmatic](#blockmatic)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Features
 
 - Realtime indexing of smart contracts state and action traces.
@@ -23,7 +39,7 @@ A realtime GraphQL API and indexing service for blockchain applications.
   <img src='docs/ChainGraph-Architecture.png' style='max-width:600px'/>
 </center>
 
-## rxDemux
+## Demux
 
 Demux is a backend infrastructure pattern for sourcing blockchain events to deterministically update queryable datastores and trigger side effects.
 
@@ -34,7 +50,7 @@ Taking inspiration from the [Flux Architecture](https://facebook.github.io/flux/
 1. The ability for blockchain events to trigger new transactions, as well as other side effects outside of the blockchain.
 1. The blockchain as the single source of truth for all application state.
 
-ChainGraph leverages rxDemux to filter and stream data from the blockchain nodes to the database fillers (indexers) and event handlers.
+ChainGraph leverages this pattern to filter and stream data from the blockchain nodes to the database fillers (indexers) and event handlers.
 
 ## Why GraphQL
 
@@ -58,24 +74,48 @@ ChainGraph CLI and the Satellite framework allow you quickly get started with hi
 
 ## Usage
 
-You need to an EOSIO node with SHiP configuration.
+Basic knowledge about Docker, Docker Compose, EOSIO and NodeJS is required.
 
-Setup Docker and Docker Compose
+**Global Dependencies**
+
+- Docker https://docs.docker.com/install/.  
+  At least 6GB RAM (Docker -> Preferences -> Advanced -> Memory -> 6GB or above)
+- Hasura CLI https://docs.hasura.io/1.0/graphql/manual/hasura-cli/install-hasura-cli.html
+- EOSIO node with State History plugin.
+
+Setup Docker and Docker Compose in Linux
 
 https://www.educative.io/edpresso/how-to-install-docker-on-ubuntu-1804
 https://phoenixnap.com/kb/install-docker-compose-on-ubuntu-20-04
 
+**Optionally**
+
+- Install node.js v11 on your machine. We recommend using [n](https://github.com/tj/n) or [nvm](https://github.com/creationix/nvm), and [avn](https://github.com/wbyoung/avn) to manage multiple node.js versions on your computer.
+- Yarn https://yarnpkg.com/lang/en/docs/install/.
+
+## Docker-Compose Commands
+
+- `docker-compose build` build all containers,
+- `docker-compose up` starts all containers.
+- `docker-compose up --build` rebuilds and starts all containers.
+- `docker-compose exec [service_name] [bash | sh]` open bash or sh in a container.
+- `docker-compose stop` stops all containers.
+- `docker-compose down` stops and removes all containers.
+- `docker-compose restart` restarts all services.
 
 ## Directory Structure
 
 ```
 .
 ├── src ................................................. source code
-│   ├── demux/ .......................................... rxDemux
+│   ├── config/ ......................................... chaingraph configuration files
 │   ├── events/ ......................................... event handlers, push notif, etcs
 │   ├── fillers/ ........................................ database fillers
+│   ├── hasura/ ......................................... graphql engine and db migrations
+│   ├── reader/ ......................................... blockchain data readers
 │   ├── types/ .......................................... typescript types
-│   ├── utils/ .......................................... general utilities
+│   ├── utils/ .......................................... utility functions
+│   ├── generated/ ...................................... codegen auto-generated graphql sdk
 │   └── workers/ ........................................ nodejs workers
 ├── docs/ ............................................... documentation
 └── logs/ ............................................... logs
