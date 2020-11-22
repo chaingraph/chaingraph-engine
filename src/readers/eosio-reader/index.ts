@@ -1,22 +1,27 @@
-import { EosioReaderConfig } from 'types/config'
 import { createEosioShipReader, EosioShipReaderConfig, ShipBlockResponse } from '@blockmatic/eosio-ship-reader'
-import { logger } from 'utils/winston'
 import { ErrorEvent } from 'ws'
+import fetch from 'node-fetch'
 
-const processBlock = (blockData: ShipBlockResponse) => {
-  logger.info(blockData)
-}
+const initReader = async () => {
+  const info = await fetch('http://127.0.0.1:8888/v1/chain/get_info').then((res: any) => res.json())
+  console.log(info)
 
-export const startEosioReader = (eosioReaderConfig: EosioReaderConfig) => {
   const eosioShipReaderConfig: EosioShipReaderConfig = {
-    ws_url: eosioReaderConfig.ws_url,
-    ds_threads: eosioReaderConfig.ds_threads,
-    ds_experimental: eosioReaderConfig.ds_experimental,
-    deltaWhitelist: [],
+    ws_url: 'ws://localhost:8080',
+    ds_threads: 4,
+    ds_experimental: false,
+    deltaWhitelist: [
+      'account_metadata',
+      'contract_table',
+      'contract_row',
+      'contract_index64',
+      'resource_usage',
+      'resource_limits_state',
+    ],
     request: {
-      start_block_num: eosioReaderConfig.start_block,
-      end_block_num: eosioReaderConfig.stop_block,
-      max_messages_in_flight: eosioReaderConfig.ship_prefetch_blocks,
+      start_block_num: info.head_block_num,
+      end_block_num: 0xffffffff,
+      max_messages_in_flight: 50,
       have_positions: [],
       irreversible_only: false,
       fetch_block: true,
@@ -25,21 +30,31 @@ export const startEosioReader = (eosioReaderConfig: EosioReaderConfig) => {
     },
   }
 
-  // TODO: read from hasura db
-  // get start block from database
-  // get have_transactions from database
+  const { start, blocks$, close$, errors$ } = createEosioShipReader(eosioShipReaderConfig)
 
-  const { start, blocks$, close$, errors$, open$ } = createEosioShipReader(eosioShipReaderConfig)
-
-  open$.subscribe(() => console.log('connection opened'))
   errors$.subscribe((e: ErrorEvent) => console.log(e))
 
-  blocks$.subscribe(processBlock)
-  close$.subscribe(() => {})
+  blocks$.subscribe((blockData: ShipBlockResponse) => {
+    const { this_block, deltas } = blockData
 
-  // TODO: this is pseudo code
-  // let lastProcessedBlock: number
-  // let headBlock: number
+    console.log(this_block.block_num)
+
+    // block.transactions?.map(console.log)
+    const contract_row_deltas = deltas.find((delta) => delta[1].name === 'contract_row')
+
+    contract_row_deltas &&
+      contract_row_deltas.forEach((deltaEntry) => {
+        if (typeof deltaEntry !== 'string') {
+          deltaEntry.rows.forEach((row) => console.log(row.data))
+        }
+      })
+
+    process.exit(1)
+  })
+
+  close$.subscribe(() => console.log('connection closed'))
 
   start()
 }
+
+initReader()
