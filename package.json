@@ -44,7 +44,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@blockmatic/eosio-ship-reader": "^0.0.6",
+    "@blockmatic/eosio-ship-reader": "^0.0.8",
     "@eosrio/node-abieos": "^2.1.0-beta.0",
     "@graphql-codegen/cli": "1.19.2",
     "@graphql-codegen/introspection": "1.18.0",
