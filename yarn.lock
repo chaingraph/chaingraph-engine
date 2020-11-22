@@ -469,10 +469,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@blockmatic/eosio-ship-reader@^0.0.8":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@blockmatic/eosio-ship-reader/-/eosio-ship-reader-0.0.8.tgz#365eaea2fbcc637ee347ab3af044c03da7fade2d"
-  integrity sha512-7P4lq7PWbxzp3LdlLa+u96qhfA7BcYkLNaASJw2/Ne4t4XqbGCE5FrTEWv837qab1yzE+ETpF556rYKDlzwUMA==
+"@blockmatic/eosio-ship-reader@0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@blockmatic/eosio-ship-reader/-/eosio-ship-reader-0.0.11.tgz#77edd2b2d1d146211c6f1e8de8e6e8d56a7e292f"
+  integrity sha512-XKWYHx8WlxogH5+ykTeab5hOXwXeRHfyGi5w+o14nEmZH05S7I/NuH/pzbRJddJ6gifYy6mZ5lmqQBLTwD+Idg==
   dependencies:
     "@eosrio/node-abieos" "^2.1.0-beta.0"
     "@types/node-fetch" "^2.5.7"
