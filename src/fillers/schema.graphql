@@ -1,15 +1,11 @@
-mutation upsert_tables($tables_insert_input: tables_insert_input!) {
-  insert_tables(
-    objects: [$tables_insert_input] # on_conflict: { constraint: article_title_key, update_columns: [content] }
-  ) {
-    returning {
-      chain
-      code
-      created_at
-      data
-      primary_key
-      scope
-      updated_at
-    }
+mutation upsert_table_row($chain: String = "", $code: String = "", $created_at: timestamptz = "", $data: jsonb = "", $primary_key: String = "", $scope: String = "") {
+  insert_tables_one(object: {updated_at: "", scope: $scope, primary_key: $primary_key, data: $data, created_at: $created_at, code: $code, chain: $chain}, on_conflict: {constraint: tables_pkey, update_columns: data}) {
+    updated_at
+    scope
+    primary_key
+    data
+    created_at
+    code
+    chain
   }
 }
