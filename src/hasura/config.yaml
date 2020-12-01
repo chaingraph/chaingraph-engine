@@ -1,2 +1,2 @@
 # https://hasura.io/docs/1.0/graphql/core/hasura-cli/config-reference.html
-endpoint: http://localhost:8088
+endpoint: http://50.17.118.93:8088
