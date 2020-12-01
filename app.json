@@ -1,10 +1,10 @@
 {
-  "name": "Chaingraph Hasura Engine",
-  "description": "Blazing fast realtime GraphQL APIs for EOSIO",
+  "name": "ChainGraph",
+  "description": "Blazing fast realtime GraphQL APIs for Blockchain applications",
   "logo": "https://avatars2.githubusercontent.com/u/67337453?s=200&v=4",
   "success_url": "/console",
   "website": "https://chaingraph.io",
-  "repository": "https://github.com/chaingraph/chaingraph-hasura",
+  "repository": "https://github.com/chaingraph/chaingraph",
   "formation": {
     "web": {
       "quantity": 1
