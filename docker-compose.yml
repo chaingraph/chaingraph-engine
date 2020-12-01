@@ -29,6 +29,7 @@ services:
       # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html
       HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
+      HASURA_GRAPHQL_ADMIN_SECRET: =NBc;?2eduh)?mxq
       # HASURA_GRAPHQL_SERVER_HOST: 0.0.0.0
       VIRTUAL_HOST: alpha.chaingraph.dev
       VIRTUAL_PORT: 8088
