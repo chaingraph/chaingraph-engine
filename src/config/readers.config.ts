@@ -1,6 +1,6 @@
 import { ReadersConfig } from 'types/config'
 
-const readersConfig: ReadersConfig = {
+export const readersConfig: ReadersConfig = {
   eosio: [
     {
       name: 'EOS',
@@ -16,5 +16,3 @@ const readersConfig: ReadersConfig = {
     },
   ],
 }
-
-export default readersConfig

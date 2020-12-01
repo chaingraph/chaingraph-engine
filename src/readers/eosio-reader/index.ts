@@ -1,60 +1,22 @@
-import { createEosioShipReader, EosioShipReaderConfig, ShipBlockResponse } from '@blockmatic/eosio-ship-reader'
-import { ErrorEvent } from 'ws'
-import fetch from 'node-fetch'
+import { filter } from 'rxjs/internal/operators/filter'
+import { EosioShipTableRowData } from '@blockmatic/eosio-ship-reader'
+import { loadReader } from './ship-reader'
 
-const initReader = async () => {
-  const info = await fetch('http://127.0.0.1:8888/v1/chain/get_info').then((res: any) => res.json())
-  console.log(info)
+export const startEosioReader = async () => {
+  const { close$, rows$ } = await loadReader()
 
-  const eosioShipReaderConfig: EosioShipReaderConfig = {
-    ws_url: 'ws://localhost:8080',
-    ds_threads: 4,
-    ds_experimental: false,
-    deltaWhitelist: [
-      'account_metadata',
-      'contract_table',
-      'contract_row',
-      'contract_index64',
-      'resource_usage',
-      'resource_limits_state',
-    ],
-    request: {
-      start_block_num: info.head_block_num,
-      end_block_num: 0xffffffff,
-      max_messages_in_flight: 50,
-      have_positions: [],
-      irreversible_only: false,
-      fetch_block: true,
-      fetch_traces: true,
-      fetch_deltas: true,
-    },
-  }
+  // filter ship socket messages stream by type (string for abi and )
+  const existingRows$ = rows$.pipe(filter((row: EosioShipTableRowData) => Boolean(row.present)))
+  const deletedRows$ = rows$.pipe(filter((row: EosioShipTableRowData) => !Boolean(row.present)))
 
-  const { start, blocks$, close$, errors$ } = createEosioShipReader(eosioShipReaderConfig)
+  existingRows$.subscribe((row: EosioShipTableRowData) => {
+    console.log(JSON.stringify(row, null, 2))
+  })
 
-  errors$.subscribe((e: ErrorEvent) => console.log(e))
-
-  blocks$.subscribe((blockData: ShipBlockResponse) => {
-    const { this_block, deltas } = blockData
-
-    console.log(this_block.block_num)
-
-    // block.transactions?.map(console.log)
-    const contract_row_deltas = deltas.find((delta) => delta[1].name === 'contract_row')
-
-    contract_row_deltas &&
-      contract_row_deltas.forEach((deltaEntry) => {
-        if (typeof deltaEntry !== 'string') {
-          deltaEntry.rows.forEach((row) => console.log(row.data))
-        }
-      })
-
-    process.exit(1)
+  deletedRows$.subscribe((row: EosioShipTableRowData) => {
+    console.log('==> deleted row!')
+    console.log(JSON.stringify(row, null, 2))
   })
 
   close$.subscribe(() => console.log('connection closed'))
-
-  start()
 }
-
-initReader()

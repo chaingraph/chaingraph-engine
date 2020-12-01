@@ -1,3 +1,1 @@
-const contractsConfig = {}
-
-export default contractsConfig
+export const contractsConfig = {}

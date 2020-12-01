@@ -1,3 +1,1 @@
-const connectionsConfig = {}
-
-export default connectionsConfig
+export const connectionsConfig = {}
