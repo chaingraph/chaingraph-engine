@@ -21,6 +21,7 @@ services:
     image: hasura/graphql-engine:v1.2.0.cli-migrations-v2
     ports:
       - '8088:8080'
+      - "8081:8081"
       - '9695:9695'
     depends_on:
       - postgres
