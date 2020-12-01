@@ -18,9 +18,10 @@ services:
 
   hasura:
     container_name: chaingraph_hasura
-    image: hasura/graphql-engine:v1.3.3.cli-migrations-v2
+    image: hasura/graphql-engine:v1.2.0.cli-migrations-v2
     ports:
       - '8088:8080'
+      - '9695:9695'
     depends_on:
       - postgres
     restart: always
@@ -28,7 +29,7 @@ services:
       # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html
       HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
-      HASURA_GRAPHQL_SERVER_HOST: 0.0.0.0
+      # HASURA_GRAPHQL_SERVER_HOST: 0.0.0.0
       VIRTUAL_HOST: alpha.chaingraph.dev
       VIRTUAL_PORT: 8088
     networks:
