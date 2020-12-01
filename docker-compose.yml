@@ -18,15 +18,23 @@ services:
 
   hasura:
     container_name: chaingraph_hasura
-    image: hasura/graphql-engine:v1.3.3.cli-migrations
+    image: hasura/graphql-engine:v1.3.3.cli-migrations-v2
     ports:
       - '8088:8080'
     depends_on:
       - postgres
     restart: always
     environment:
+      # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html
       HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
+      HASURA_GRAPHQL_SERVER_HOST: 0.0.0.0
+      VIRTUAL_HOST: alpha.chaingraph.dev
+      VIRTUAL_PORT: 8088
+    networks:
+      default:
+        aliases:
+          - alpha.chaingraph.dev
     volumes:
       - ./src/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
     command:
@@ -34,26 +42,34 @@ services:
       - serve
       - --enable-console
 
-  core:
-    container_name: chaingraph_core
-    build:
-      context: ./
-    volumes:
-      - ./:/usr/src/app # mount chaingraph source
-      - ./node_modules # prevents host/container conflicts
-    depends_on:
-      - postgres
-    environment:
-      DB_USER: user
-      DB_PASSWORD: pass
-      DB_PORT: 5432
-      DB_NAME: chaingraph
-      DB_HOST: postgres
-      DB_SCHEMA: public
-      WAIT_HOSTS: postgres:5432
-      WAIT_HOSTS_TIMEOUT: 60
+  nginx:
+    container_name: chaingraph_nginx
+    image: jwilder/nginx-proxy:alpine
     ports:
-      - '3030:3030'
+      - '80:80'
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  # core:
+  #   container_name: chaingraph_core
+  #   build:
+  #     context: ./
+  #   volumes:
+  #     - ./:/usr/src/app # mount chaingraph source
+  #     - ./node_modules # prevents host/container conflicts
+  #   depends_on:
+  #     - postgres
+  #   environment:
+  #     DB_USER: user
+  #     DB_PASSWORD: pass
+  #     DB_PORT: 5432
+  #     DB_NAME: chaingraph
+  #     DB_HOST: postgres
+  #     DB_SCHEMA: public
+  #     WAIT_HOSTS: postgres:5432
+  #     WAIT_HOSTS_TIMEOUT: 60
+  #   ports:
+  #     - '3030:3030'
 
 volumes:
   chaingraph-postgres-data-volume:
