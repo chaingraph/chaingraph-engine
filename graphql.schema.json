@@ -12,143 +12,6 @@
     "types": [
       {
         "kind": "INPUT_OBJECT",
-        "name": "Int_comparison_exp",
-        "description": "expression to compare columns of type Int. All fields are combined with logical 'AND'.",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_is_null",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_neq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Int",
-        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Boolean",
-        "description": "The `Boolean` scalar type represents `true` or `false`.",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "String_comparison_exp",
         "description": "expression to compare columns of type String. All fields are combined with logical 'AND'.",
         "fields": null,
@@ -335,6 +198,1003 @@
         "possibleTypes": null
       },
       {
+        "kind": "SCALAR",
+        "name": "Boolean",
+        "description": "The `Boolean` scalar type represents `true` or `false`.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "accounts",
+        "description": "columns and relationships of \"accounts\"",
+        "fields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "permissions",
+            "description": null,
+            "args": [
+              {
+                "name": "path",
+                "description": "JSON select path",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "jsonb",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "accounts_aggregate",
+        "description": "aggregated selection of \"accounts\"",
+        "fields": [
+          {
+            "name": "aggregate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts_aggregate_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nodes",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "accounts",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "accounts_aggregate_fields",
+        "description": "aggregate fields of \"accounts\"",
+        "fields": [
+          {
+            "name": "count",
+            "description": null,
+            "args": [
+              {
+                "name": "columns",
+                "description": null,
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "accounts_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "distinct",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "max",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts_max_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "min",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts_min_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Int",
+        "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_aggregate_order_by",
+        "description": "order by aggregate values of table \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "count",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "max",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "accounts_max_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "min",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "accounts_min_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_append_input",
+        "description": "append existing jsonb value of filtered columns with new jsonb value",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_arr_rel_insert_input",
+        "description": "input type for inserting array relation for remote table \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "accounts_insert_input",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "on_conflict",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "accounts_on_conflict",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_bool_exp",
+        "description": "Boolean expression to filter rows from the table \"accounts\". All fields are combined with a logical 'AND'.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_and",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "accounts_bool_exp",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_not",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "accounts_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_or",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "accounts_bool_exp",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "account_name",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "jsonb_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "accounts_constraint",
+        "description": "unique or primary key constraints on table \"accounts\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "accounts_pkey",
+            "description": "unique or primary key constraint",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_delete_at_path_input",
+        "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_delete_elem_input",
+        "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_delete_key_input",
+        "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_insert_input",
+        "description": "input type for inserting data into table \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "accounts_max_fields",
+        "description": "aggregate max on columns",
+        "fields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_max_order_by",
+        "description": "order by max() on columns of table \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "accounts_min_fields",
+        "description": "aggregate min on columns",
+        "fields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_min_order_by",
+        "description": "order by min() on columns of table \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "accounts_mutation_response",
+        "description": "response of any mutation on the table \"accounts\"",
+        "fields": [
+          {
+            "name": "affected_rows",
+            "description": "number of affected rows by the mutation",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "returning",
+            "description": "data of the affected rows by the mutation",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "accounts",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_obj_rel_insert_input",
+        "description": "input type for inserting object relation for remote table \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "data",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "accounts_insert_input",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "on_conflict",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "accounts_on_conflict",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_on_conflict",
+        "description": "on conflict condition type for table \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "constraint",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "accounts_constraint",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "update_columns",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "ENUM",
+                    "name": "accounts_update_column",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "where",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "accounts_bool_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_order_by",
+        "description": "ordering options when selecting data from \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_pk_columns_input",
+        "description": "primary key columns input for table: \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_prepend_input",
+        "description": "prepend existing jsonb value of filtered columns with new jsonb value",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "accounts_select_column",
+        "description": "select columns of table \"accounts\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "account_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chain_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "permissions",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "accounts_set_input",
+        "description": "input type for updating data in table \"accounts\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "account_name",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "chain_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "permissions",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "jsonb",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "accounts_update_column",
+        "description": "update columns of table \"accounts\"",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "account_name",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "chain_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "permissions",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
         "kind": "OBJECT",
         "name": "actions",
         "description": "columns and relationships of \"actions\"",
@@ -376,38 +1236,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "jsonb",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
                 "ofType": null
               }
             },
@@ -564,18 +1392,6 @@
         "description": "aggregate fields of \"actions\"",
         "fields": [
           {
-            "name": "avg",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "actions_avg_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "count",
             "description": null,
             "args": [
@@ -639,90 +1455,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "stddev",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "actions_stddev_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "stddev_pop",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "actions_stddev_pop_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "stddev_samp",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "actions_stddev_samp_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "sum",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "actions_sum_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "var_pop",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "actions_var_pop_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "var_samp",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "actions_var_samp_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "variance",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "actions_variance_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -736,16 +1468,6 @@
         "description": "order by aggregate values of table \"actions\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "avg",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "actions_avg_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
           {
             "name": "count",
             "description": null,
@@ -772,76 +1494,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "actions_min_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "stddev",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "actions_stddev_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "stddev_pop",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "actions_stddev_pop_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "stddev_samp",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "actions_stddev_samp_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "sum",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "actions_sum_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "var_pop",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "actions_var_pop_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "var_samp",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "actions_var_samp_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "variance",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "actions_variance_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -926,60 +1578,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
-        "name": "actions_avg_fields",
-        "description": "aggregate avg on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "Float",
-        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "actions_avg_order_by",
-        "description": "order by avg() on columns of table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "INPUT_OBJECT",
         "name": "actions_bool_exp",
         "description": "Boolean expression to filter rows from the table \"actions\". All fields are combined with a logical 'AND'.",
@@ -1039,26 +1637,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "jsonb_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "Int_comparison_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -1238,27 +1816,6 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "actions_inc_input",
-        "description": "input type for incrementing integer column in table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "actions_insert_input",
         "description": "input type for inserting data into table \"actions\"",
         "fields": null,
@@ -1279,26 +1836,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "jsonb",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
               "ofType": null
             },
             "defaultValue": null
@@ -1376,30 +1913,6 @@
             "deprecationReason": null
           },
           {
-            "name": "block_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "args": [],
@@ -1461,26 +1974,6 @@
         "inputFields": [
           {
             "name": "action_name",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -1552,30 +2045,6 @@
             "deprecationReason": null
           },
           {
-            "name": "block_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "args": [],
@@ -1637,26 +2106,6 @@
         "inputFields": [
           {
             "name": "action_name",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -1880,26 +2329,6 @@
             "defaultValue": null
           },
           {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -2045,18 +2474,6 @@
             "deprecationReason": null
           },
           {
-            "name": "block_id",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "chain_id",
             "description": "column name",
             "isDeprecated": false,
@@ -2116,26 +2533,6 @@
             "defaultValue": null
           },
           {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -2191,182 +2588,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
-        "name": "actions_stddev_fields",
-        "description": "aggregate stddev on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "actions_stddev_order_by",
-        "description": "order by stddev() on columns of table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "actions_stddev_pop_fields",
-        "description": "aggregate stddev_pop on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "actions_stddev_pop_order_by",
-        "description": "order by stddev_pop() on columns of table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "actions_stddev_samp_fields",
-        "description": "aggregate stddev_samp on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "actions_stddev_samp_order_by",
-        "description": "order by stddev_samp() on columns of table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "actions_sum_fields",
-        "description": "aggregate sum on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "actions_sum_order_by",
-        "description": "order by sum() on columns of table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "ENUM",
         "name": "actions_update_column",
         "description": "update columns of table \"actions\"",
@@ -2382,18 +2603,6 @@
           },
           {
             "name": "authorization",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_id",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -2429,138 +2638,6 @@
             "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "actions_var_pop_fields",
-        "description": "aggregate var_pop on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "actions_var_pop_order_by",
-        "description": "order by var_pop() on columns of table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "actions_var_samp_fields",
-        "description": "aggregate var_samp on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "actions_var_samp_order_by",
-        "description": "order by var_samp() on columns of table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "actions_variance_fields",
-        "description": "aggregate variance on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "actions_variance_order_by",
-        "description": "order by variance() on columns of table \"actions\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -3761,6 +3838,74 @@
         "description": "mutation root",
         "fields": [
           {
+            "name": "delete_accounts",
+            "description": "delete data from the table: \"accounts\"",
+            "args": [
+              {
+                "name": "where",
+                "description": "filter the rows which have to be deleted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "accounts_bool_exp",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "delete_accounts_by_pk",
+            "description": "delete single row from the table: \"accounts\"",
+            "args": [
+              {
+                "name": "account_name",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "chain_id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "delete_actions",
             "description": "delete data from the table: \"actions\"",
             "args": [
@@ -3914,20 +4059,6 @@
             "description": "delete single row from the table: \"tables\"",
             "args": [
               {
-                "name": "block_id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "chain_id",
                 "description": null,
                 "type": {
@@ -3956,14 +4087,14 @@
                 "defaultValue": null
               },
               {
-                "name": "data",
+                "name": "primary_key",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "jsonb",
+                    "name": "String",
                     "ofType": null
                   }
                 },
@@ -4083,6 +4214,88 @@
             "type": {
               "kind": "OBJECT",
               "name": "transactions",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "insert_accounts",
+            "description": "insert data into the table: \"accounts\"",
+            "args": [
+              {
+                "name": "objects",
+                "description": "the rows to be inserted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "LIST",
+                    "name": null,
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "name": null,
+                      "ofType": {
+                        "kind": "INPUT_OBJECT",
+                        "name": "accounts_insert_input",
+                        "ofType": null
+                      }
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "on_conflict",
+                "description": "on conflict condition",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_on_conflict",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "insert_accounts_one",
+            "description": "insert a single row into the table: \"accounts\"",
+            "args": [
+              {
+                "name": "object",
+                "description": "the row to be inserted",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "accounts_insert_input",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "on_conflict",
+                "description": "on conflict condition",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_on_conflict",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4417,6 +4630,180 @@
             "deprecationReason": null
           },
           {
+            "name": "update_accounts",
+            "description": "update data of the table: \"accounts\"",
+            "args": [
+              {
+                "name": "_append",
+                "description": "append existing jsonb value of filtered columns with new jsonb value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_append_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_delete_at_path",
+                "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_delete_at_path_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_delete_elem",
+                "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_delete_elem_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_delete_key",
+                "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_delete_key_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_prepend",
+                "description": "prepend existing jsonb value of filtered columns with new jsonb value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_prepend_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_set",
+                "description": "sets the columns of the filtered rows to the given values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_set_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows which have to be updated",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "accounts_bool_exp",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts_mutation_response",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "update_accounts_by_pk",
+            "description": "update single row of the table: \"accounts\"",
+            "args": [
+              {
+                "name": "_append",
+                "description": "append existing jsonb value of filtered columns with new jsonb value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_append_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_delete_at_path",
+                "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_delete_at_path_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_delete_elem",
+                "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_delete_elem_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_delete_key",
+                "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_delete_key_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_prepend",
+                "description": "prepend existing jsonb value of filtered columns with new jsonb value",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_prepend_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "_set",
+                "description": "sets the columns of the filtered rows to the given values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_set_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "pk_columns",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "accounts_pk_columns_input",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "update_actions",
             "description": "update data of the table: \"actions\"",
             "args": [
@@ -4456,16 +4843,6 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "actions_delete_key_input",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "actions_inc_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -4553,16 +4930,6 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "actions_delete_key_input",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "actions_inc_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -4729,16 +5096,6 @@
                 "defaultValue": null
               },
               {
-                "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "tables_inc_input",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "_prepend",
                 "description": "prepend existing jsonb value of filtered columns with new jsonb value",
                 "type": {
@@ -4821,16 +5178,6 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "tables_delete_key_input",
-                  "ofType": null
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "_inc",
-                "description": "increments the integer columns with given value of the filtered values",
-                "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "tables_inc_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5059,133 +5406,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "SCALAR",
-        "name": "numeric",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "numeric_comparison_exp",
-        "description": "expression to compare columns of type numeric. All fields are combined with logical 'AND'.",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "numeric",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_is_null",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_neq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "numeric",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "ENUM",
         "name": "order_by",
         "description": "column ordering options",
@@ -5237,6 +5457,221 @@
         "name": "query_root",
         "description": "query root",
         "fields": [
+          {
+            "name": "accounts",
+            "description": "fetch data from the table: \"accounts\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "accounts_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "accounts_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "accounts",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "accounts_aggregate",
+            "description": "fetch aggregated fields from the table: \"accounts\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "accounts_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "accounts_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "accounts_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "accounts_by_pk",
+            "description": "fetch data from the table: \"accounts\" using primary key columns",
+            "args": [
+              {
+                "name": "account_name",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "chain_id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "actions",
             "description": "fetch data from the table: \"actions\"",
@@ -5832,20 +6267,6 @@
             "description": "fetch data from the table: \"tables\" using primary key columns",
             "args": [
               {
-                "name": "block_id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "chain_id",
                 "description": null,
                 "type": {
@@ -5874,14 +6295,14 @@
                 "defaultValue": null
               },
               {
-                "name": "data",
+                "name": "primary_key",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "jsonb",
+                    "name": "String",
                     "ofType": null
                   }
                 },
@@ -6165,6 +6586,221 @@
         "description": "subscription root",
         "fields": [
           {
+            "name": "accounts",
+            "description": "fetch data from the table: \"accounts\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "accounts_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "accounts_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "accounts",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "accounts_aggregate",
+            "description": "fetch aggregated fields from the table: \"accounts\"",
+            "args": [
+              {
+                "name": "distinct_on",
+                "description": "distinct select on columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "ENUM",
+                      "name": "accounts_select_column",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "limit",
+                "description": "limit the number of rows returned",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "offset",
+                "description": "skip the first n rows. Use only with order_by",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "order_by",
+                "description": "sort the rows by one or more columns",
+                "type": {
+                  "kind": "LIST",
+                  "name": null,
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "accounts_order_by",
+                      "ofType": null
+                    }
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "where",
+                "description": "filter the rows returned",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "accounts_bool_exp",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "accounts_aggregate",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "accounts_by_pk",
+            "description": "fetch data from the table: \"accounts\" using primary key columns",
+            "args": [
+              {
+                "name": "account_name",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "chain_id",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "accounts",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "actions",
             "description": "fetch data from the table: \"actions\"",
             "args": [
@@ -6759,20 +7395,6 @@
             "description": "fetch data from the table: \"tables\" using primary key columns",
             "args": [
               {
-                "name": "block_id",
-                "description": null,
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "String",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
                 "name": "chain_id",
                 "description": null,
                 "type": {
@@ -6801,14 +7423,14 @@
                 "defaultValue": null
               },
               {
-                "name": "data",
+                "name": "primary_key",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
                     "kind": "SCALAR",
-                    "name": "jsonb",
+                    "name": "String",
                     "ofType": null
                   }
                 },
@@ -7092,38 +7714,6 @@
         "description": "columns and relationships of \"tables\"",
         "fields": [
           {
-            "name": "block_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "numeric",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "args": [],
@@ -7149,22 +7739,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "created_at",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "timetz",
                 "ofType": null
               }
             },
@@ -7245,22 +7819,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "updated_at",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "timetz",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -7320,18 +7878,6 @@
         "name": "tables_aggregate_fields",
         "description": "aggregate fields of \"tables\"",
         "fields": [
-          {
-            "name": "avg",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "tables_avg_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "count",
             "description": null,
@@ -7396,90 +7942,6 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "stddev",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "tables_stddev_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "stddev_pop",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "tables_stddev_pop_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "stddev_samp",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "tables_stddev_samp_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "sum",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "tables_sum_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "var_pop",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "tables_var_pop_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "var_samp",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "tables_var_samp_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "variance",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "tables_variance_fields",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -7493,16 +7955,6 @@
         "description": "order by aggregate values of table \"tables\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "avg",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tables_avg_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
           {
             "name": "count",
             "description": null,
@@ -7529,76 +7981,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "tables_min_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "stddev",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tables_stddev_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "stddev_pop",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tables_stddev_pop_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "stddev_samp",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tables_stddev_samp_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "sum",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tables_sum_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "var_pop",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tables_var_pop_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "var_samp",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tables_var_samp_order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "variance",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "tables_variance_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -7673,50 +8055,6 @@
         "possibleTypes": null
       },
       {
-        "kind": "OBJECT",
-        "name": "tables_avg_fields",
-        "description": "aggregate avg on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tables_avg_order_by",
-        "description": "order by avg() on columns of table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
         "kind": "INPUT_OBJECT",
         "name": "tables_bool_exp",
         "description": "Boolean expression to filter rows from the table \"tables\". All fields are combined with a logical 'AND'.",
@@ -7761,26 +8099,6 @@
             "defaultValue": null
           },
           {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "numeric_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -7796,16 +8114,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "created_at",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "timetz_comparison_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -7846,16 +8154,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "updated_at",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "timetz_comparison_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -7951,51 +8249,10 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_inc_input",
-        "description": "input type for incrementing integer column in table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
         "name": "tables_insert_input",
         "description": "input type for inserting data into table \"tables\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
           {
             "name": "chain_id",
             "description": null,
@@ -8012,16 +8269,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "created_at",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
               "ofType": null
             },
             "defaultValue": null
@@ -8065,16 +8312,6 @@
               "ofType": null
             },
             "defaultValue": null
-          },
-          {
-            "name": "updated_at",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
-              "ofType": null
-            },
-            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -8086,30 +8323,6 @@
         "name": "tables_max_fields",
         "description": "aggregate max on columns",
         "fields": [
-          {
-            "name": "block_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
           {
             "name": "chain_id",
             "description": null,
@@ -8129,18 +8342,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "created_at",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8177,18 +8378,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updated_at",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8207,26 +8396,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -8238,16 +8407,6 @@
           },
           {
             "name": "contract",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "created_at",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -8278,16 +8437,6 @@
           },
           {
             "name": "table",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "updated_at",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -8307,30 +8456,6 @@
         "description": "aggregate min on columns",
         "fields": [
           {
-            "name": "block_id",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "args": [],
@@ -8349,18 +8474,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "created_at",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8397,18 +8510,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "updated_at",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
               "ofType": null
             },
             "isDeprecated": false,
@@ -8427,26 +8528,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -8458,16 +8539,6 @@
           },
           {
             "name": "contract",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "created_at",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -8498,16 +8569,6 @@
           },
           {
             "name": "table",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "updated_at",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -8671,26 +8732,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -8702,16 +8743,6 @@
           },
           {
             "name": "contract",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "created_at",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -8759,16 +8790,6 @@
               "ofType": null
             },
             "defaultValue": null
-          },
-          {
-            "name": "updated_at",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -8781,20 +8802,6 @@
         "description": "primary key columns input for table: \"tables\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "defaultValue": null
-          },
           {
             "name": "chain_id",
             "description": null,
@@ -8824,14 +8831,14 @@
             "defaultValue": null
           },
           {
-            "name": "data",
+            "name": "primary_key",
             "description": null,
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "jsonb",
+                "name": "String",
                 "ofType": null
               }
             },
@@ -8900,18 +8907,6 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "block_id",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "chain_id",
             "description": "column name",
             "isDeprecated": false,
@@ -8919,12 +8914,6 @@
           },
           {
             "name": "contract",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "created_at",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -8952,12 +8941,6 @@
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "updated_at",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -8968,26 +8951,6 @@
         "description": "input type for updating data in table \"tables\"",
         "fields": null,
         "inputFields": [
-          {
-            "name": "block_id",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
           {
             "name": "chain_id",
             "description": null,
@@ -9004,16 +8967,6 @@
             "type": {
               "kind": "SCALAR",
               "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "created_at",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
               "ofType": null
             },
             "defaultValue": null
@@ -9057,192 +9010,6 @@
               "ofType": null
             },
             "defaultValue": null
-          },
-          {
-            "name": "updated_at",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "tables_stddev_fields",
-        "description": "aggregate stddev on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tables_stddev_order_by",
-        "description": "order by stddev() on columns of table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "tables_stddev_pop_fields",
-        "description": "aggregate stddev_pop on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tables_stddev_pop_order_by",
-        "description": "order by stddev_pop() on columns of table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "tables_stddev_samp_fields",
-        "description": "aggregate stddev_samp on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tables_stddev_samp_order_by",
-        "description": "order by stddev_samp() on columns of table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "tables_sum_fields",
-        "description": "aggregate sum on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "numeric",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tables_sum_order_by",
-        "description": "order by sum() on columns of table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -9258,18 +9025,6 @@
         "interfaces": null,
         "enumValues": [
           {
-            "name": "block_id",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "block_num",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "chain_id",
             "description": "column name",
             "isDeprecated": false,
@@ -9277,12 +9032,6 @@
           },
           {
             "name": "contract",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "created_at",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -9310,273 +9059,8 @@
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "updated_at",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "tables_var_pop_fields",
-        "description": "aggregate var_pop on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tables_var_pop_order_by",
-        "description": "order by var_pop() on columns of table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "tables_var_samp_fields",
-        "description": "aggregate var_samp on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tables_var_samp_order_by",
-        "description": "order by var_samp() on columns of table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "tables_variance_fields",
-        "description": "aggregate variance on columns",
-        "fields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "tables_variance_order_by",
-        "description": "order by variance() on columns of table \"tables\"",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "block_num",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "SCALAR",
-        "name": "timetz",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "timetz_comparison_exp",
-        "description": "expression to compare columns of type timetz. All fields are combined with logical 'AND'.",
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "_eq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_gt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_gte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_in",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "timetz",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_is_null",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_lt",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_lte",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_neq",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "timetz",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "_nin",
-            "description": null,
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "timetz",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -11686,11 +11170,7 @@
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
         "isRepeatable": false,
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -11712,11 +11192,7 @@
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
         "isRepeatable": false,
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -11738,12 +11214,7 @@
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
         "isRepeatable": false,
-        "locations": [
-          "FIELD_DEFINITION",
-          "ARGUMENT_DEFINITION",
-          "INPUT_FIELD_DEFINITION",
-          "ENUM_VALUE"
-        ],
+        "locations": ["FIELD_DEFINITION", "ARGUMENT_DEFINITION", "INPUT_FIELD_DEFINITION", "ENUM_VALUE"],
         "args": [
           {
             "name": "reason",
@@ -11761,9 +11232,7 @@
         "name": "specifiedBy",
         "description": "Exposes a URL that specifies the behaviour of this scalar.",
         "isRepeatable": false,
-        "locations": [
-          "SCALAR"
-        ],
+        "locations": ["SCALAR"],
         "args": [
           {
             "name": "url",
