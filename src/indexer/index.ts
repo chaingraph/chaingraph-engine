@@ -1,18 +1,30 @@
 import { filter } from 'rxjs/internal/operators/filter'
-import { EosioShipTableRowData } from '@blockmatic/eosio-ship-reader'
 import { loadReader } from './ship-reader'
 import { hasura } from './hasura-client'
 
+const chain_id = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+
 export const startIndexer = async () => {
-  const { close$, rows$ } = await loadReader()
+  const { close$, rows$, blocks$ } = await loadReader()
 
   // filter ship socket messages stream by type (string for abi and )
-  const upsertRows$ = rows$.pipe(filter((row: EosioShipTableRowData) => Boolean(row.present)))
-  const deletedRows$ = rows$.pipe(filter((row: EosioShipTableRowData) => !Boolean(row.present)))
+  const upsertRows$ = rows$.pipe(filter((row) => Boolean(row.present)))
+  const deletedRows$ = rows$.pipe(filter((row) => !Boolean(row.present)))
 
-  upsertRows$.subscribe((row: EosioShipTableRowData) => {
+  blocks$.subscribe(({ this_block }) => {
+    console.log(this_block)
+    try {
+      hasura.update_block_height({ chain_id, ...this_block })
+    } catch (error) {
+      console.log('======================================')
+      console.log('Error updating block height', { chain_id, ...this_block })
+      console.log('======================================')
+    }
+  })
+
+  upsertRows$.subscribe((row) => {
     const variables = {
-      chain_id: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906', // EOS
+      chain_id, // EOS
       contract: row.code,
       table: row.table,
       scope: row.scope,
@@ -28,7 +40,7 @@ export const startIndexer = async () => {
     }
   })
 
-  deletedRows$.subscribe((row: EosioShipTableRowData) => {
+  deletedRows$.subscribe((row) => {
     console.log('==> deleted row!')
     console.log(JSON.stringify(row, null, 2))
   })

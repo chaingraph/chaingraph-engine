@@ -5,8 +5,6 @@ import { Headers } from 'graphql-request/dist/types.dom'
 import gql from 'graphql-tag'
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -15,6 +13,7 @@ export type Scalars = {
   Int: number
   Float: number
   jsonb: any
+  numeric: any
 }
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
@@ -463,10 +462,11 @@ export enum Actions_Update_Column {
 /** columns and relationships of "chains" */
 export type Chains = {
   __typename?: 'chains'
+  block_id?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id: Scalars['String']
   name: Scalars['String']
   rpc_endpoint: Scalars['String']
-  type: Scalars['String']
 }
 
 /** aggregated selection of "chains" */
@@ -479,9 +479,17 @@ export type Chains_Aggregate = {
 /** aggregate fields of "chains" */
 export type Chains_Aggregate_Fields = {
   __typename?: 'chains_aggregate_fields'
+  avg?: Maybe<Chains_Avg_Fields>
   count?: Maybe<Scalars['Int']>
   max?: Maybe<Chains_Max_Fields>
   min?: Maybe<Chains_Min_Fields>
+  stddev?: Maybe<Chains_Stddev_Fields>
+  stddev_pop?: Maybe<Chains_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Chains_Stddev_Samp_Fields>
+  sum?: Maybe<Chains_Sum_Fields>
+  var_pop?: Maybe<Chains_Var_Pop_Fields>
+  var_samp?: Maybe<Chains_Var_Samp_Fields>
+  variance?: Maybe<Chains_Variance_Fields>
 }
 
 /** aggregate fields of "chains" */
@@ -492,9 +500,17 @@ export type Chains_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "chains" */
 export type Chains_Aggregate_Order_By = {
+  avg?: Maybe<Chains_Avg_Order_By>
   count?: Maybe<Order_By>
   max?: Maybe<Chains_Max_Order_By>
   min?: Maybe<Chains_Min_Order_By>
+  stddev?: Maybe<Chains_Stddev_Order_By>
+  stddev_pop?: Maybe<Chains_Stddev_Pop_Order_By>
+  stddev_samp?: Maybe<Chains_Stddev_Samp_Order_By>
+  sum?: Maybe<Chains_Sum_Order_By>
+  var_pop?: Maybe<Chains_Var_Pop_Order_By>
+  var_samp?: Maybe<Chains_Var_Samp_Order_By>
+  variance?: Maybe<Chains_Variance_Order_By>
 }
 
 /** input type for inserting array relation for remote table "chains" */
@@ -503,15 +519,27 @@ export type Chains_Arr_Rel_Insert_Input = {
   on_conflict?: Maybe<Chains_On_Conflict>
 }
 
+/** aggregate avg on columns */
+export type Chains_Avg_Fields = {
+  __typename?: 'chains_avg_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by avg() on columns of table "chains" */
+export type Chains_Avg_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
 /** Boolean expression to filter rows from the table "chains". All fields are combined with a logical 'AND'. */
 export type Chains_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Chains_Bool_Exp>>>
   _not?: Maybe<Chains_Bool_Exp>
   _or?: Maybe<Array<Maybe<Chains_Bool_Exp>>>
+  block_id?: Maybe<String_Comparison_Exp>
+  block_num?: Maybe<Numeric_Comparison_Exp>
   chain_id?: Maybe<String_Comparison_Exp>
   name?: Maybe<String_Comparison_Exp>
   rpc_endpoint?: Maybe<String_Comparison_Exp>
-  type?: Maybe<String_Comparison_Exp>
 }
 
 /** unique or primary key constraints on table "chains" */
@@ -520,46 +548,56 @@ export enum Chains_Constraint {
   ChainsPkey = 'chains_pkey',
 }
 
+/** input type for incrementing integer column in table "chains" */
+export type Chains_Inc_Input = {
+  block_num?: Maybe<Scalars['numeric']>
+}
+
 /** input type for inserting data into table "chains" */
 export type Chains_Insert_Input = {
+  block_id?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   rpc_endpoint?: Maybe<Scalars['String']>
-  type?: Maybe<Scalars['String']>
 }
 
 /** aggregate max on columns */
 export type Chains_Max_Fields = {
   __typename?: 'chains_max_fields'
+  block_id?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   rpc_endpoint?: Maybe<Scalars['String']>
-  type?: Maybe<Scalars['String']>
 }
 
 /** order by max() on columns of table "chains" */
 export type Chains_Max_Order_By = {
+  block_id?: Maybe<Order_By>
+  block_num?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   name?: Maybe<Order_By>
   rpc_endpoint?: Maybe<Order_By>
-  type?: Maybe<Order_By>
 }
 
 /** aggregate min on columns */
 export type Chains_Min_Fields = {
   __typename?: 'chains_min_fields'
+  block_id?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   rpc_endpoint?: Maybe<Scalars['String']>
-  type?: Maybe<Scalars['String']>
 }
 
 /** order by min() on columns of table "chains" */
 export type Chains_Min_Order_By = {
+  block_id?: Maybe<Order_By>
+  block_num?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   name?: Maybe<Order_By>
   rpc_endpoint?: Maybe<Order_By>
-  type?: Maybe<Order_By>
 }
 
 /** response of any mutation on the table "chains" */
@@ -586,10 +624,11 @@ export type Chains_On_Conflict = {
 
 /** ordering options when selecting data from "chains" */
 export type Chains_Order_By = {
+  block_id?: Maybe<Order_By>
+  block_num?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   name?: Maybe<Order_By>
   rpc_endpoint?: Maybe<Order_By>
-  type?: Maybe<Order_By>
 }
 
 /** primary key columns input for table: "chains" */
@@ -600,33 +639,115 @@ export type Chains_Pk_Columns_Input = {
 /** select columns of table "chains" */
 export enum Chains_Select_Column {
   /** column name */
+  BlockId = 'block_id',
+  /** column name */
+  BlockNum = 'block_num',
+  /** column name */
   ChainId = 'chain_id',
   /** column name */
   Name = 'name',
   /** column name */
   RpcEndpoint = 'rpc_endpoint',
-  /** column name */
-  Type = 'type',
 }
 
 /** input type for updating data in table "chains" */
 export type Chains_Set_Input = {
+  block_id?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
   name?: Maybe<Scalars['String']>
   rpc_endpoint?: Maybe<Scalars['String']>
-  type?: Maybe<Scalars['String']>
+}
+
+/** aggregate stddev on columns */
+export type Chains_Stddev_Fields = {
+  __typename?: 'chains_stddev_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev() on columns of table "chains" */
+export type Chains_Stddev_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate stddev_pop on columns */
+export type Chains_Stddev_Pop_Fields = {
+  __typename?: 'chains_stddev_pop_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev_pop() on columns of table "chains" */
+export type Chains_Stddev_Pop_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate stddev_samp on columns */
+export type Chains_Stddev_Samp_Fields = {
+  __typename?: 'chains_stddev_samp_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev_samp() on columns of table "chains" */
+export type Chains_Stddev_Samp_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate sum on columns */
+export type Chains_Sum_Fields = {
+  __typename?: 'chains_sum_fields'
+  block_num?: Maybe<Scalars['numeric']>
+}
+
+/** order by sum() on columns of table "chains" */
+export type Chains_Sum_Order_By = {
+  block_num?: Maybe<Order_By>
 }
 
 /** update columns of table "chains" */
 export enum Chains_Update_Column {
   /** column name */
+  BlockId = 'block_id',
+  /** column name */
+  BlockNum = 'block_num',
+  /** column name */
   ChainId = 'chain_id',
   /** column name */
   Name = 'name',
   /** column name */
   RpcEndpoint = 'rpc_endpoint',
-  /** column name */
-  Type = 'type',
+}
+
+/** aggregate var_pop on columns */
+export type Chains_Var_Pop_Fields = {
+  __typename?: 'chains_var_pop_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by var_pop() on columns of table "chains" */
+export type Chains_Var_Pop_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate var_samp on columns */
+export type Chains_Var_Samp_Fields = {
+  __typename?: 'chains_var_samp_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by var_samp() on columns of table "chains" */
+export type Chains_Var_Samp_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate variance on columns */
+export type Chains_Variance_Fields = {
+  __typename?: 'chains_variance_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by variance() on columns of table "chains" */
+export type Chains_Variance_Order_By = {
+  block_num?: Maybe<Order_By>
 }
 
 /** expression to compare columns of type jsonb. All fields are combined with logical 'AND'. */
@@ -667,10 +788,10 @@ export type Mutation_Root = {
   delete_chains?: Maybe<Chains_Mutation_Response>
   /** delete single row from the table: "chains" */
   delete_chains_by_pk?: Maybe<Chains>
-  /** delete data from the table: "tables" */
-  delete_tables?: Maybe<Tables_Mutation_Response>
-  /** delete single row from the table: "tables" */
-  delete_tables_by_pk?: Maybe<Tables>
+  /** delete data from the table: "table_rows" */
+  delete_table_rows?: Maybe<Table_Rows_Mutation_Response>
+  /** delete single row from the table: "table_rows" */
+  delete_table_rows_by_pk?: Maybe<Table_Rows>
   /** delete data from the table: "transactions" */
   delete_transactions?: Maybe<Transactions_Mutation_Response>
   /** delete single row from the table: "transactions" */
@@ -687,10 +808,10 @@ export type Mutation_Root = {
   insert_chains?: Maybe<Chains_Mutation_Response>
   /** insert a single row into the table: "chains" */
   insert_chains_one?: Maybe<Chains>
-  /** insert data into the table: "tables" */
-  insert_tables?: Maybe<Tables_Mutation_Response>
-  /** insert a single row into the table: "tables" */
-  insert_tables_one?: Maybe<Tables>
+  /** insert data into the table: "table_rows" */
+  insert_table_rows?: Maybe<Table_Rows_Mutation_Response>
+  /** insert a single row into the table: "table_rows" */
+  insert_table_rows_one?: Maybe<Table_Rows>
   /** insert data into the table: "transactions" */
   insert_transactions?: Maybe<Transactions_Mutation_Response>
   /** insert a single row into the table: "transactions" */
@@ -707,10 +828,10 @@ export type Mutation_Root = {
   update_chains?: Maybe<Chains_Mutation_Response>
   /** update single row of the table: "chains" */
   update_chains_by_pk?: Maybe<Chains>
-  /** update data of the table: "tables" */
-  update_tables?: Maybe<Tables_Mutation_Response>
-  /** update single row of the table: "tables" */
-  update_tables_by_pk?: Maybe<Tables>
+  /** update data of the table: "table_rows" */
+  update_table_rows?: Maybe<Table_Rows_Mutation_Response>
+  /** update single row of the table: "table_rows" */
+  update_table_rows_by_pk?: Maybe<Table_Rows>
   /** update data of the table: "transactions" */
   update_transactions?: Maybe<Transactions_Mutation_Response>
   /** update single row of the table: "transactions" */
@@ -750,12 +871,12 @@ export type Mutation_RootDelete_Chains_By_PkArgs = {
 }
 
 /** mutation root */
-export type Mutation_RootDelete_TablesArgs = {
-  where: Tables_Bool_Exp
+export type Mutation_RootDelete_Table_RowsArgs = {
+  where: Table_Rows_Bool_Exp
 }
 
 /** mutation root */
-export type Mutation_RootDelete_Tables_By_PkArgs = {
+export type Mutation_RootDelete_Table_Rows_By_PkArgs = {
   chain_id: Scalars['String']
   contract: Scalars['String']
   primary_key: Scalars['String']
@@ -812,15 +933,15 @@ export type Mutation_RootInsert_Chains_OneArgs = {
 }
 
 /** mutation root */
-export type Mutation_RootInsert_TablesArgs = {
-  objects: Array<Tables_Insert_Input>
-  on_conflict?: Maybe<Tables_On_Conflict>
+export type Mutation_RootInsert_Table_RowsArgs = {
+  objects: Array<Table_Rows_Insert_Input>
+  on_conflict?: Maybe<Table_Rows_On_Conflict>
 }
 
 /** mutation root */
-export type Mutation_RootInsert_Tables_OneArgs = {
-  object: Tables_Insert_Input
-  on_conflict?: Maybe<Tables_On_Conflict>
+export type Mutation_RootInsert_Table_Rows_OneArgs = {
+  object: Table_Rows_Insert_Input
+  on_conflict?: Maybe<Table_Rows_On_Conflict>
 }
 
 /** mutation root */
@@ -881,36 +1002,38 @@ export type Mutation_RootUpdate_Actions_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_ChainsArgs = {
+  _inc?: Maybe<Chains_Inc_Input>
   _set?: Maybe<Chains_Set_Input>
   where: Chains_Bool_Exp
 }
 
 /** mutation root */
 export type Mutation_RootUpdate_Chains_By_PkArgs = {
+  _inc?: Maybe<Chains_Inc_Input>
   _set?: Maybe<Chains_Set_Input>
   pk_columns: Chains_Pk_Columns_Input
 }
 
 /** mutation root */
-export type Mutation_RootUpdate_TablesArgs = {
-  _append?: Maybe<Tables_Append_Input>
-  _delete_at_path?: Maybe<Tables_Delete_At_Path_Input>
-  _delete_elem?: Maybe<Tables_Delete_Elem_Input>
-  _delete_key?: Maybe<Tables_Delete_Key_Input>
-  _prepend?: Maybe<Tables_Prepend_Input>
-  _set?: Maybe<Tables_Set_Input>
-  where: Tables_Bool_Exp
+export type Mutation_RootUpdate_Table_RowsArgs = {
+  _append?: Maybe<Table_Rows_Append_Input>
+  _delete_at_path?: Maybe<Table_Rows_Delete_At_Path_Input>
+  _delete_elem?: Maybe<Table_Rows_Delete_Elem_Input>
+  _delete_key?: Maybe<Table_Rows_Delete_Key_Input>
+  _prepend?: Maybe<Table_Rows_Prepend_Input>
+  _set?: Maybe<Table_Rows_Set_Input>
+  where: Table_Rows_Bool_Exp
 }
 
 /** mutation root */
-export type Mutation_RootUpdate_Tables_By_PkArgs = {
-  _append?: Maybe<Tables_Append_Input>
-  _delete_at_path?: Maybe<Tables_Delete_At_Path_Input>
-  _delete_elem?: Maybe<Tables_Delete_Elem_Input>
-  _delete_key?: Maybe<Tables_Delete_Key_Input>
-  _prepend?: Maybe<Tables_Prepend_Input>
-  _set?: Maybe<Tables_Set_Input>
-  pk_columns: Tables_Pk_Columns_Input
+export type Mutation_RootUpdate_Table_Rows_By_PkArgs = {
+  _append?: Maybe<Table_Rows_Append_Input>
+  _delete_at_path?: Maybe<Table_Rows_Delete_At_Path_Input>
+  _delete_elem?: Maybe<Table_Rows_Delete_Elem_Input>
+  _delete_key?: Maybe<Table_Rows_Delete_Key_Input>
+  _prepend?: Maybe<Table_Rows_Prepend_Input>
+  _set?: Maybe<Table_Rows_Set_Input>
+  pk_columns: Table_Rows_Pk_Columns_Input
 }
 
 /** mutation root */
@@ -933,6 +1056,19 @@ export type Mutation_RootUpdate_Transactions_By_PkArgs = {
   _prepend?: Maybe<Transactions_Prepend_Input>
   _set?: Maybe<Transactions_Set_Input>
   pk_columns: Transactions_Pk_Columns_Input
+}
+
+/** expression to compare columns of type numeric. All fields are combined with logical 'AND'. */
+export type Numeric_Comparison_Exp = {
+  _eq?: Maybe<Scalars['numeric']>
+  _gt?: Maybe<Scalars['numeric']>
+  _gte?: Maybe<Scalars['numeric']>
+  _in?: Maybe<Array<Scalars['numeric']>>
+  _is_null?: Maybe<Scalars['Boolean']>
+  _lt?: Maybe<Scalars['numeric']>
+  _lte?: Maybe<Scalars['numeric']>
+  _neq?: Maybe<Scalars['numeric']>
+  _nin?: Maybe<Array<Scalars['numeric']>>
 }
 
 /** column ordering options */
@@ -972,12 +1108,12 @@ export type Query_Root = {
   chains_aggregate: Chains_Aggregate
   /** fetch data from the table: "chains" using primary key columns */
   chains_by_pk?: Maybe<Chains>
-  /** fetch data from the table: "tables" */
-  tables: Array<Tables>
-  /** fetch aggregated fields from the table: "tables" */
-  tables_aggregate: Tables_Aggregate
-  /** fetch data from the table: "tables" using primary key columns */
-  tables_by_pk?: Maybe<Tables>
+  /** fetch data from the table: "table_rows" */
+  table_rows: Array<Table_Rows>
+  /** fetch aggregated fields from the table: "table_rows" */
+  table_rows_aggregate: Table_Rows_Aggregate
+  /** fetch data from the table: "table_rows" using primary key columns */
+  table_rows_by_pk?: Maybe<Table_Rows>
   /** fetch data from the table: "transactions" */
   transactions: Array<Transactions>
   /** fetch aggregated fields from the table: "transactions" */
@@ -1058,25 +1194,25 @@ export type Query_RootChains_By_PkArgs = {
 }
 
 /** query root */
-export type Query_RootTablesArgs = {
-  distinct_on?: Maybe<Array<Tables_Select_Column>>
+export type Query_RootTable_RowsArgs = {
+  distinct_on?: Maybe<Array<Table_Rows_Select_Column>>
   limit?: Maybe<Scalars['Int']>
   offset?: Maybe<Scalars['Int']>
-  order_by?: Maybe<Array<Tables_Order_By>>
-  where?: Maybe<Tables_Bool_Exp>
+  order_by?: Maybe<Array<Table_Rows_Order_By>>
+  where?: Maybe<Table_Rows_Bool_Exp>
 }
 
 /** query root */
-export type Query_RootTables_AggregateArgs = {
-  distinct_on?: Maybe<Array<Tables_Select_Column>>
+export type Query_RootTable_Rows_AggregateArgs = {
+  distinct_on?: Maybe<Array<Table_Rows_Select_Column>>
   limit?: Maybe<Scalars['Int']>
   offset?: Maybe<Scalars['Int']>
-  order_by?: Maybe<Array<Tables_Order_By>>
-  where?: Maybe<Tables_Bool_Exp>
+  order_by?: Maybe<Array<Table_Rows_Order_By>>
+  where?: Maybe<Table_Rows_Bool_Exp>
 }
 
 /** query root */
-export type Query_RootTables_By_PkArgs = {
+export type Query_RootTable_Rows_By_PkArgs = {
   chain_id: Scalars['String']
   contract: Scalars['String']
   primary_key: Scalars['String']
@@ -1130,12 +1266,12 @@ export type Subscription_Root = {
   chains_aggregate: Chains_Aggregate
   /** fetch data from the table: "chains" using primary key columns */
   chains_by_pk?: Maybe<Chains>
-  /** fetch data from the table: "tables" */
-  tables: Array<Tables>
-  /** fetch aggregated fields from the table: "tables" */
-  tables_aggregate: Tables_Aggregate
-  /** fetch data from the table: "tables" using primary key columns */
-  tables_by_pk?: Maybe<Tables>
+  /** fetch data from the table: "table_rows" */
+  table_rows: Array<Table_Rows>
+  /** fetch aggregated fields from the table: "table_rows" */
+  table_rows_aggregate: Table_Rows_Aggregate
+  /** fetch data from the table: "table_rows" using primary key columns */
+  table_rows_by_pk?: Maybe<Table_Rows>
   /** fetch data from the table: "transactions" */
   transactions: Array<Transactions>
   /** fetch aggregated fields from the table: "transactions" */
@@ -1216,25 +1352,25 @@ export type Subscription_RootChains_By_PkArgs = {
 }
 
 /** subscription root */
-export type Subscription_RootTablesArgs = {
-  distinct_on?: Maybe<Array<Tables_Select_Column>>
+export type Subscription_RootTable_RowsArgs = {
+  distinct_on?: Maybe<Array<Table_Rows_Select_Column>>
   limit?: Maybe<Scalars['Int']>
   offset?: Maybe<Scalars['Int']>
-  order_by?: Maybe<Array<Tables_Order_By>>
-  where?: Maybe<Tables_Bool_Exp>
+  order_by?: Maybe<Array<Table_Rows_Order_By>>
+  where?: Maybe<Table_Rows_Bool_Exp>
 }
 
 /** subscription root */
-export type Subscription_RootTables_AggregateArgs = {
-  distinct_on?: Maybe<Array<Tables_Select_Column>>
+export type Subscription_RootTable_Rows_AggregateArgs = {
+  distinct_on?: Maybe<Array<Table_Rows_Select_Column>>
   limit?: Maybe<Scalars['Int']>
   offset?: Maybe<Scalars['Int']>
-  order_by?: Maybe<Array<Tables_Order_By>>
-  where?: Maybe<Tables_Bool_Exp>
+  order_by?: Maybe<Array<Table_Rows_Order_By>>
+  where?: Maybe<Table_Rows_Bool_Exp>
 }
 
 /** subscription root */
-export type Subscription_RootTables_By_PkArgs = {
+export type Subscription_RootTable_Rows_By_PkArgs = {
   chain_id: Scalars['String']
   contract: Scalars['String']
   primary_key: Scalars['String']
@@ -1267,9 +1403,9 @@ export type Subscription_RootTransactions_By_PkArgs = {
   transaction_id: Scalars['String']
 }
 
-/** columns and relationships of "tables" */
-export type Tables = {
-  __typename?: 'tables'
+/** columns and relationships of "table_rows" */
+export type Table_Rows = {
+  __typename?: 'table_rows'
   chain_id: Scalars['String']
   contract: Scalars['String']
   data: Scalars['jsonb']
@@ -1278,55 +1414,55 @@ export type Tables = {
   table: Scalars['String']
 }
 
-/** columns and relationships of "tables" */
-export type TablesDataArgs = {
+/** columns and relationships of "table_rows" */
+export type Table_RowsDataArgs = {
   path?: Maybe<Scalars['String']>
 }
 
-/** aggregated selection of "tables" */
-export type Tables_Aggregate = {
-  __typename?: 'tables_aggregate'
-  aggregate?: Maybe<Tables_Aggregate_Fields>
-  nodes: Array<Tables>
+/** aggregated selection of "table_rows" */
+export type Table_Rows_Aggregate = {
+  __typename?: 'table_rows_aggregate'
+  aggregate?: Maybe<Table_Rows_Aggregate_Fields>
+  nodes: Array<Table_Rows>
 }
 
-/** aggregate fields of "tables" */
-export type Tables_Aggregate_Fields = {
-  __typename?: 'tables_aggregate_fields'
+/** aggregate fields of "table_rows" */
+export type Table_Rows_Aggregate_Fields = {
+  __typename?: 'table_rows_aggregate_fields'
   count?: Maybe<Scalars['Int']>
-  max?: Maybe<Tables_Max_Fields>
-  min?: Maybe<Tables_Min_Fields>
+  max?: Maybe<Table_Rows_Max_Fields>
+  min?: Maybe<Table_Rows_Min_Fields>
 }
 
-/** aggregate fields of "tables" */
-export type Tables_Aggregate_FieldsCountArgs = {
-  columns?: Maybe<Array<Tables_Select_Column>>
+/** aggregate fields of "table_rows" */
+export type Table_Rows_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Table_Rows_Select_Column>>
   distinct?: Maybe<Scalars['Boolean']>
 }
 
-/** order by aggregate values of table "tables" */
-export type Tables_Aggregate_Order_By = {
+/** order by aggregate values of table "table_rows" */
+export type Table_Rows_Aggregate_Order_By = {
   count?: Maybe<Order_By>
-  max?: Maybe<Tables_Max_Order_By>
-  min?: Maybe<Tables_Min_Order_By>
+  max?: Maybe<Table_Rows_Max_Order_By>
+  min?: Maybe<Table_Rows_Min_Order_By>
 }
 
 /** append existing jsonb value of filtered columns with new jsonb value */
-export type Tables_Append_Input = {
+export type Table_Rows_Append_Input = {
   data?: Maybe<Scalars['jsonb']>
 }
 
-/** input type for inserting array relation for remote table "tables" */
-export type Tables_Arr_Rel_Insert_Input = {
-  data: Array<Tables_Insert_Input>
-  on_conflict?: Maybe<Tables_On_Conflict>
+/** input type for inserting array relation for remote table "table_rows" */
+export type Table_Rows_Arr_Rel_Insert_Input = {
+  data: Array<Table_Rows_Insert_Input>
+  on_conflict?: Maybe<Table_Rows_On_Conflict>
 }
 
-/** Boolean expression to filter rows from the table "tables". All fields are combined with a logical 'AND'. */
-export type Tables_Bool_Exp = {
-  _and?: Maybe<Array<Maybe<Tables_Bool_Exp>>>
-  _not?: Maybe<Tables_Bool_Exp>
-  _or?: Maybe<Array<Maybe<Tables_Bool_Exp>>>
+/** Boolean expression to filter rows from the table "table_rows". All fields are combined with a logical 'AND'. */
+export type Table_Rows_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Table_Rows_Bool_Exp>>>
+  _not?: Maybe<Table_Rows_Bool_Exp>
+  _or?: Maybe<Array<Maybe<Table_Rows_Bool_Exp>>>
   chain_id?: Maybe<String_Comparison_Exp>
   contract?: Maybe<String_Comparison_Exp>
   data?: Maybe<Jsonb_Comparison_Exp>
@@ -1335,29 +1471,29 @@ export type Tables_Bool_Exp = {
   table?: Maybe<String_Comparison_Exp>
 }
 
-/** unique or primary key constraints on table "tables" */
-export enum Tables_Constraint {
+/** unique or primary key constraints on table "table_rows" */
+export enum Table_Rows_Constraint {
   /** unique or primary key constraint */
   TablesPkey = 'tables_pkey',
 }
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
-export type Tables_Delete_At_Path_Input = {
+export type Table_Rows_Delete_At_Path_Input = {
   data?: Maybe<Array<Maybe<Scalars['String']>>>
 }
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
-export type Tables_Delete_Elem_Input = {
+export type Table_Rows_Delete_Elem_Input = {
   data?: Maybe<Scalars['Int']>
 }
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
-export type Tables_Delete_Key_Input = {
+export type Table_Rows_Delete_Key_Input = {
   data?: Maybe<Scalars['String']>
 }
 
-/** input type for inserting data into table "tables" */
-export type Tables_Insert_Input = {
+/** input type for inserting data into table "table_rows" */
+export type Table_Rows_Insert_Input = {
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
   data?: Maybe<Scalars['jsonb']>
@@ -1367,8 +1503,8 @@ export type Tables_Insert_Input = {
 }
 
 /** aggregate max on columns */
-export type Tables_Max_Fields = {
-  __typename?: 'tables_max_fields'
+export type Table_Rows_Max_Fields = {
+  __typename?: 'table_rows_max_fields'
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
   primary_key?: Maybe<Scalars['String']>
@@ -1376,8 +1512,8 @@ export type Tables_Max_Fields = {
   table?: Maybe<Scalars['String']>
 }
 
-/** order by max() on columns of table "tables" */
-export type Tables_Max_Order_By = {
+/** order by max() on columns of table "table_rows" */
+export type Table_Rows_Max_Order_By = {
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
   primary_key?: Maybe<Order_By>
@@ -1386,8 +1522,8 @@ export type Tables_Max_Order_By = {
 }
 
 /** aggregate min on columns */
-export type Tables_Min_Fields = {
-  __typename?: 'tables_min_fields'
+export type Table_Rows_Min_Fields = {
+  __typename?: 'table_rows_min_fields'
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
   primary_key?: Maybe<Scalars['String']>
@@ -1395,8 +1531,8 @@ export type Tables_Min_Fields = {
   table?: Maybe<Scalars['String']>
 }
 
-/** order by min() on columns of table "tables" */
-export type Tables_Min_Order_By = {
+/** order by min() on columns of table "table_rows" */
+export type Table_Rows_Min_Order_By = {
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
   primary_key?: Maybe<Order_By>
@@ -1404,30 +1540,30 @@ export type Tables_Min_Order_By = {
   table?: Maybe<Order_By>
 }
 
-/** response of any mutation on the table "tables" */
-export type Tables_Mutation_Response = {
-  __typename?: 'tables_mutation_response'
+/** response of any mutation on the table "table_rows" */
+export type Table_Rows_Mutation_Response = {
+  __typename?: 'table_rows_mutation_response'
   /** number of affected rows by the mutation */
   affected_rows: Scalars['Int']
   /** data of the affected rows by the mutation */
-  returning: Array<Tables>
+  returning: Array<Table_Rows>
 }
 
-/** input type for inserting object relation for remote table "tables" */
-export type Tables_Obj_Rel_Insert_Input = {
-  data: Tables_Insert_Input
-  on_conflict?: Maybe<Tables_On_Conflict>
+/** input type for inserting object relation for remote table "table_rows" */
+export type Table_Rows_Obj_Rel_Insert_Input = {
+  data: Table_Rows_Insert_Input
+  on_conflict?: Maybe<Table_Rows_On_Conflict>
 }
 
-/** on conflict condition type for table "tables" */
-export type Tables_On_Conflict = {
-  constraint: Tables_Constraint
-  update_columns: Array<Tables_Update_Column>
-  where?: Maybe<Tables_Bool_Exp>
+/** on conflict condition type for table "table_rows" */
+export type Table_Rows_On_Conflict = {
+  constraint: Table_Rows_Constraint
+  update_columns: Array<Table_Rows_Update_Column>
+  where?: Maybe<Table_Rows_Bool_Exp>
 }
 
-/** ordering options when selecting data from "tables" */
-export type Tables_Order_By = {
+/** ordering options when selecting data from "table_rows" */
+export type Table_Rows_Order_By = {
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
   data?: Maybe<Order_By>
@@ -1436,8 +1572,8 @@ export type Tables_Order_By = {
   table?: Maybe<Order_By>
 }
 
-/** primary key columns input for table: "tables" */
-export type Tables_Pk_Columns_Input = {
+/** primary key columns input for table: "table_rows" */
+export type Table_Rows_Pk_Columns_Input = {
   chain_id: Scalars['String']
   contract: Scalars['String']
   primary_key: Scalars['String']
@@ -1446,12 +1582,12 @@ export type Tables_Pk_Columns_Input = {
 }
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
-export type Tables_Prepend_Input = {
+export type Table_Rows_Prepend_Input = {
   data?: Maybe<Scalars['jsonb']>
 }
 
-/** select columns of table "tables" */
-export enum Tables_Select_Column {
+/** select columns of table "table_rows" */
+export enum Table_Rows_Select_Column {
   /** column name */
   ChainId = 'chain_id',
   /** column name */
@@ -1466,8 +1602,8 @@ export enum Tables_Select_Column {
   Table = 'table',
 }
 
-/** input type for updating data in table "tables" */
-export type Tables_Set_Input = {
+/** input type for updating data in table "table_rows" */
+export type Table_Rows_Set_Input = {
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
   data?: Maybe<Scalars['jsonb']>
@@ -1476,8 +1612,8 @@ export type Tables_Set_Input = {
   table?: Maybe<Scalars['String']>
 }
 
-/** update columns of table "tables" */
-export enum Tables_Update_Column {
+/** update columns of table "table_rows" */
+export enum Table_Rows_Update_Column {
   /** column name */
   ChainId = 'chain_id',
   /** column name */
@@ -1713,14 +1849,32 @@ export type Upsert_Table_RowMutationVariables = Exact<{
 
 export type Upsert_Table_RowMutation = {
   __typename?: 'mutation_root'
-  insert_tables_one?: Maybe<{
-    __typename?: 'tables'
+  insert_table_rows_one?: Maybe<{
+    __typename?: 'table_rows'
     chain_id: string
     contract: string
     table: string
     scope: string
     primary_key: string
     data: any
+  }>
+}
+
+export type Update_Block_HeightMutationVariables = Exact<{
+  chain_id: Scalars['String']
+  block_num?: Maybe<Scalars['numeric']>
+  block_id?: Maybe<Scalars['String']>
+}>
+
+export type Update_Block_HeightMutation = {
+  __typename?: 'mutation_root'
+  update_chains_by_pk?: Maybe<{
+    __typename?: 'chains'
+    block_id?: Maybe<string>
+    block_num?: Maybe<any>
+    chain_id: string
+    name: string
+    rpc_endpoint: string
   }>
 }
 
@@ -1733,7 +1887,7 @@ export const Upsert_Table_RowDocument = gql`
     $primary_key: String = ""
     $data: jsonb = ""
   ) {
-    insert_tables_one(
+    insert_table_rows_one(
       object: { chain_id: $chain_id, contract: $contract, table: $table, scope: $scope, primary_key: $primary_key, data: $data }
       on_conflict: { constraint: tables_pkey, update_columns: data }
     ) {
@@ -1743,6 +1897,17 @@ export const Upsert_Table_RowDocument = gql`
       scope
       primary_key
       data
+    }
+  }
+`
+export const Update_Block_HeightDocument = gql`
+  mutation update_block_height($chain_id: String!, $block_num: numeric, $block_id: String) {
+    update_chains_by_pk(pk_columns: { chain_id: $chain_id }, _set: { block_id: $block_id, block_num: $block_num }) {
+      block_id
+      block_num
+      chain_id
+      name
+      rpc_endpoint
     }
   }
 `
@@ -1762,6 +1927,17 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         errors?: GraphQLError[] | undefined
       }> {
       return withWrapper(() => client.rawRequest<Upsert_Table_RowMutation>(print(Upsert_Table_RowDocument), variables))
+    },
+    update_block_height(
+      variables: Update_Block_HeightMutationVariables,
+    ): Promise<{
+        data?: Update_Block_HeightMutation | undefined
+        extensions?: any
+        headers: Headers
+        status: number
+        errors?: GraphQLError[] | undefined
+      }> {
+      return withWrapper(() => client.rawRequest<Update_Block_HeightMutation>(print(Update_Block_HeightDocument), variables))
     },
   }
 }

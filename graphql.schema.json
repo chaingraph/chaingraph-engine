@@ -2646,6 +2646,30 @@
         "description": "columns and relationships of \"chains\"",
         "fields": [
           {
+            "name": "block_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "chain_id",
             "description": null,
             "args": [],
@@ -2679,22 +2703,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "type",
             "description": null,
             "args": [],
             "type": {
@@ -2768,6 +2776,18 @@
         "description": "aggregate fields of \"chains\"",
         "fields": [
           {
+            "name": "avg",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "chains_avg_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "count",
             "description": null,
             "args": [
@@ -2831,6 +2851,90 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "stddev",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "chains_stddev_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stddev_pop",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "chains_stddev_pop_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "stddev_samp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "chains_stddev_samp_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sum",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "chains_sum_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "var_pop",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "chains_var_pop_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "var_samp",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "chains_var_samp_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "variance",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "chains_variance_fields",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -2844,6 +2948,16 @@
         "description": "order by aggregate values of table \"chains\"",
         "fields": null,
         "inputFields": [
+          {
+            "name": "avg",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "chains_avg_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "count",
             "description": null,
@@ -2870,6 +2984,76 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "chains_min_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "stddev",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "chains_stddev_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "stddev_pop",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "chains_stddev_pop_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "stddev_samp",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "chains_stddev_samp_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "sum",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "chains_sum_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "var_pop",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "chains_var_pop_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "var_samp",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "chains_var_samp_order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "variance",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "chains_variance_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -2913,6 +3097,60 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "chains_on_conflict",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "chains_avg_fields",
+        "description": "aggregate avg on columns",
+        "fields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Float",
+        "description": "The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).",
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "chains_avg_order_by",
+        "description": "order by avg() on columns of table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -2967,6 +3205,26 @@
             "defaultValue": null
           },
           {
+            "name": "block_id",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "String_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "numeric_comparison_exp",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -2988,16 +3246,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "String_comparison_exp",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "type",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -3030,10 +3278,51 @@
       },
       {
         "kind": "INPUT_OBJECT",
+        "name": "chains_inc_input",
+        "description": "input type for incrementing integer column in table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
         "name": "chains_insert_input",
         "description": "input type for inserting data into table \"chains\"",
         "fields": null,
         "inputFields": [
+          {
+            "name": "block_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
           {
             "name": "chain_id",
             "description": null,
@@ -3056,16 +3345,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "type",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -3085,6 +3364,30 @@
         "description": "aggregate max on columns",
         "fields": [
           {
+            "name": "block_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "chain_id",
             "description": null,
             "args": [],
@@ -3110,18 +3413,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "type",
             "description": null,
             "args": [],
             "type": {
@@ -3145,6 +3436,26 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "block_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -3166,16 +3477,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "type",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -3195,6 +3496,30 @@
         "description": "aggregate min on columns",
         "fields": [
           {
+            "name": "block_id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "chain_id",
             "description": null,
             "args": [],
@@ -3220,18 +3545,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "type",
             "description": null,
             "args": [],
             "type": {
@@ -3255,6 +3568,26 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "block_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -3276,16 +3609,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "type",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -3449,6 +3772,26 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "block_id",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -3470,16 +3813,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": null,
-            "type": {
-              "kind": "ENUM",
-              "name": "order_by",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "type",
             "description": null,
             "type": {
               "kind": "ENUM",
@@ -3527,6 +3860,18 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "block_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "block_num",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "chain_id",
             "description": "column name",
             "isDeprecated": false,
@@ -3540,12 +3885,6 @@
           },
           {
             "name": "rpc_endpoint",
-            "description": "column name",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "type",
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
@@ -3560,6 +3899,26 @@
         "fields": null,
         "inputFields": [
           {
+            "name": "block_id",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "chain_id",
             "description": null,
             "type": {
@@ -3588,13 +3947,179 @@
               "ofType": null
             },
             "defaultValue": null
-          },
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "chains_stddev_fields",
+        "description": "aggregate stddev on columns",
+        "fields": [
           {
-            "name": "type",
+            "name": "block_num",
             "description": null,
+            "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "String",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "chains_stddev_order_by",
+        "description": "order by stddev() on columns of table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "chains_stddev_pop_fields",
+        "description": "aggregate stddev_pop on columns",
+        "fields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "chains_stddev_pop_order_by",
+        "description": "order by stddev_pop() on columns of table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "chains_stddev_samp_fields",
+        "description": "aggregate stddev_samp on columns",
+        "fields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "chains_stddev_samp_order_by",
+        "description": "order by stddev_samp() on columns of table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "chains_sum_fields",
+        "description": "aggregate sum on columns",
+        "fields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "chains_sum_order_by",
+        "description": "order by sum() on columns of table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -3613,6 +4138,18 @@
         "interfaces": null,
         "enumValues": [
           {
+            "name": "block_id",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "block_num",
+            "description": "column name",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "chain_id",
             "description": "column name",
             "isDeprecated": false,
@@ -3629,14 +4166,140 @@
             "description": "column name",
             "isDeprecated": false,
             "deprecationReason": null
-          },
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "chains_var_pop_fields",
+        "description": "aggregate var_pop on columns",
+        "fields": [
           {
-            "name": "type",
-            "description": "column name",
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "chains_var_pop_order_by",
+        "description": "order by var_pop() on columns of table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "chains_var_samp_fields",
+        "description": "aggregate var_samp on columns",
+        "fields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "chains_var_samp_order_by",
+        "description": "order by var_samp() on columns of table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "chains_variance_fields",
+        "description": "aggregate variance on columns",
+        "fields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "chains_variance_order_by",
+        "description": "order by variance() on columns of table \"chains\"",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "block_num",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "order_by",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -4028,8 +4691,8 @@
             "deprecationReason": null
           },
           {
-            "name": "delete_tables",
-            "description": "delete data from the table: \"tables\"",
+            "name": "delete_table_rows",
+            "description": "delete data from the table: \"table_rows\"",
             "args": [
               {
                 "name": "where",
@@ -4039,7 +4702,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "tables_bool_exp",
+                    "name": "table_rows_bool_exp",
                     "ofType": null
                   }
                 },
@@ -4048,15 +4711,15 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "tables_mutation_response",
+              "name": "table_rows_mutation_response",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "delete_tables_by_pk",
-            "description": "delete single row from the table: \"tables\"",
+            "name": "delete_table_rows_by_pk",
+            "description": "delete single row from the table: \"table_rows\"",
             "args": [
               {
                 "name": "chain_id",
@@ -4131,7 +4794,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "tables",
+              "name": "table_rows",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4466,8 +5129,8 @@
             "deprecationReason": null
           },
           {
-            "name": "insert_tables",
-            "description": "insert data into the table: \"tables\"",
+            "name": "insert_table_rows",
+            "description": "insert data into the table: \"table_rows\"",
             "args": [
               {
                 "name": "objects",
@@ -4483,7 +5146,7 @@
                       "name": null,
                       "ofType": {
                         "kind": "INPUT_OBJECT",
-                        "name": "tables_insert_input",
+                        "name": "table_rows_insert_input",
                         "ofType": null
                       }
                     }
@@ -4496,7 +5159,7 @@
                 "description": "on conflict condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_on_conflict",
+                  "name": "table_rows_on_conflict",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -4504,15 +5167,15 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "tables_mutation_response",
+              "name": "table_rows_mutation_response",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "insert_tables_one",
-            "description": "insert a single row into the table: \"tables\"",
+            "name": "insert_table_rows_one",
+            "description": "insert a single row into the table: \"table_rows\"",
             "args": [
               {
                 "name": "object",
@@ -4522,7 +5185,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "tables_insert_input",
+                    "name": "table_rows_insert_input",
                     "ofType": null
                   }
                 },
@@ -4533,7 +5196,7 @@
                 "description": "on conflict condition",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_on_conflict",
+                  "name": "table_rows_on_conflict",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -4541,7 +5204,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "tables",
+              "name": "table_rows",
               "ofType": null
             },
             "isDeprecated": false,
@@ -4982,6 +5645,16 @@
             "description": "update data of the table: \"chains\"",
             "args": [
               {
+                "name": "_inc",
+                "description": "increments the integer columns with given value of the filtered values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "chains_inc_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
@@ -5019,6 +5692,16 @@
             "description": "update single row of the table: \"chains\"",
             "args": [
               {
+                "name": "_inc",
+                "description": "increments the integer columns with given value of the filtered values",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "chains_inc_input",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "_set",
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
@@ -5052,15 +5735,15 @@
             "deprecationReason": null
           },
           {
-            "name": "update_tables",
-            "description": "update data of the table: \"tables\"",
+            "name": "update_table_rows",
+            "description": "update data of the table: \"table_rows\"",
             "args": [
               {
                 "name": "_append",
                 "description": "append existing jsonb value of filtered columns with new jsonb value",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_append_input",
+                  "name": "table_rows_append_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5070,7 +5753,7 @@
                 "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_delete_at_path_input",
+                  "name": "table_rows_delete_at_path_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5080,7 +5763,7 @@
                 "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_delete_elem_input",
+                  "name": "table_rows_delete_elem_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5090,7 +5773,7 @@
                 "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_delete_key_input",
+                  "name": "table_rows_delete_key_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5100,7 +5783,7 @@
                 "description": "prepend existing jsonb value of filtered columns with new jsonb value",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_prepend_input",
+                  "name": "table_rows_prepend_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5110,7 +5793,7 @@
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_set_input",
+                  "name": "table_rows_set_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5123,7 +5806,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "tables_bool_exp",
+                    "name": "table_rows_bool_exp",
                     "ofType": null
                   }
                 },
@@ -5132,22 +5815,22 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "tables_mutation_response",
+              "name": "table_rows_mutation_response",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "update_tables_by_pk",
-            "description": "update single row of the table: \"tables\"",
+            "name": "update_table_rows_by_pk",
+            "description": "update single row of the table: \"table_rows\"",
             "args": [
               {
                 "name": "_append",
                 "description": "append existing jsonb value of filtered columns with new jsonb value",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_append_input",
+                  "name": "table_rows_append_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5157,7 +5840,7 @@
                 "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_delete_at_path_input",
+                  "name": "table_rows_delete_at_path_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5167,7 +5850,7 @@
                 "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_delete_elem_input",
+                  "name": "table_rows_delete_elem_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5177,7 +5860,7 @@
                 "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_delete_key_input",
+                  "name": "table_rows_delete_key_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5187,7 +5870,7 @@
                 "description": "prepend existing jsonb value of filtered columns with new jsonb value",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_prepend_input",
+                  "name": "table_rows_prepend_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5197,7 +5880,7 @@
                 "description": "sets the columns of the filtered rows to the given values",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_set_input",
+                  "name": "table_rows_set_input",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -5210,7 +5893,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "tables_pk_columns_input",
+                    "name": "table_rows_pk_columns_input",
                     "ofType": null
                   }
                 },
@@ -5219,7 +5902,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "tables",
+              "name": "table_rows",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5402,6 +6085,133 @@
         ],
         "inputFields": null,
         "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "SCALAR",
+        "name": "numeric",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "numeric_comparison_exp",
+        "description": "expression to compare columns of type numeric. All fields are combined with logical 'AND'.",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "_eq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_gt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_gte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_in",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "numeric",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_is_null",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_lt",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_lte",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_neq",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "numeric",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "_nin",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "numeric",
+                  "ofType": null
+                }
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
         "enumValues": null,
         "possibleTypes": null
       },
@@ -6089,8 +6899,8 @@
             "deprecationReason": null
           },
           {
-            "name": "tables",
-            "description": "fetch data from the table: \"tables\"",
+            "name": "table_rows",
+            "description": "fetch data from the table: \"table_rows\"",
             "args": [
               {
                 "name": "distinct_on",
@@ -6103,7 +6913,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "tables_select_column",
+                      "name": "table_rows_select_column",
                       "ofType": null
                     }
                   }
@@ -6141,7 +6951,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "tables_order_by",
+                      "name": "table_rows_order_by",
                       "ofType": null
                     }
                   }
@@ -6153,7 +6963,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_bool_exp",
+                  "name": "table_rows_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -6170,7 +6980,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "tables",
+                    "name": "table_rows",
                     "ofType": null
                   }
                 }
@@ -6180,8 +6990,8 @@
             "deprecationReason": null
           },
           {
-            "name": "tables_aggregate",
-            "description": "fetch aggregated fields from the table: \"tables\"",
+            "name": "table_rows_aggregate",
+            "description": "fetch aggregated fields from the table: \"table_rows\"",
             "args": [
               {
                 "name": "distinct_on",
@@ -6194,7 +7004,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "tables_select_column",
+                      "name": "table_rows_select_column",
                       "ofType": null
                     }
                   }
@@ -6232,7 +7042,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "tables_order_by",
+                      "name": "table_rows_order_by",
                       "ofType": null
                     }
                   }
@@ -6244,7 +7054,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_bool_exp",
+                  "name": "table_rows_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -6255,7 +7065,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "tables_aggregate",
+                "name": "table_rows_aggregate",
                 "ofType": null
               }
             },
@@ -6263,8 +7073,8 @@
             "deprecationReason": null
           },
           {
-            "name": "tables_by_pk",
-            "description": "fetch data from the table: \"tables\" using primary key columns",
+            "name": "table_rows_by_pk",
+            "description": "fetch data from the table: \"table_rows\" using primary key columns",
             "args": [
               {
                 "name": "chain_id",
@@ -6339,7 +7149,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "tables",
+              "name": "table_rows",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7217,8 +8027,8 @@
             "deprecationReason": null
           },
           {
-            "name": "tables",
-            "description": "fetch data from the table: \"tables\"",
+            "name": "table_rows",
+            "description": "fetch data from the table: \"table_rows\"",
             "args": [
               {
                 "name": "distinct_on",
@@ -7231,7 +8041,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "tables_select_column",
+                      "name": "table_rows_select_column",
                       "ofType": null
                     }
                   }
@@ -7269,7 +8079,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "tables_order_by",
+                      "name": "table_rows_order_by",
                       "ofType": null
                     }
                   }
@@ -7281,7 +8091,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_bool_exp",
+                  "name": "table_rows_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -7298,7 +8108,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "tables",
+                    "name": "table_rows",
                     "ofType": null
                   }
                 }
@@ -7308,8 +8118,8 @@
             "deprecationReason": null
           },
           {
-            "name": "tables_aggregate",
-            "description": "fetch aggregated fields from the table: \"tables\"",
+            "name": "table_rows_aggregate",
+            "description": "fetch aggregated fields from the table: \"table_rows\"",
             "args": [
               {
                 "name": "distinct_on",
@@ -7322,7 +8132,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "tables_select_column",
+                      "name": "table_rows_select_column",
                       "ofType": null
                     }
                   }
@@ -7360,7 +8170,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "INPUT_OBJECT",
-                      "name": "tables_order_by",
+                      "name": "table_rows_order_by",
                       "ofType": null
                     }
                   }
@@ -7372,7 +8182,7 @@
                 "description": "filter the rows returned",
                 "type": {
                   "kind": "INPUT_OBJECT",
-                  "name": "tables_bool_exp",
+                  "name": "table_rows_bool_exp",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -7383,7 +8193,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "tables_aggregate",
+                "name": "table_rows_aggregate",
                 "ofType": null
               }
             },
@@ -7391,8 +8201,8 @@
             "deprecationReason": null
           },
           {
-            "name": "tables_by_pk",
-            "description": "fetch data from the table: \"tables\" using primary key columns",
+            "name": "table_rows_by_pk",
+            "description": "fetch data from the table: \"table_rows\" using primary key columns",
             "args": [
               {
                 "name": "chain_id",
@@ -7467,7 +8277,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "tables",
+              "name": "table_rows",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7710,8 +8520,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "tables",
-        "description": "columns and relationships of \"tables\"",
+        "name": "table_rows",
+        "description": "columns and relationships of \"table_rows\"",
         "fields": [
           {
             "name": "chain_id",
@@ -7828,8 +8638,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "tables_aggregate",
-        "description": "aggregated selection of \"tables\"",
+        "name": "table_rows_aggregate",
+        "description": "aggregated selection of \"table_rows\"",
         "fields": [
           {
             "name": "aggregate",
@@ -7837,7 +8647,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "tables_aggregate_fields",
+              "name": "table_rows_aggregate_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7858,7 +8668,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "tables",
+                    "name": "table_rows",
                     "ofType": null
                   }
                 }
@@ -7875,8 +8685,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "tables_aggregate_fields",
-        "description": "aggregate fields of \"tables\"",
+        "name": "table_rows_aggregate_fields",
+        "description": "aggregate fields of \"table_rows\"",
         "fields": [
           {
             "name": "count",
@@ -7893,7 +8703,7 @@
                     "name": null,
                     "ofType": {
                       "kind": "ENUM",
-                      "name": "tables_select_column",
+                      "name": "table_rows_select_column",
                       "ofType": null
                     }
                   }
@@ -7925,7 +8735,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "tables_max_fields",
+              "name": "table_rows_max_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7937,7 +8747,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "tables_min_fields",
+              "name": "table_rows_min_fields",
               "ofType": null
             },
             "isDeprecated": false,
@@ -7951,8 +8761,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_aggregate_order_by",
-        "description": "order by aggregate values of table \"tables\"",
+        "name": "table_rows_aggregate_order_by",
+        "description": "order by aggregate values of table \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -7970,7 +8780,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "tables_max_order_by",
+              "name": "table_rows_max_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -7980,7 +8790,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "tables_min_order_by",
+              "name": "table_rows_min_order_by",
               "ofType": null
             },
             "defaultValue": null
@@ -7992,7 +8802,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_append_input",
+        "name": "table_rows_append_input",
         "description": "append existing jsonb value of filtered columns with new jsonb value",
         "fields": null,
         "inputFields": [
@@ -8013,8 +8823,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_arr_rel_insert_input",
-        "description": "input type for inserting array relation for remote table \"tables\"",
+        "name": "table_rows_arr_rel_insert_input",
+        "description": "input type for inserting array relation for remote table \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -8031,7 +8841,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "INPUT_OBJECT",
-                    "name": "tables_insert_input",
+                    "name": "table_rows_insert_input",
                     "ofType": null
                   }
                 }
@@ -8044,7 +8854,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "tables_on_conflict",
+              "name": "table_rows_on_conflict",
               "ofType": null
             },
             "defaultValue": null
@@ -8056,8 +8866,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_bool_exp",
-        "description": "Boolean expression to filter rows from the table \"tables\". All fields are combined with a logical 'AND'.",
+        "name": "table_rows_bool_exp",
+        "description": "Boolean expression to filter rows from the table \"table_rows\". All fields are combined with a logical 'AND'.",
         "fields": null,
         "inputFields": [
           {
@@ -8068,7 +8878,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "tables_bool_exp",
+                "name": "table_rows_bool_exp",
                 "ofType": null
               }
             },
@@ -8079,7 +8889,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "tables_bool_exp",
+              "name": "table_rows_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -8092,7 +8902,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "tables_bool_exp",
+                "name": "table_rows_bool_exp",
                 "ofType": null
               }
             },
@@ -8165,8 +8975,8 @@
       },
       {
         "kind": "ENUM",
-        "name": "tables_constraint",
-        "description": "unique or primary key constraints on table \"tables\"",
+        "name": "table_rows_constraint",
+        "description": "unique or primary key constraints on table \"table_rows\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -8182,7 +8992,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_delete_at_path_input",
+        "name": "table_rows_delete_at_path_input",
         "description": "delete the field or element with specified path (for JSON arrays, negative integers count from the end)",
         "fields": null,
         "inputFields": [
@@ -8207,7 +9017,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_delete_elem_input",
+        "name": "table_rows_delete_elem_input",
         "description": "delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array",
         "fields": null,
         "inputFields": [
@@ -8228,7 +9038,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_delete_key_input",
+        "name": "table_rows_delete_key_input",
         "description": "delete key/value pair or string element. key/value pairs are matched based on their key value",
         "fields": null,
         "inputFields": [
@@ -8249,8 +9059,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_insert_input",
-        "description": "input type for inserting data into table \"tables\"",
+        "name": "table_rows_insert_input",
+        "description": "input type for inserting data into table \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -8320,7 +9130,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "tables_max_fields",
+        "name": "table_rows_max_fields",
         "description": "aggregate max on columns",
         "fields": [
           {
@@ -8391,8 +9201,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_max_order_by",
-        "description": "order by max() on columns of table \"tables\"",
+        "name": "table_rows_max_order_by",
+        "description": "order by max() on columns of table \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -8452,7 +9262,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "tables_min_fields",
+        "name": "table_rows_min_fields",
         "description": "aggregate min on columns",
         "fields": [
           {
@@ -8523,8 +9333,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_min_order_by",
-        "description": "order by min() on columns of table \"tables\"",
+        "name": "table_rows_min_order_by",
+        "description": "order by min() on columns of table \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -8584,8 +9394,8 @@
       },
       {
         "kind": "OBJECT",
-        "name": "tables_mutation_response",
-        "description": "response of any mutation on the table \"tables\"",
+        "name": "table_rows_mutation_response",
+        "description": "response of any mutation on the table \"table_rows\"",
         "fields": [
           {
             "name": "affected_rows",
@@ -8618,7 +9428,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "OBJECT",
-                    "name": "tables",
+                    "name": "table_rows",
                     "ofType": null
                   }
                 }
@@ -8635,8 +9445,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_obj_rel_insert_input",
-        "description": "input type for inserting object relation for remote table \"tables\"",
+        "name": "table_rows_obj_rel_insert_input",
+        "description": "input type for inserting object relation for remote table \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -8647,7 +9457,7 @@
               "name": null,
               "ofType": {
                 "kind": "INPUT_OBJECT",
-                "name": "tables_insert_input",
+                "name": "table_rows_insert_input",
                 "ofType": null
               }
             },
@@ -8658,7 +9468,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "tables_on_conflict",
+              "name": "table_rows_on_conflict",
               "ofType": null
             },
             "defaultValue": null
@@ -8670,8 +9480,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_on_conflict",
-        "description": "on conflict condition type for table \"tables\"",
+        "name": "table_rows_on_conflict",
+        "description": "on conflict condition type for table \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -8682,7 +9492,7 @@
               "name": null,
               "ofType": {
                 "kind": "ENUM",
-                "name": "tables_constraint",
+                "name": "table_rows_constraint",
                 "ofType": null
               }
             },
@@ -8702,7 +9512,7 @@
                   "name": null,
                   "ofType": {
                     "kind": "ENUM",
-                    "name": "tables_update_column",
+                    "name": "table_rows_update_column",
                     "ofType": null
                   }
                 }
@@ -8715,7 +9525,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "tables_bool_exp",
+              "name": "table_rows_bool_exp",
               "ofType": null
             },
             "defaultValue": null
@@ -8727,8 +9537,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_order_by",
-        "description": "ordering options when selecting data from \"tables\"",
+        "name": "table_rows_order_by",
+        "description": "ordering options when selecting data from \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -8798,8 +9608,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_pk_columns_input",
-        "description": "primary key columns input for table: \"tables\"",
+        "name": "table_rows_pk_columns_input",
+        "description": "primary key columns input for table: \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -8879,7 +9689,7 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_prepend_input",
+        "name": "table_rows_prepend_input",
         "description": "prepend existing jsonb value of filtered columns with new jsonb value",
         "fields": null,
         "inputFields": [
@@ -8900,8 +9710,8 @@
       },
       {
         "kind": "ENUM",
-        "name": "tables_select_column",
-        "description": "select columns of table \"tables\"",
+        "name": "table_rows_select_column",
+        "description": "select columns of table \"table_rows\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -8947,8 +9757,8 @@
       },
       {
         "kind": "INPUT_OBJECT",
-        "name": "tables_set_input",
-        "description": "input type for updating data in table \"tables\"",
+        "name": "table_rows_set_input",
+        "description": "input type for updating data in table \"table_rows\"",
         "fields": null,
         "inputFields": [
           {
@@ -9018,8 +9828,8 @@
       },
       {
         "kind": "ENUM",
-        "name": "tables_update_column",
-        "description": "update columns of table \"tables\"",
+        "name": "table_rows_update_column",
+        "description": "update columns of table \"table_rows\"",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -11170,7 +11980,11 @@
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
         "isRepeatable": false,
-        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+        "locations": [
+          "FIELD",
+          "FRAGMENT_SPREAD",
+          "INLINE_FRAGMENT"
+        ],
         "args": [
           {
             "name": "if",
@@ -11192,7 +12006,11 @@
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
         "isRepeatable": false,
-        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
+        "locations": [
+          "FIELD",
+          "FRAGMENT_SPREAD",
+          "INLINE_FRAGMENT"
+        ],
         "args": [
           {
             "name": "if",
@@ -11214,7 +12032,12 @@
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
         "isRepeatable": false,
-        "locations": ["FIELD_DEFINITION", "ARGUMENT_DEFINITION", "INPUT_FIELD_DEFINITION", "ENUM_VALUE"],
+        "locations": [
+          "FIELD_DEFINITION",
+          "ARGUMENT_DEFINITION",
+          "INPUT_FIELD_DEFINITION",
+          "ENUM_VALUE"
+        ],
         "args": [
           {
             "name": "reason",
@@ -11232,7 +12055,9 @@
         "name": "specifiedBy",
         "description": "Exposes a URL that specifies the behaviour of this scalar.",
         "isRepeatable": false,
-        "locations": ["SCALAR"],
+        "locations": [
+          "SCALAR"
+        ],
         "args": [
           {
             "name": "url",

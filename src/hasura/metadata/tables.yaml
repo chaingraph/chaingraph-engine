@@ -9,7 +9,7 @@
     name: chains
 - table:
     schema: public
-    name: tables
+    name: table_rows
 - table:
     schema: public
     name: transactions
