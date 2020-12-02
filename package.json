@@ -11,7 +11,7 @@
     "build": "tsc",
     "lint": "eslint --ignore-path .gitignore \"**/*.+(js|ts|tsx)\"",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
-    "hasura": "hasura console --project src/hasura",
+    "hasura": "hasura console --project src/hasura --console-port 8088 --api-port 8081",
     "gen": "rimraf src/generated && graphql-codegen --config codegen.yml",
     "doctoc": "doctoc ./README.md --github "
   },

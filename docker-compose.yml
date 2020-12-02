@@ -21,8 +21,7 @@ services:
     image: hasura/graphql-engine:v1.3.3.cli-migrations-v2
     ports:
       - '8088:8080'
-      - '8089:8081'
-      - '9695:9695'
+      - '8081:8081'
     depends_on:
       - postgres
     restart: always
@@ -30,10 +29,11 @@ services:
       # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html
       HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
-      HASURA_GRAPHQL_ADMIN_SECRET: =NBc;?2eduh)?mxq
+      HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
+      # HASURA_GRAPHQL_ADMIN_SECRET: =NBc;?2eduh)?mxq
       HASURA_GRAPHQL_DEV_MODE: 'true'
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
-      HASURA_GRAPHQL_SERVER_HOST: 0.0.0.0
+      # HASURA_GRAPHQL_SERVER_HOST: 0.0.0.0
       VIRTUAL_HOST: alpha.chaingraph.dev
       VIRTUAL_PORT: 8088
     networks:
@@ -62,15 +62,9 @@ services:
   #     - ./:/usr/src/app # mount chaingraph source
   #     - ./node_modules # prevents host/container conflicts
   #   depends_on:
-  #     - postgres
+  #     - hasura
   #   environment:
-  #     DB_USER: user
-  #     DB_PASSWORD: pass
-  #     DB_PORT: 5432
-  #     DB_NAME: chaingraph
-  #     DB_HOST: postgres
-  #     DB_SCHEMA: public
-  #     WAIT_HOSTS: postgres:5432
+  #     WAIT_HOSTS: hasura:8088
   #     WAIT_HOSTS_TIMEOUT: 60
   #   ports:
   #     - '3030:3030'
