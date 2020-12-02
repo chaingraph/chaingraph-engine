@@ -20,7 +20,7 @@ services:
     container_name: chaingraph_hasura
     image: hasura/graphql-engine:v1.3.3.cli-migrations-v2
     ports:
-      - '8080:8080'
+      - '8088:8080'
     depends_on:
       - postgres
     restart: always
@@ -32,7 +32,6 @@ services:
       HASURA_GRAPHQL_ADMIN_SECRET: =NBc;?2eduh)?mxq
       HASURA_GRAPHQL_DEV_MODE: 'true'
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
-      # HASURA_GRAPHQL_SERVER_HOST: 0.0.0.0
       VIRTUAL_HOST: alpha.chaingraph.dev
       VIRTUAL_PORT: 8088
     networks:
@@ -41,6 +40,7 @@ services:
           - alpha.chaingraph.dev
     volumes:
       - ./src/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
+      - ./src/hasura/metadata:/hasura-metadata #  mount hasura metadata folder
     command:
       - graphql-engine
       - serve

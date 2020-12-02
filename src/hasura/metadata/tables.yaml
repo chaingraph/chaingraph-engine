@@ -1,0 +1,9 @@
+- table:
+    schema: public
+    name: chains
+- table:
+    schema: public
+    name: tables
+- table:
+    schema: public
+    name: transactions
