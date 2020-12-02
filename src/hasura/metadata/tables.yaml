@@ -1,5 +1,8 @@
 - table:
     schema: public
+    name: accounts
+- table:
+    schema: public
     name: actions
 - table:
     schema: public
