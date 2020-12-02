@@ -29,10 +29,10 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
       HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
-      HASURA_GRAPHQL_ADMIN_SECRET: =NBc;?2eduh)?mxq
+      # HASURA_GRAPHQL_ADMIN_SECRET: =NBc;?2eduh)?mxq
       HASURA_GRAPHQL_DEV_MODE: 'true'
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
-      HASURA_GRAPHQL_CORS_DOMAIN: '*' 
+      HASURA_GRAPHQL_CORS_DOMAIN: '*'
       VIRTUAL_HOST: alpha.chaingraph.dev
       VIRTUAL_PORT: 8088
     networks:
