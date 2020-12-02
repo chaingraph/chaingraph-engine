@@ -1,3 +1,3 @@
-import { startReaders } from './readers'
+import { startIndexer } from './indexer'
 
-startReaders()
+startIndexer()

@@ -2,7 +2,7 @@ import { filter } from 'rxjs/internal/operators/filter'
 import { EosioShipTableRowData } from '@blockmatic/eosio-ship-reader'
 import { loadReader } from './ship-reader'
 
-export const startEosioReader = async () => {
+export const startIndexer = async () => {
   const { close$, rows$ } = await loadReader()
 
   // filter ship socket messages stream by type (string for abi and )
