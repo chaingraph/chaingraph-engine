@@ -1,5 +1,0 @@
-- args:
-    cascade: false
-    read_only: false
-    sql: alter table "public"."tables" rename column "key" to "primary_key";
-  type: run_sql

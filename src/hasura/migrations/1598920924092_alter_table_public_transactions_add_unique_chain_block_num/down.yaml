@@ -1,5 +1,0 @@
-- args:
-    cascade: false
-    read_only: false
-    sql: alter table "public"."transactions" drop constraint "transactions_chain_block_num_key";
-  type: run_sql

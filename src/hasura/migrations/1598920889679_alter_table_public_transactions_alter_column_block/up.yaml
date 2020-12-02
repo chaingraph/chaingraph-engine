@@ -1,5 +1,0 @@
-- args:
-    cascade: false
-    read_only: false
-    sql: alter table "public"."transactions" rename column "block" to "block_num";
-  type: run_sql

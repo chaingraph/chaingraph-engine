@@ -1,5 +1,0 @@
-- args:
-    cascade: false
-    read_only: false
-    sql: alter table "public"."chaingraph_users" rename to "chaingrap_users";
-  type: run_sql
