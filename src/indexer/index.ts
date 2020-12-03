@@ -6,22 +6,24 @@ import { getInfo } from './debug-utils'
 const chain_id = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
 
 export const startIndexer = async () => {
-  const { close$, rows$, blocks$ } = await loadReader()
+  console.log('Starting indexer ...')
+  const { close$, rows$, blocks$, log$, errors$ } = await loadReader()
 
   let info = await getInfo()
 
   setInterval(async () => {
     info = await getInfo()
-  }, 490)
+  }, 250)
 
   // filter ship socket messages stream by type (string for abi and )
   const upsertRows$ = rows$.pipe(filter((row) => Boolean(row.present)))
   const deletedRows$ = rows$.pipe(filter((row) => !Boolean(row.present)))
 
+  console.log('Subscribing to blocks ...')
   blocks$.subscribe(({ this_block }) => {
     try {
       hasura.update_block_height({ chain_id, ...this_block })
-      console.log(`Processed block ${this_block.block_num}, nodeos head block ${info.head_block_num}`)
+      console.log(`Indexed block ${this_block.block_num}. Nodeos head block ${info.head_block_num}`)
     } catch (error) {
       console.log('======================================')
       console.log('Error updating block height', { chain_id, ...this_block })
@@ -66,4 +68,7 @@ export const startIndexer = async () => {
   })
 
   close$.subscribe(() => console.log('connection closed'))
+
+  log$.subscribe(({ message }) => console.log('ShipReader:', message))
+  errors$.subscribe((error) => console.log('ShipReader:', error))
 }

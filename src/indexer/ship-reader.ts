@@ -5,23 +5,7 @@ import {
   EosioShipTableRow,
 } from '@blockmatic/eosio-ship-reader'
 import fetch from 'node-fetch'
-import { RpcInterfaces } from 'eosjs'
-
-const eosioApi = 'http://localhost:8888'
-
-const fecthAbi = (account_name: string) =>
-  fetch(`${eosioApi}/v1/chain/get_abi`, {
-    method: 'POST',
-    body: JSON.stringify({
-      account_name,
-    }),
-  }).then(async (res: any) => {
-    const response = await res.json()
-    return {
-      account_name,
-      abi: response.abi as RpcInterfaces.Abi,
-    }
-  })
+import { eosioApi, eosioHost, fecthAbi } from './debug-utils'
 
 const table_rows_whitelist: EosioShipTableRow[] = [
   { code: 'eosio.token', table: 'accounts' },
@@ -44,7 +28,7 @@ export const loadReader = async () => {
   abisArr.forEach(({ account_name, abi }) => contract_abis.set(account_name, abi))
 
   const eosioShipReaderConfig: EosioShipReaderConfig = {
-    ws_url: 'ws://localhost:8080',
+    ws_url: `ws://${eosioHost}:8080`,
     ds_threads: 4,
     ds_experimental: false,
     delta_whitelist: ['contract_table', 'contract_row', 'contract_index64'],
