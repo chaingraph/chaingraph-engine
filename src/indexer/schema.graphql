@@ -1,10 +1,10 @@
 mutation upsert_table_row(
-  $chain_id: String = ""
-  $contract: String = ""
-  $table: String = ""
-  $scope: String = ""
-  $primary_key: String = ""
-  $data: jsonb = ""
+  $chain_id: String!
+  $contract: String!
+  $table: String!
+  $scope: String!
+  $primary_key: String!
+  $data: jsonb!
 ) {
   insert_table_rows_one(
     object: { chain_id: $chain_id, contract: $contract, table: $table, scope: $scope, primary_key: $primary_key, data: $data }
@@ -19,12 +19,23 @@ mutation upsert_table_row(
   }
 }
 
-mutation update_block_height($chain_id: String!, $block_num: numeric, $block_id: String) {
+mutation update_block_height($chain_id: String!, $block_num: numeric!, $block_id: String!) {
   update_chains_by_pk(pk_columns: { chain_id: $chain_id }, _set: { block_id: $block_id, block_num: $block_num }) {
     block_id
     block_num
     chain_id
     name
     rpc_endpoint
+  }
+}
+
+mutation delete_table_row($chain_id: String!, $contract: String!, $primary_key: String!, $scope: String!, $table: String!) {
+  delete_table_rows_by_pk(chain_id: $chain_id, contract: $contract, primary_key: $primary_key, scope: $scope, table: $table) {
+    chain_id
+    table
+    scope
+    contract
+    primary_key
+    data
   }
 }

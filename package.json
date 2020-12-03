@@ -13,7 +13,8 @@
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
     "hasura": "hasura console --project src/hasura --console-port 8080",
     "gen": "rimraf src/generated && graphql-codegen --config codegen.yml -r dotenv/config",
-    "doctoc": "doctoc ./README.md --github "
+    "doctoc": "doctoc ./README.md --github",
+    "dc": "env-cmd docker-compose"
   },
   "lint-staged": {
     "*.{ts,tsx,js}": [

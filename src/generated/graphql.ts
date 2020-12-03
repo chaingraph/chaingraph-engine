@@ -5,6 +5,8 @@ import { Headers } from 'graphql-request/dist/types.dom'
 import gql from 'graphql-tag'
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -1839,12 +1841,12 @@ export enum Transactions_Update_Column {
 }
 
 export type Upsert_Table_RowMutationVariables = Exact<{
-  chain_id?: Maybe<Scalars['String']>
-  contract?: Maybe<Scalars['String']>
-  table?: Maybe<Scalars['String']>
-  scope?: Maybe<Scalars['String']>
-  primary_key?: Maybe<Scalars['String']>
-  data?: Maybe<Scalars['jsonb']>
+  chain_id: Scalars['String']
+  contract: Scalars['String']
+  table: Scalars['String']
+  scope: Scalars['String']
+  primary_key: Scalars['String']
+  data: Scalars['jsonb']
 }>
 
 export type Upsert_Table_RowMutation = {
@@ -1862,8 +1864,8 @@ export type Upsert_Table_RowMutation = {
 
 export type Update_Block_HeightMutationVariables = Exact<{
   chain_id: Scalars['String']
-  block_num?: Maybe<Scalars['numeric']>
-  block_id?: Maybe<Scalars['String']>
+  block_num: Scalars['numeric']
+  block_id: Scalars['String']
 }>
 
 export type Update_Block_HeightMutation = {
@@ -1878,14 +1880,35 @@ export type Update_Block_HeightMutation = {
   }>
 }
 
+export type Delete_Table_RowMutationVariables = Exact<{
+  chain_id: Scalars['String']
+  contract: Scalars['String']
+  primary_key: Scalars['String']
+  scope: Scalars['String']
+  table: Scalars['String']
+}>
+
+export type Delete_Table_RowMutation = {
+  __typename?: 'mutation_root'
+  delete_table_rows_by_pk?: Maybe<{
+    __typename?: 'table_rows'
+    chain_id: string
+    table: string
+    scope: string
+    contract: string
+    primary_key: string
+    data: any
+  }>
+}
+
 export const Upsert_Table_RowDocument = gql`
   mutation upsert_table_row(
-    $chain_id: String = ""
-    $contract: String = ""
-    $table: String = ""
-    $scope: String = ""
-    $primary_key: String = ""
-    $data: jsonb = ""
+    $chain_id: String!
+    $contract: String!
+    $table: String!
+    $scope: String!
+    $primary_key: String!
+    $data: jsonb!
   ) {
     insert_table_rows_one(
       object: { chain_id: $chain_id, contract: $contract, table: $table, scope: $scope, primary_key: $primary_key, data: $data }
@@ -1901,13 +1924,25 @@ export const Upsert_Table_RowDocument = gql`
   }
 `
 export const Update_Block_HeightDocument = gql`
-  mutation update_block_height($chain_id: String!, $block_num: numeric, $block_id: String) {
+  mutation update_block_height($chain_id: String!, $block_num: numeric!, $block_id: String!) {
     update_chains_by_pk(pk_columns: { chain_id: $chain_id }, _set: { block_id: $block_id, block_num: $block_num }) {
       block_id
       block_num
       chain_id
       name
       rpc_endpoint
+    }
+  }
+`
+export const Delete_Table_RowDocument = gql`
+  mutation delete_table_row($chain_id: String!, $contract: String!, $primary_key: String!, $scope: String!, $table: String!) {
+    delete_table_rows_by_pk(chain_id: $chain_id, contract: $contract, primary_key: $primary_key, scope: $scope, table: $table) {
+      chain_id
+      table
+      scope
+      contract
+      primary_key
+      data
     }
   }
 `
@@ -1918,7 +1953,7 @@ const defaultWrapper: SdkFunctionWrapper = (sdkFunction) => sdkFunction()
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
     upsert_table_row(
-      variables?: Upsert_Table_RowMutationVariables,
+      variables: Upsert_Table_RowMutationVariables,
     ): Promise<{
         data?: Upsert_Table_RowMutation | undefined
         extensions?: any
@@ -1938,6 +1973,17 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         errors?: GraphQLError[] | undefined
       }> {
       return withWrapper(() => client.rawRequest<Update_Block_HeightMutation>(print(Update_Block_HeightDocument), variables))
+    },
+    delete_table_row(
+      variables: Delete_Table_RowMutationVariables,
+    ): Promise<{
+        data?: Delete_Table_RowMutation | undefined
+        extensions?: any
+        headers: Headers
+        status: number
+        errors?: GraphQLError[] | undefined
+      }> {
+      return withWrapper(() => client.rawRequest<Delete_Table_RowMutation>(print(Delete_Table_RowDocument), variables))
     },
   }
 }
