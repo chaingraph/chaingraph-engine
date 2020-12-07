@@ -1,39 +1,48 @@
 import { filter } from 'rxjs/internal/operators/filter'
 import { loadReader } from './ship-reader'
 import { hasura } from './hasura-client'
-import { getInfo } from './debug-utils'
-
-const chain_id = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906'
+import { getInfo, getNationInfo } from './debug-utils'
+// import { Transactions_Insert_Input } from 'generated/graphql'
 
 export const startIndexer = async () => {
   console.log('Starting indexer ...')
   const { close$, rows$, blocks$, log$, errors$ } = await loadReader()
 
   let info = await getInfo()
+  let nationInfo = await getNationInfo()
 
   setInterval(async () => {
     info = await getInfo()
+    nationInfo = await getNationInfo()
   }, 250)
 
-  // filter ship socket messages stream by type (string for abi and )
   const upsertRows$ = rows$.pipe(filter((row) => Boolean(row.present)))
   const deletedRows$ = rows$.pipe(filter((row) => !Boolean(row.present)))
 
   console.log('Subscribing to blocks ...')
-  blocks$.subscribe(({ this_block }) => {
+  blocks$.subscribe(async ({ chain_id, block_num, block_id, actions }) => {
+    // console.log('traces', traces)
     try {
-      hasura.update_block_height({ chain_id, ...this_block })
-      console.log(`Indexed block ${this_block.block_num}. Nodeos head block ${info.head_block_num}`)
+      const transactions = [...new Set(actions?.map(({ transaction_id }) => transaction_id))]
+      // const transactionsInsertInput: Transactions_Insert_Input[] =
+      //   transactions.map(transaction_id => ({
+      //     chain_id, block_num, block_id, transaction_id
+      //   }))
+      // await hasura.insert_transaction({objects: transactionsInsertInput})
+      await hasura.update_block_height({ chain_id, block_num, block_id })
+      console.log(
+        `Indexed block ${block_num}. Nodeos head block ${info.head_block_num}. Nation head block ${nationInfo.head_block_num}`,
+      )
     } catch (error) {
       console.log('======================================')
-      console.log('Error updating block height', { chain_id, ...this_block })
+      console.log('Error updating block height', { chain_id, block_num })
       console.log('======================================')
     }
   })
 
   upsertRows$.subscribe((row) => {
     const variables = {
-      chain_id, // EOS
+      chain_id: row.chain_id, // EOS
       contract: row.code,
       table: row.table,
       scope: row.scope,
@@ -52,7 +61,7 @@ export const startIndexer = async () => {
   deletedRows$.subscribe((row) => {
     console.log('==> deleted row!', row)
     const variables = {
-      chain_id, // EOS
+      chain_id: row.chain_id, // EOS
       contract: row.code,
       table: row.table,
       scope: row.scope,

@@ -1901,6 +1901,24 @@ export type Delete_Table_RowMutation = {
   }>
 }
 
+export type Insert_TransactionMutationVariables = Exact<{
+  objects?: Maybe<Array<Transactions_Insert_Input>>
+}>
+
+export type Insert_TransactionMutation = {
+  __typename?: 'mutation_root'
+  insert_transactions?: Maybe<{ __typename?: 'transactions_mutation_response'; affected_rows: number }>
+}
+
+export type Insert_ActionsMutationVariables = Exact<{
+  objects?: Maybe<Array<Actions_Insert_Input>>
+}>
+
+export type Insert_ActionsMutation = {
+  __typename?: 'mutation_root'
+  insert_actions?: Maybe<{ __typename?: 'actions_mutation_response'; affected_rows: number }>
+}
+
 export const Upsert_Table_RowDocument = gql`
   mutation upsert_table_row(
     $chain_id: String!
@@ -1946,6 +1964,20 @@ export const Delete_Table_RowDocument = gql`
     }
   }
 `
+export const Insert_TransactionDocument = gql`
+  mutation insert_transaction($objects: [transactions_insert_input!] = {}) {
+    insert_transactions(objects: $objects) {
+      affected_rows
+    }
+  }
+`
+export const Insert_ActionsDocument = gql`
+  mutation insert_actions($objects: [actions_insert_input!] = {}) {
+    insert_actions(objects: $objects) {
+      affected_rows
+    }
+  }
+`
 
 export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>
 
@@ -1984,6 +2016,28 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         errors?: GraphQLError[] | undefined
       }> {
       return withWrapper(() => client.rawRequest<Delete_Table_RowMutation>(print(Delete_Table_RowDocument), variables))
+    },
+    insert_transaction(
+      variables?: Insert_TransactionMutationVariables,
+    ): Promise<{
+        data?: Insert_TransactionMutation | undefined
+        extensions?: any
+        headers: Headers
+        status: number
+        errors?: GraphQLError[] | undefined
+      }> {
+      return withWrapper(() => client.rawRequest<Insert_TransactionMutation>(print(Insert_TransactionDocument), variables))
+    },
+    insert_actions(
+      variables?: Insert_ActionsMutationVariables,
+    ): Promise<{
+        data?: Insert_ActionsMutation | undefined
+        extensions?: any
+        headers: Headers
+        status: number
+        errors?: GraphQLError[] | undefined
+      }> {
+      return withWrapper(() => client.rawRequest<Insert_ActionsMutation>(print(Insert_ActionsDocument), variables))
     },
   }
 }
