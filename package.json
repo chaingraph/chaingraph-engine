@@ -42,7 +42,6 @@
     "@types/node": "^14.14.10",
     "@types/text-encoding": "^0.0.35",
     "@types/ws": "^7.4.0",
-    "commander": "^6.2.0",
     "doctoc": "^1.4.0",
     "env-cmd": "^10.1.0",
     "eslint": "^6",
@@ -50,7 +49,9 @@
     "lint-staged": "^10.5.2",
     "prettier": "^2.2.1",
     "ts-node-dev": "^1.0.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "hasura-cli": "^1.3.3",
+    "rimraf": "^3.0.2"
   },
   "dependencies": {
     "@blockmatic/eosio-ship-reader": "^0.1.4",
@@ -65,7 +66,6 @@
     "node-fetch": "^2.6.1",
     "node-worker-threads-pool": "^1.4.3",
     "p-queue": "^6.6.2",
-    "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
     "text-encoding": "^0.7.0",
     "winston": "^3.3.3",
