@@ -9,7 +9,7 @@ import fetch from 'node-fetch'
 import { eosioApi, eosioHost, fecthAbi } from './debug-utils'
 
 const table_rows_whitelist: EosioReaderTableRowFilter[] = [
-  { code: 'eosio.token', table: 'accounts' },
+  // { code: 'eosio.token', table: 'accounts' },
   { code: 'bitcashtests', scope: 'bitcashtests', table: 'appstates' },
   { code: 'bitcashtests', scope: 'bitcashtests', table: 'exfees' },
   { code: 'bitcashtests', scope: 'bitcashtests', table: 'fees' },
@@ -18,9 +18,10 @@ const table_rows_whitelist: EosioReaderTableRowFilter[] = [
   { code: 'bitcashtests', scope: 'bitcashtests', table: 'limits' },
   { code: 'bitcashtests', scope: 'bitcashtests', table: 'positions' },
   { code: 'bitcashtests', scope: 'bitcashtests', table: 'stat' },
+  { code: 'delphioracle', scope: 'eosusd', table: 'datapoints' },
 ]
 
-const actions_whitelist: EosioReaderActionFilter[] = [{ code: 'eosio.token', action: 'transfer' }]
+const actions_whitelist: EosioReaderActionFilter[] = [{ code: 'bitcashtests', action: '*' }]
 
 export const loadReader = async () => {
   const info = await fetch(`${eosioApi}/v1/chain/get_info`).then((res: any) => res.json())

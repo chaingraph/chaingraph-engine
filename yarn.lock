@@ -469,10 +469,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@blockmatic/eosio-ship-reader@^0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@blockmatic/eosio-ship-reader/-/eosio-ship-reader-0.1.1.tgz#492fde683334fef9bf96c1fb3761dbbf26bfe8e3"
-  integrity sha512-b6i0WUlsS9qDcSpulZAyDdxkV/N95USg5hZXfNLb4l9+po7+RB7jaKg9zVb9NY8NLdXeW5LScuj9Yz9Bxy9Hag==
+"@blockmatic/eosio-ship-reader@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@blockmatic/eosio-ship-reader/-/eosio-ship-reader-0.1.4.tgz#16e998dade350cd597de6356a1e35ad3bd97ef31"
+  integrity sha512-I6//z+Cde5+cTtAfkr23R8/dgEKc5Vjx1Tcm0eKCPTdsE4NpHDYY7KssSUJAfMgMOTxHlnt5AN0G2pdHBUXvTQ==
   dependencies:
     "@eosrio/node-abieos" "^2.1.0-beta.0"
     "@types/node-fetch" "^2.5.7"
@@ -1112,6 +1112,13 @@
   integrity sha512-9bVao7LvyorRGZCw0VmH/dr7Og+NdjYSsKAxB43OQoComFbBgsEpoR9JW6+qSq/ogwVBg8GI2MfAlk4SYI4OLg==
   dependencies:
     "@types/node" "*"
+
+"@types/lodash.chunk@^4.2.6":
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/@types/lodash.chunk/-/lodash.chunk-4.2.6.tgz#9d35f05360b0298715d7f3d9efb34dd4f77e5d2a"
+  integrity sha512-SPlusB7jxXyGcTXYcUdWr7WmhArO/rmTq54VN88iKMxGUhyg79I4Q8n4riGn3kjaTjOJrVlHhxgX/d7woak5BQ==
+  dependencies:
+    "@types/lodash" "*"
 
 "@types/lodash.omit@^4.5.6":
   version "4.5.6"
@@ -3827,6 +3834,11 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash.chunk@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/lodash.chunk/-/lodash.chunk-4.2.0.tgz#66e5ce1f76ed27b4303d8c6512e8d1216e8106bc"
+  integrity sha1-ZuXOH3btJ7QwPYxlEujRIW6BBrw=
 
 lodash.get@^4:
   version "4.4.2"
