@@ -40,14 +40,14 @@ mutation delete_table_row($chain_id: String!, $contract: String!, $primary_key: 
   }
 }
 
-mutation insert_transaction($objects: [transactions_insert_input!] = {}) {
+mutation insert_transaction($objects: [transactions_insert_input!]!) {
   insert_transactions(objects: $objects) {
     affected_rows
   }
 }
 
 
-mutation insert_actions($objects: [actions_insert_input!] = {}) {
+mutation insert_actions($objects: [actions_insert_input!]!) {
   insert_actions(objects: $objects) {
     affected_rows
   }

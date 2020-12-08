@@ -1044,6 +1044,7 @@ export type Mutation_RootUpdate_TransactionsArgs = {
   _delete_at_path?: Maybe<Transactions_Delete_At_Path_Input>
   _delete_elem?: Maybe<Transactions_Delete_Elem_Input>
   _delete_key?: Maybe<Transactions_Delete_Key_Input>
+  _inc?: Maybe<Transactions_Inc_Input>
   _prepend?: Maybe<Transactions_Prepend_Input>
   _set?: Maybe<Transactions_Set_Input>
   where: Transactions_Bool_Exp
@@ -1055,6 +1056,7 @@ export type Mutation_RootUpdate_Transactions_By_PkArgs = {
   _delete_at_path?: Maybe<Transactions_Delete_At_Path_Input>
   _delete_elem?: Maybe<Transactions_Delete_Elem_Input>
   _delete_key?: Maybe<Transactions_Delete_Key_Input>
+  _inc?: Maybe<Transactions_Inc_Input>
   _prepend?: Maybe<Transactions_Prepend_Input>
   _set?: Maybe<Transactions_Set_Input>
   pk_columns: Transactions_Pk_Columns_Input
@@ -1634,9 +1636,9 @@ export enum Table_Rows_Update_Column {
 export type Transactions = {
   __typename?: 'transactions'
   block_id: Scalars['String']
-  block_num: Scalars['String']
+  block_num: Scalars['numeric']
   chain_id: Scalars['String']
-  data: Scalars['jsonb']
+  data?: Maybe<Scalars['jsonb']>
   transaction_id: Scalars['String']
 }
 
@@ -1655,9 +1657,17 @@ export type Transactions_Aggregate = {
 /** aggregate fields of "transactions" */
 export type Transactions_Aggregate_Fields = {
   __typename?: 'transactions_aggregate_fields'
+  avg?: Maybe<Transactions_Avg_Fields>
   count?: Maybe<Scalars['Int']>
   max?: Maybe<Transactions_Max_Fields>
   min?: Maybe<Transactions_Min_Fields>
+  stddev?: Maybe<Transactions_Stddev_Fields>
+  stddev_pop?: Maybe<Transactions_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Transactions_Stddev_Samp_Fields>
+  sum?: Maybe<Transactions_Sum_Fields>
+  var_pop?: Maybe<Transactions_Var_Pop_Fields>
+  var_samp?: Maybe<Transactions_Var_Samp_Fields>
+  variance?: Maybe<Transactions_Variance_Fields>
 }
 
 /** aggregate fields of "transactions" */
@@ -1668,9 +1678,17 @@ export type Transactions_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "transactions" */
 export type Transactions_Aggregate_Order_By = {
+  avg?: Maybe<Transactions_Avg_Order_By>
   count?: Maybe<Order_By>
   max?: Maybe<Transactions_Max_Order_By>
   min?: Maybe<Transactions_Min_Order_By>
+  stddev?: Maybe<Transactions_Stddev_Order_By>
+  stddev_pop?: Maybe<Transactions_Stddev_Pop_Order_By>
+  stddev_samp?: Maybe<Transactions_Stddev_Samp_Order_By>
+  sum?: Maybe<Transactions_Sum_Order_By>
+  var_pop?: Maybe<Transactions_Var_Pop_Order_By>
+  var_samp?: Maybe<Transactions_Var_Samp_Order_By>
+  variance?: Maybe<Transactions_Variance_Order_By>
 }
 
 /** append existing jsonb value of filtered columns with new jsonb value */
@@ -1684,13 +1702,24 @@ export type Transactions_Arr_Rel_Insert_Input = {
   on_conflict?: Maybe<Transactions_On_Conflict>
 }
 
+/** aggregate avg on columns */
+export type Transactions_Avg_Fields = {
+  __typename?: 'transactions_avg_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by avg() on columns of table "transactions" */
+export type Transactions_Avg_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
 /** Boolean expression to filter rows from the table "transactions". All fields are combined with a logical 'AND'. */
 export type Transactions_Bool_Exp = {
   _and?: Maybe<Array<Maybe<Transactions_Bool_Exp>>>
   _not?: Maybe<Transactions_Bool_Exp>
   _or?: Maybe<Array<Maybe<Transactions_Bool_Exp>>>
   block_id?: Maybe<String_Comparison_Exp>
-  block_num?: Maybe<String_Comparison_Exp>
+  block_num?: Maybe<Numeric_Comparison_Exp>
   chain_id?: Maybe<String_Comparison_Exp>
   data?: Maybe<Jsonb_Comparison_Exp>
   transaction_id?: Maybe<String_Comparison_Exp>
@@ -1717,10 +1746,15 @@ export type Transactions_Delete_Key_Input = {
   data?: Maybe<Scalars['String']>
 }
 
+/** input type for incrementing integer column in table "transactions" */
+export type Transactions_Inc_Input = {
+  block_num?: Maybe<Scalars['numeric']>
+}
+
 /** input type for inserting data into table "transactions" */
 export type Transactions_Insert_Input = {
   block_id?: Maybe<Scalars['String']>
-  block_num?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
   data?: Maybe<Scalars['jsonb']>
   transaction_id?: Maybe<Scalars['String']>
@@ -1730,7 +1764,7 @@ export type Transactions_Insert_Input = {
 export type Transactions_Max_Fields = {
   __typename?: 'transactions_max_fields'
   block_id?: Maybe<Scalars['String']>
-  block_num?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
   transaction_id?: Maybe<Scalars['String']>
 }
@@ -1747,7 +1781,7 @@ export type Transactions_Max_Order_By = {
 export type Transactions_Min_Fields = {
   __typename?: 'transactions_min_fields'
   block_id?: Maybe<Scalars['String']>
-  block_num?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
   transaction_id?: Maybe<Scalars['String']>
 }
@@ -1820,10 +1854,54 @@ export enum Transactions_Select_Column {
 /** input type for updating data in table "transactions" */
 export type Transactions_Set_Input = {
   block_id?: Maybe<Scalars['String']>
-  block_num?: Maybe<Scalars['String']>
+  block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
   data?: Maybe<Scalars['jsonb']>
   transaction_id?: Maybe<Scalars['String']>
+}
+
+/** aggregate stddev on columns */
+export type Transactions_Stddev_Fields = {
+  __typename?: 'transactions_stddev_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev() on columns of table "transactions" */
+export type Transactions_Stddev_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate stddev_pop on columns */
+export type Transactions_Stddev_Pop_Fields = {
+  __typename?: 'transactions_stddev_pop_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev_pop() on columns of table "transactions" */
+export type Transactions_Stddev_Pop_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate stddev_samp on columns */
+export type Transactions_Stddev_Samp_Fields = {
+  __typename?: 'transactions_stddev_samp_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev_samp() on columns of table "transactions" */
+export type Transactions_Stddev_Samp_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate sum on columns */
+export type Transactions_Sum_Fields = {
+  __typename?: 'transactions_sum_fields'
+  block_num?: Maybe<Scalars['numeric']>
+}
+
+/** order by sum() on columns of table "transactions" */
+export type Transactions_Sum_Order_By = {
+  block_num?: Maybe<Order_By>
 }
 
 /** update columns of table "transactions" */
@@ -1838,6 +1916,39 @@ export enum Transactions_Update_Column {
   Data = 'data',
   /** column name */
   TransactionId = 'transaction_id',
+}
+
+/** aggregate var_pop on columns */
+export type Transactions_Var_Pop_Fields = {
+  __typename?: 'transactions_var_pop_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by var_pop() on columns of table "transactions" */
+export type Transactions_Var_Pop_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate var_samp on columns */
+export type Transactions_Var_Samp_Fields = {
+  __typename?: 'transactions_var_samp_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by var_samp() on columns of table "transactions" */
+export type Transactions_Var_Samp_Order_By = {
+  block_num?: Maybe<Order_By>
+}
+
+/** aggregate variance on columns */
+export type Transactions_Variance_Fields = {
+  __typename?: 'transactions_variance_fields'
+  block_num?: Maybe<Scalars['Float']>
+}
+
+/** order by variance() on columns of table "transactions" */
+export type Transactions_Variance_Order_By = {
+  block_num?: Maybe<Order_By>
 }
 
 export type Upsert_Table_RowMutationVariables = Exact<{
@@ -1902,7 +2013,7 @@ export type Delete_Table_RowMutation = {
 }
 
 export type Insert_TransactionMutationVariables = Exact<{
-  objects?: Maybe<Array<Transactions_Insert_Input>>
+  objects: Array<Transactions_Insert_Input>
 }>
 
 export type Insert_TransactionMutation = {
@@ -1911,7 +2022,7 @@ export type Insert_TransactionMutation = {
 }
 
 export type Insert_ActionsMutationVariables = Exact<{
-  objects?: Maybe<Array<Actions_Insert_Input>>
+  objects: Array<Actions_Insert_Input>
 }>
 
 export type Insert_ActionsMutation = {
@@ -1965,14 +2076,14 @@ export const Delete_Table_RowDocument = gql`
   }
 `
 export const Insert_TransactionDocument = gql`
-  mutation insert_transaction($objects: [transactions_insert_input!] = {}) {
+  mutation insert_transaction($objects: [transactions_insert_input!]!) {
     insert_transactions(objects: $objects) {
       affected_rows
     }
   }
 `
 export const Insert_ActionsDocument = gql`
-  mutation insert_actions($objects: [actions_insert_input!] = {}) {
+  mutation insert_actions($objects: [actions_insert_input!]!) {
     insert_actions(objects: $objects) {
       affected_rows
     }
@@ -2018,7 +2129,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
       return withWrapper(() => client.rawRequest<Delete_Table_RowMutation>(print(Delete_Table_RowDocument), variables))
     },
     insert_transaction(
-      variables?: Insert_TransactionMutationVariables,
+      variables: Insert_TransactionMutationVariables,
     ): Promise<{
         data?: Insert_TransactionMutation | undefined
         extensions?: any
@@ -2029,7 +2140,7 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
       return withWrapper(() => client.rawRequest<Insert_TransactionMutation>(print(Insert_TransactionDocument), variables))
     },
     insert_actions(
-      variables?: Insert_ActionsMutationVariables,
+      variables: Insert_ActionsMutationVariables,
     ): Promise<{
         data?: Insert_ActionsMutation | undefined
         extensions?: any
