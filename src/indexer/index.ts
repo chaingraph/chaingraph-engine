@@ -9,7 +9,7 @@ import chunk from 'lodash.chunk'
 
 export const startIndexer = async () => {
   console.log('Starting indexer ...')
-  const { close$, rows$, blocks$, log$, errors$ } = await loadReader()
+  const { close$, rows$, blocks$, errors$ } = await loadReader()
 
   let info = await getInfo()
   let nationInfo = await getNationInfo()
