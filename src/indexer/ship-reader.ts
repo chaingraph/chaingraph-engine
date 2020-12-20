@@ -34,7 +34,7 @@ export const loadReader = async () => {
   const eosioReaderConfig: EosioReaderConfig = {
     ws_url: `ws://${eosioHost}:8080`,
     rpc_url: eosioApi,
-    ds_threads: 4,
+    ds_threads: 6,
     ds_experimental: false,
     delta_whitelist: ['contract_table', 'contract_row', 'contract_index64'],
     table_rows_whitelist,
