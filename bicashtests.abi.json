@@ -1,0 +1,640 @@
+{
+  "version": "eosio::abi/1.1",
+  "types": [],
+  "structs": [
+    {
+      "name": "AppState",
+      "base": "",
+      "fields": [
+        {
+          "name": "eosusd",
+          "type": "uint64"
+        },
+        {
+          "name": "fee_account",
+          "type": "name"
+        },
+        {
+          "name": "max_leverage",
+          "type": "float32"
+        },
+        {
+          "name": "target_leverage",
+          "type": "float32"
+        },
+        {
+          "name": "global_ltv",
+          "type": "float32"
+        },
+        {
+          "name": "bitcash_token",
+          "type": "name"
+        },
+        {
+          "name": "eos_token",
+          "type": "name"
+        },
+        {
+          "name": "paused",
+          "type": "uint8"
+        },
+        {
+          "name": "use_delphi",
+          "type": "uint8"
+        },
+        {
+          "name": "delphi_contract",
+          "type": "name"
+        }
+      ]
+    },
+    {
+      "name": "ExchangeFee",
+      "base": "",
+      "fields": [
+        {
+          "name": "exchange_fee_id",
+          "type": "uint64"
+        },
+        {
+          "name": "symbol_purchasing",
+          "type": "symbol"
+        },
+        {
+          "name": "symbol_purchasing_treasury_ratio_min",
+          "type": "float32"
+        },
+        {
+          "name": "symbol_purchasing_treasury_ratio_max",
+          "type": "float32"
+        },
+        {
+          "name": "exchange_fee",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "GlobalFee",
+      "base": "",
+      "fields": [
+        {
+          "name": "position_close_fee",
+          "type": "float32"
+        },
+        {
+          "name": "eos_interest_apr",
+          "type": "float32"
+        },
+        {
+          "name": "bitcash_interest_apr",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "datapoints",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "owner",
+          "type": "name"
+        },
+        {
+          "name": "value",
+          "type": "uint64"
+        },
+        {
+          "name": "median",
+          "type": "uint64"
+        },
+        {
+          "name": "timestamp",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "GlobalPosition",
+      "base": "",
+      "fields": [
+        {
+          "name": "user_eos_balances",
+          "type": "asset"
+        },
+        {
+          "name": "user_bitcash_balances",
+          "type": "asset"
+        },
+        {
+          "name": "user_eos_loans",
+          "type": "asset"
+        },
+        {
+          "name": "user_bitcash_loans",
+          "type": "asset"
+        },
+        {
+          "name": "last_activity_date",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "Limit",
+      "base": "",
+      "fields": [
+        {
+          "name": "eos_withdrawal_limit",
+          "type": "asset"
+        },
+        {
+          "name": "bitcash_withdrawal_limit",
+          "type": "asset"
+        },
+        {
+          "name": "eos_deposit_limit",
+          "type": "asset"
+        },
+        {
+          "name": "bitcash_deposit_limit",
+          "type": "asset"
+        },
+        {
+          "name": "bucket_eos_withdrawals",
+          "type": "asset"
+        },
+        {
+          "name": "bucket_bitcash_withdrawals",
+          "type": "asset"
+        },
+        {
+          "name": "bucket_eos_deposits",
+          "type": "asset"
+        },
+        {
+          "name": "bucket_bitcash_deposits",
+          "type": "asset"
+        },
+        {
+          "name": "bucket_begin",
+          "type": "time_point_sec"
+        },
+        {
+          "name": "bucket_end",
+          "type": "time_point_sec"
+        }
+      ]
+    },
+    {
+      "name": "Position",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "eos_balance",
+          "type": "asset"
+        },
+        {
+          "name": "bitcash_balance",
+          "type": "asset"
+        },
+        {
+          "name": "eos_borrowed",
+          "type": "asset"
+        },
+        {
+          "name": "bitcash_borrowed",
+          "type": "asset"
+        },
+        {
+          "name": "eos_loan_date",
+          "type": "uint64"
+        },
+        {
+          "name": "bitcash_loan_date",
+          "type": "uint64"
+        },
+        {
+          "name": "last_activity_date",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "account",
+      "base": "",
+      "fields": [
+        {
+          "name": "balance",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "burnifneeded",
+      "base": "",
+      "fields": []
+    },
+    {
+      "name": "burntoltv",
+      "base": "",
+      "fields": []
+    },
+    {
+      "name": "checkcoll",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        }
+      ]
+    },
+    {
+      "name": "conveospstns",
+      "base": "",
+      "fields": [
+        {
+          "name": "amount_to_convert",
+          "type": "asset"
+        },
+        {
+          "name": "oldest_activity_date_to_convert",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "currency_stats",
+      "base": "",
+      "fields": [
+        {
+          "name": "supply",
+          "type": "asset"
+        },
+        {
+          "name": "issuer",
+          "type": "name"
+        }
+      ]
+    },
+    {
+      "name": "pause",
+      "base": "",
+      "fields": []
+    },
+    {
+      "name": "sell",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "asset_to_sell",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "sellnotif",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "asset_to_sell",
+          "type": "asset"
+        },
+        {
+          "name": "fee",
+          "type": "asset"
+        },
+        {
+          "name": "eosusd",
+          "type": "float32"
+        },
+        {
+          "name": "asset_acquired",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "setconfig",
+      "base": "",
+      "fields": [
+        {
+          "name": "fee_account",
+          "type": "name"
+        },
+        {
+          "name": "bitcash_token",
+          "type": "name"
+        },
+        {
+          "name": "eos_token",
+          "type": "name"
+        },
+        {
+          "name": "max_leverage",
+          "type": "float32"
+        },
+        {
+          "name": "target_leverage",
+          "type": "float32"
+        },
+        {
+          "name": "global_ltv",
+          "type": "float32"
+        },
+        {
+          "name": "delphi_contract",
+          "type": "name"
+        }
+      ]
+    },
+    {
+      "name": "seteosusd",
+      "base": "",
+      "fields": [
+        {
+          "name": "eosusd",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "setexfees",
+      "base": "",
+      "fields": [
+        {
+          "name": "eos_exchange_fee",
+          "type": "float32"
+        },
+        {
+          "name": "bitcash_exchange_fee",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "setglobfees",
+      "base": "",
+      "fields": [
+        {
+          "name": "position_close_fee",
+          "type": "float32"
+        },
+        {
+          "name": "eos_interest_apr",
+          "type": "float32"
+        },
+        {
+          "name": "bitcash_interest_apr",
+          "type": "float32"
+        }
+      ]
+    },
+    {
+      "name": "setlimits",
+      "base": "",
+      "fields": [
+        {
+          "name": "eos_withdrawal_limit",
+          "type": "asset"
+        },
+        {
+          "name": "bitcash_withdrawal_limit",
+          "type": "asset"
+        },
+        {
+          "name": "eos_deposit_limit",
+          "type": "asset"
+        },
+        {
+          "name": "bitcash_deposit_limit",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "startdelphi",
+      "base": "",
+      "fields": []
+    },
+    {
+      "name": "stopdelphi",
+      "base": "",
+      "fields": []
+    },
+    {
+      "name": "unpause",
+      "base": "",
+      "fields": []
+    },
+    {
+      "name": "withdraw",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "quantity",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "xferposition",
+      "base": "",
+      "fields": [
+        {
+          "name": "from",
+          "type": "name"
+        },
+        {
+          "name": "to",
+          "type": "name"
+        },
+        {
+          "name": "quantity",
+          "type": "asset"
+        },
+        {
+          "name": "memo",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "name": "burnifneeded",
+      "type": "burnifneeded",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "burntoltv",
+      "type": "burntoltv",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "checkcoll",
+      "type": "checkcoll",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "conveospstns",
+      "type": "conveospstns",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "pause",
+      "type": "pause",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "sell",
+      "type": "sell",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "sellnotif",
+      "type": "sellnotif",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "setconfig",
+      "type": "setconfig",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "seteosusd",
+      "type": "seteosusd",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "setexfees",
+      "type": "setexfees",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "setglobfees",
+      "type": "setglobfees",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "setlimits",
+      "type": "setlimits",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "startdelphi",
+      "type": "startdelphi",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "stopdelphi",
+      "type": "stopdelphi",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "unpause",
+      "type": "unpause",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "withdraw",
+      "type": "withdraw",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "xferposition",
+      "type": "xferposition",
+      "ricardian_contract": ""
+    }
+  ],
+  "tables": [
+    {
+      "name": "appstates",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "AppState"
+    },
+    {
+      "name": "datapoints",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "datapoints"
+    },
+    {
+      "name": "exfees",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "ExchangeFee"
+    },
+    {
+      "name": "fees",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "GlobalFee"
+    },
+    {
+      "name": "accounts",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "account"
+    },
+    {
+      "name": "gpositions",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "GlobalPosition"
+    },
+    {
+      "name": "limits",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "Limit"
+    },
+    {
+      "name": "positions",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "Position"
+    },
+    {
+      "name": "stat",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "currency_stats"
+    }
+  ],
+  "ricardian_clauses": [],
+  "error_messages": [],
+  "abi_extensions": [],
+  "variants": []
+}

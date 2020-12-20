@@ -1,7 +1,7 @@
 import { filter } from 'rxjs/internal/operators/filter'
 import { loadReader } from './ship-reader'
 import { hasura } from './hasura-client'
-import { getInfo, getNationInfo } from './debug-utils'
+import { getInfo } from './eosio'
 import {
   Transactions_Insert_Input,
   Actions_Insert_Input,
@@ -14,13 +14,7 @@ export const startIndexer = async () => {
   console.log('Starting indexer ...')
   const { close$, rows$, blocks$, errors$ } = await loadReader()
 
-  let info = await getInfo()
-  let nationInfo = await getNationInfo()
-
-  setInterval(async () => {
-    info = await getInfo()
-    nationInfo = await getNationInfo()
-  }, 250)
+  const info = await getInfo()
 
   const upsertRows$ = rows$.pipe(filter((row) => Boolean(row.present)))
   const deletedRows$ = rows$.pipe(filter((row) => !Boolean(row.present)))
@@ -73,7 +67,7 @@ export const startIndexer = async () => {
 
       await hasura.update_block_height({ chain_id, block_num, block_id })
       console.log(
-        `Indexed block ${block_num}. Nodeos head block ${info.head_block_num}. Nation head block ${nationInfo.head_block_num}. \nInserted transactions ${insertedTransactions?.data?.insert_transactions?.affected_rows}, Inserted actions ${numberOfInsertedActions} in ${insertedActions?.length} chunks,`,
+        `Indexed block ${block_num}. Nodeos head block ${info.head_block_num}. \nInserted transactions ${insertedTransactions?.data?.insert_transactions?.affected_rows}, Inserted actions ${numberOfInsertedActions} in ${insertedActions?.length} chunks,`,
       )
     } catch (error) {
       console.log('======================================')

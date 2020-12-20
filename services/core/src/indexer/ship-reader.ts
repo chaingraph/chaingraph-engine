@@ -1,29 +1,11 @@
 import {
   createEosioShipReader,
   EosioReaderAbisMap,
-  EosioReaderActionFilter,
   EosioReaderConfig,
-  EosioReaderTableRowFilter,
 } from '@blockmatic/eosio-ship-reader'
 import fetch from 'node-fetch'
-import { eosioApi, eosioHost, fecthAbi } from './debug-utils'
-
-const table_rows_whitelist: EosioReaderTableRowFilter[] = [
-  // { code: 'eosio.token', table: 'accounts' },
-  { code: 'bitcashtests', scope: 'bitcashtests', table: 'appstates' },
-  { code: 'bitcashtests', scope: 'bitcashtests', table: 'exfees' },
-  { code: 'bitcashtests', scope: 'bitcashtests', table: 'fees' },
-  { code: 'bitcashtests', scope: 'bitcashtests', table: 'accounts' },
-  { code: 'bitcashtests', scope: 'bitcashtests', table: 'gpositions' },
-  { code: 'bitcashtests', scope: 'bitcashtests', table: 'limits' },
-  { code: 'bitcashtests', scope: 'bitcashtests', table: 'positions' },
-  { code: 'bitcashtests', scope: 'bitcashtests', table: 'stat' },
-  { code: 'delphioracle', scope: 'eosusd', table: 'datapoints' },
-]
-
-const actions_whitelist: EosioReaderActionFilter[] = [
-  { code: 'bitcashtests', action: '*' },
-]
+import { eosioApi, eosioHost, fecthAbi } from './eosio'
+import { table_rows_whitelist, actions_whitelist } from './whitelists'
 
 export const loadReader = async () => {
   const info = await fetch(`${eosioApi}/v1/chain/get_info`).then((res: any) =>
