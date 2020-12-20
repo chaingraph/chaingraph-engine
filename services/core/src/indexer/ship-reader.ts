@@ -21,15 +21,25 @@ const table_rows_whitelist: EosioReaderTableRowFilter[] = [
   { code: 'delphioracle', scope: 'eosusd', table: 'datapoints' },
 ]
 
-const actions_whitelist: EosioReaderActionFilter[] = [{ code: 'bitcashtests', action: '*' }]
+const actions_whitelist: EosioReaderActionFilter[] = [
+  { code: 'bitcashtests', action: '*' },
+]
 
 export const loadReader = async () => {
-  const info = await fetch(`${eosioApi}/v1/chain/get_info`).then((res: any) => res.json())
-  const uniqueContractNames = [...new Set(table_rows_whitelist?.map((row) => row.code))]
-  const abisArr = await Promise.all(uniqueContractNames.map((account_name) => fecthAbi(account_name)))
+  const info = await fetch(`${eosioApi}/v1/chain/get_info`).then((res: any) =>
+    res.json(),
+  )
+  const uniqueContractNames = [
+    ...new Set(table_rows_whitelist?.map((row) => row.code)),
+  ]
+  const abisArr = await Promise.all(
+    uniqueContractNames.map((account_name) => fecthAbi(account_name)),
+  )
 
   const contract_abis: EosioReaderAbisMap = new Map()
-  abisArr.forEach(({ account_name, abi }) => contract_abis.set(account_name, abi))
+  abisArr.forEach(({ account_name, abi }) =>
+    contract_abis.set(account_name, abi),
+  )
 
   const eosioReaderConfig: EosioReaderConfig = {
     ws_url: `ws://${eosioHost}:8080`,

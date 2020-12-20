@@ -40,8 +40,8 @@ services:
         aliases:
           - alpha.chaingraph.dev
     volumes:
-      - ./src/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
-      - ./src/hasura/metadata:/hasura-metadata #  mount hasura metadata folder
+      - ./services/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
+      - ./services/hasura/metadata:/hasura-metadata #  mount hasura metadata folder
     command:
       - graphql-engine
       - serve
@@ -49,7 +49,7 @@ services:
   core:
     container_name: chaingraph_core
     build:
-      context: ./
+      context: ./services/core
     depends_on:
       - hasura
     environment:

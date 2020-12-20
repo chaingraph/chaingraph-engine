@@ -4,9 +4,13 @@ import { GraphQLError } from 'graphql-request/dist/types'
 import { Headers } from 'graphql-request/dist/types.dom'
 import gql from 'graphql-tag'
 export type Maybe<T> = T | null
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K]
+}
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+{ [SubKey in K]?: Maybe<T[SubKey]> }
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
+{ [SubKey in K]: Maybe<T[SubKey]> }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string
@@ -2018,7 +2022,10 @@ export type Insert_TransactionMutationVariables = Exact<{
 
 export type Insert_TransactionMutation = {
   __typename?: 'mutation_root'
-  insert_transactions?: Maybe<{ __typename?: 'transactions_mutation_response'; affected_rows: number }>
+  insert_transactions?: Maybe<{
+    __typename?: 'transactions_mutation_response'
+    affected_rows: number
+  }>
 }
 
 export type Insert_ActionsMutationVariables = Exact<{
@@ -2027,7 +2034,10 @@ export type Insert_ActionsMutationVariables = Exact<{
 
 export type Insert_ActionsMutation = {
   __typename?: 'mutation_root'
-  insert_actions?: Maybe<{ __typename?: 'actions_mutation_response'; affected_rows: number }>
+  insert_actions?: Maybe<{
+    __typename?: 'actions_mutation_response'
+    affected_rows: number
+  }>
 }
 
 export const Upsert_Table_RowDocument = gql`
@@ -2040,7 +2050,14 @@ export const Upsert_Table_RowDocument = gql`
     $data: jsonb!
   ) {
     insert_table_rows_one(
-      object: { chain_id: $chain_id, contract: $contract, table: $table, scope: $scope, primary_key: $primary_key, data: $data }
+      object: {
+        chain_id: $chain_id
+        contract: $contract
+        table: $table
+        scope: $scope
+        primary_key: $primary_key
+        data: $data
+      }
       on_conflict: { constraint: tables_pkey, update_columns: data }
     ) {
       chain_id
@@ -2053,8 +2070,15 @@ export const Upsert_Table_RowDocument = gql`
   }
 `
 export const Update_Block_HeightDocument = gql`
-  mutation update_block_height($chain_id: String!, $block_num: numeric!, $block_id: String!) {
-    update_chains_by_pk(pk_columns: { chain_id: $chain_id }, _set: { block_id: $block_id, block_num: $block_num }) {
+  mutation update_block_height(
+    $chain_id: String!
+    $block_num: numeric!
+    $block_id: String!
+  ) {
+    update_chains_by_pk(
+      pk_columns: { chain_id: $chain_id }
+      _set: { block_id: $block_id, block_num: $block_num }
+    ) {
       block_id
       block_num
       chain_id
@@ -2064,8 +2088,20 @@ export const Update_Block_HeightDocument = gql`
   }
 `
 export const Delete_Table_RowDocument = gql`
-  mutation delete_table_row($chain_id: String!, $contract: String!, $primary_key: String!, $scope: String!, $table: String!) {
-    delete_table_rows_by_pk(chain_id: $chain_id, contract: $contract, primary_key: $primary_key, scope: $scope, table: $table) {
+  mutation delete_table_row(
+    $chain_id: String!
+    $contract: String!
+    $primary_key: String!
+    $scope: String!
+    $table: String!
+  ) {
+    delete_table_rows_by_pk(
+      chain_id: $chain_id
+      contract: $contract
+      primary_key: $primary_key
+      scope: $scope
+      table: $table
+    ) {
       chain_id
       table
       scope
@@ -2093,7 +2129,10 @@ export const Insert_ActionsDocument = gql`
 export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>
 
 const defaultWrapper: SdkFunctionWrapper = (sdkFunction) => sdkFunction()
-export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
+export function getSdk(
+  client: GraphQLClient,
+  withWrapper: SdkFunctionWrapper = defaultWrapper,
+) {
   return {
     upsert_table_row(
       variables: Upsert_Table_RowMutationVariables,
@@ -2104,7 +2143,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() => client.rawRequest<Upsert_Table_RowMutation>(print(Upsert_Table_RowDocument), variables))
+      return withWrapper(() =>
+        client.rawRequest<Upsert_Table_RowMutation>(
+          print(Upsert_Table_RowDocument),
+          variables,
+        ),
+      )
     },
     update_block_height(
       variables: Update_Block_HeightMutationVariables,
@@ -2115,7 +2159,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() => client.rawRequest<Update_Block_HeightMutation>(print(Update_Block_HeightDocument), variables))
+      return withWrapper(() =>
+        client.rawRequest<Update_Block_HeightMutation>(
+          print(Update_Block_HeightDocument),
+          variables,
+        ),
+      )
     },
     delete_table_row(
       variables: Delete_Table_RowMutationVariables,
@@ -2126,7 +2175,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() => client.rawRequest<Delete_Table_RowMutation>(print(Delete_Table_RowDocument), variables))
+      return withWrapper(() =>
+        client.rawRequest<Delete_Table_RowMutation>(
+          print(Delete_Table_RowDocument),
+          variables,
+        ),
+      )
     },
     insert_transaction(
       variables: Insert_TransactionMutationVariables,
@@ -2137,7 +2191,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() => client.rawRequest<Insert_TransactionMutation>(print(Insert_TransactionDocument), variables))
+      return withWrapper(() =>
+        client.rawRequest<Insert_TransactionMutation>(
+          print(Insert_TransactionDocument),
+          variables,
+        ),
+      )
     },
     insert_actions(
       variables: Insert_ActionsMutationVariables,
@@ -2148,7 +2207,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() => client.rawRequest<Insert_ActionsMutation>(print(Insert_ActionsDocument), variables))
+      return withWrapper(() =>
+        client.rawRequest<Insert_ActionsMutation>(
+          print(Insert_ActionsDocument),
+          variables,
+        ),
+      )
     },
   }
 }

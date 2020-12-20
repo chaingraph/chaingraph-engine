@@ -4,7 +4,8 @@ export const readersConfig: ReadersConfig = {
   eosio: [
     {
       name: 'EOS',
-      chain_id: 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+      chain_id:
+        'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
       ws_url: 'ws://localhost:8080',
       start_block: 0,
       stop_block: 0,

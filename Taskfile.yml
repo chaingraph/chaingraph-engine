@@ -1,0 +1,18 @@
+version: '3'
+
+dotenv: ['.env']
+silent: true
+
+tasks:
+  console:
+    cmds:
+      - hasura console --project services/hasura --console-port 8080
+
+  seed:
+    cmds:
+      - hasura seeds apply --project services/hasura 
+
+  boot:
+    cmds:
+      - docker-compose up -d --build
+      - hasura seeds apply --project services/hasura 

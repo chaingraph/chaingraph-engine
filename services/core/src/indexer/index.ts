@@ -2,7 +2,10 @@ import { filter } from 'rxjs/internal/operators/filter'
 import { loadReader } from './ship-reader'
 import { hasura } from './hasura-client'
 import { getInfo, getNationInfo } from './debug-utils'
-import { Transactions_Insert_Input, Actions_Insert_Input } from 'generated/graphql'
+import {
+  Transactions_Insert_Input,
+  Actions_Insert_Input,
+} from 'generated/graphql'
 import omit from 'lodash.omit'
 import chunk from 'lodash.chunk'
 // import fs from 'fs'
@@ -25,14 +28,20 @@ export const startIndexer = async () => {
   console.log('Subscribing to blocks ...')
   blocks$.subscribe(async ({ chain_id, block_num, block_id, actions }) => {
     try {
-      const transactions = [...new Set(actions?.map(({ transaction_id }) => transaction_id))]
-      const transactionsInsertInput: Transactions_Insert_Input[] = transactions.map((transaction_id) => ({
-        chain_id,
-        block_num,
-        block_id,
-        transaction_id,
-      }))
-      const insertedTransactions = transactions && (await hasura.insert_transaction({ objects: transactionsInsertInput }))
+      const transactions = [
+        ...new Set(actions?.map(({ transaction_id }) => transaction_id)),
+      ]
+      const transactionsInsertInput: Transactions_Insert_Input[] = transactions.map(
+        (transaction_id) => ({
+          chain_id,
+          block_num,
+          block_id,
+          transaction_id,
+        }),
+      )
+      const insertedTransactions =
+        transactions &&
+        (await hasura.insert_transaction({ objects: transactionsInsertInput }))
 
       let actionsInsertInput: Actions_Insert_Input[]
       let insertedActions: any[] = []
@@ -50,7 +59,11 @@ export const startIndexer = async () => {
         })
 
         const actionsChunks = chunk(actionsInsertInput, 100)
-        insertedActions = await Promise.all(actionsChunks.map((actionsChunk) => hasura.insert_actions({ objects: actionsChunk })))
+        insertedActions = await Promise.all(
+          actionsChunks.map((actionsChunk) =>
+            hasura.insert_actions({ objects: actionsChunk }),
+          ),
+        )
       }
 
       const numberOfInsertedActions =
