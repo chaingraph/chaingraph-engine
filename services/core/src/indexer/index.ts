@@ -8,10 +8,16 @@ import {
 } from 'generated/graphql'
 import omit from 'lodash.omit'
 import chunk from 'lodash.chunk'
+import { populate } from './populate'
+import { chaingraph_registry } from './whitelists'
 // import fs from 'fs'
 
 export const startIndexer = async () => {
   console.log('Starting indexer ...')
+
+  console.log('Populating db with current state ...')
+  populate()
+
   const { close$, rows$, blocks$, errors$ } = await loadReader()
 
   const info = await getInfo()
@@ -80,12 +86,22 @@ export const startIndexer = async () => {
   })
 
   upsertRows$.subscribe((row) => {
+    const isSingleton = chaingraph_registry.find(
+      ({ code, scope, table, table_key }) => {
+        return (
+          code === row.code &&
+          scope === row.scope &&
+          table === row.table &&
+          table_key === 'singleton'
+        )
+      },
+    )
     const variables = {
       chain_id: row.chain_id,
       contract: row.code,
       table: row.table,
       scope: row.scope,
-      primary_key: row.primary_key,
+      primary_key: isSingleton ? 'singleton' : row.primary_key,
       data: row.value,
     }
     try {

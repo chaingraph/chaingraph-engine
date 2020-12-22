@@ -572,9 +572,18 @@
     {
       "name": "appstates",
       "index_type": "i64",
-      "key_names": [],
+      "key_names": [
+        "singleton"
+      ],
       "key_types": [],
       "type": "AppState"
+    },
+    {
+      "name": "positions",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "Position"
     },
     {
       "name": "datapoints",
