@@ -10,7 +10,6 @@ import omit from 'lodash.omit'
 import chunk from 'lodash.chunk'
 import { populate } from './populate'
 import { chaingraph_registry } from './whitelists'
-// import fs from 'fs'
 
 export const startIndexer = async () => {
   console.log('Starting indexer ...')
@@ -20,7 +19,10 @@ export const startIndexer = async () => {
 
   const { close$, rows$, blocks$, errors$ } = await loadReader()
 
-  const info = await getInfo()
+  let info = await getInfo()
+  setInterval(async () => {
+    info = await getInfo()
+  }, 300)
 
   const upsertRows$ = rows$.pipe(filter((row) => Boolean(row.present)))
   const deletedRows$ = rows$.pipe(filter((row) => !Boolean(row.present)))

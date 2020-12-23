@@ -2,7 +2,6 @@ import {
   EosioReaderActionFilter,
   EosioReaderTableRowFilter,
 } from '@blockmatic/eosio-ship-reader'
-import omit = require('lodash.omit')
 
 interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
   table_key: string
@@ -66,9 +65,9 @@ export const chaingraph_registry: ChainGraphTableRegistry[] = [
   },
 ]
 
-export const table_rows_whitelist = omit(chaingraph_registry, [
-  'table_key',
-]) as EosioReaderTableRowFilter[]
+export const table_rows_whitelist: EosioReaderTableRowFilter[] = chaingraph_registry.map(
+  (reg) => ({ code: reg.code, scope: reg.scope, table: reg.table }),
+)
 
 export const actions_whitelist: EosioReaderActionFilter[] = [
   { code: 'bitcashtests', action: '*' },

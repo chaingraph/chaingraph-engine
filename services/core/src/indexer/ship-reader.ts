@@ -11,8 +11,9 @@ export const loadReader = async () => {
   const info = await fetch(`${eosioApi}/v1/chain/get_info`).then((res: any) =>
     res.json(),
   )
+
   const uniqueContractNames = [
-    ...new Set(table_rows_whitelist?.map((row) => row.code)),
+    ...new Set(table_rows_whitelist?.map((row: any) => row.code)),
   ]
   const abisArr = await Promise.all(
     uniqueContractNames.map((account_name) => fecthAbi(account_name)),
