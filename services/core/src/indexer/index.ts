@@ -88,22 +88,23 @@ export const startIndexer = async () => {
   })
 
   upsertRows$.subscribe((row) => {
-    const isSingleton = chaingraph_registry.find(
-      ({ code, scope, table, table_key }) => {
-        return (
-          code === row.code &&
-          scope === row.scope &&
-          table === row.table &&
-          table_key === 'singleton'
-        )
+    const table_registry = chaingraph_registry.find(
+      ({ code, scope, table }) => {
+        return code === row.code && scope === row.scope && table === row.table
       },
     )
+    if (!table_registry) {throw new Error('No table registry found, something is not right')}
+
+    const isSingleton = table_registry?.table_key === 'singleton'
+
     const variables = {
       chain_id: row.chain_id,
       contract: row.code,
       table: row.table,
       scope: row.scope,
-      primary_key: isSingleton ? 'singleton' : row.primary_key,
+      primary_key: isSingleton
+        ? 'singleton'
+        : row.value[table_registry?.table_key],
       data: row.value,
     }
     try {
