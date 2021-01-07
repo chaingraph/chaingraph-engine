@@ -10,6 +10,7 @@ import omit from 'lodash.omit'
 import chunk from 'lodash.chunk'
 import { populate } from './populate'
 import { chaingraph_registry } from './whitelists'
+import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
 
 export const startIndexer = async () => {
   console.log('Starting indexer ...')
@@ -87,15 +88,22 @@ export const startIndexer = async () => {
     }
   })
 
-  upsertRows$.subscribe((row) => {
+  const getTableRegistry = (row: EosioReaderTableRowsStreamData) => {
     const table_registry = chaingraph_registry.find(
       ({ code, scope, table }) => {
         return code === row.code && scope === row.scope && table === row.table
       },
     )
-    if (!table_registry) {throw new Error('No table registry found, something is not right')}
+    if (!table_registry) {
+      throw new Error('No table registry found, something is not right')
+    }
+    return table_registry
+  }
 
-    const isSingleton = table_registry?.table_key === 'singleton'
+  upsertRows$.subscribe((row) => {
+    const table_registry = getTableRegistry(row)
+
+    const isSingleton = table_registry.table_key === 'singleton'
 
     const variables = {
       chain_id: row.chain_id,
@@ -104,10 +112,12 @@ export const startIndexer = async () => {
       scope: row.scope,
       primary_key: isSingleton
         ? 'singleton'
-        : row.value[table_registry?.table_key],
+        : row.value[table_registry.table_key],
       data: row.value,
     }
     try {
+      console.log('========== upsert_table_row ==========')
+      console.log(variables)
       hasura.upsert_table_row(variables)
     } catch (error) {
       console.log('======================================')
@@ -117,12 +127,13 @@ export const startIndexer = async () => {
   })
 
   deletedRows$.subscribe((row) => {
+    const table_registry = getTableRegistry(row)
     const variables = {
       chain_id: row.chain_id,
       contract: row.code,
       table: row.table,
       scope: row.scope,
-      primary_key: row.primary_key,
+      primary_key: row.value[table_registry.table_key],
     }
     try {
       hasura.delete_table_row(variables)
