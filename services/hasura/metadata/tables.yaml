@@ -6,10 +6,16 @@
     name: actions
 - table:
     schema: public
+    name: balances
+- table:
+    schema: public
     name: chains
 - table:
     schema: public
     name: table_rows
+- table:
+    schema: public
+    name: tokens
 - table:
     schema: public
     name: transactions
