@@ -9,8 +9,7 @@ import {
 import omit from 'lodash.omit'
 import chunk from 'lodash.chunk'
 import { populate } from './populate'
-import { chaingraph_registry } from './whitelists'
-import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
+import { getChainGraphTableRowData } from './table-utils'
 
 export const startIndexer = async () => {
   console.log('Starting indexer ...')
@@ -88,58 +87,26 @@ export const startIndexer = async () => {
     }
   })
 
-  const getTableRegistry = (row: EosioReaderTableRowsStreamData) => {
-    const table_registry = chaingraph_registry.find(
-      ({ code, scope, table }) => {
-        return code === row.code && scope === row.scope && table === row.table
-      },
-    )
-    if (!table_registry) {
-      throw new Error('No table registry found, something is not right')
-    }
-    return table_registry
-  }
-
   upsertRows$.subscribe((row) => {
-    const table_registry = getTableRegistry(row)
-
-    const isSingleton = table_registry.table_key === 'singleton'
-
-    const variables = {
-      chain_id: row.chain_id,
-      contract: row.code,
-      table: row.table,
-      scope: row.scope,
-      primary_key: isSingleton
-        ? 'singleton'
-        : row.value[table_registry.table_key],
-      data: row.value,
-    }
     try {
       console.log('========== upsert_table_row ==========')
-      console.log(variables)
-      hasura.upsert_table_row(variables)
+      const tableRowData = getChainGraphTableRowData(row)
+      console.log(tableRowData)
+      hasura.upsert_table_row(tableRowData)
     } catch (error) {
       console.log('======================================')
-      console.log('Error updating contract row', variables, error)
+      console.log('Error updating contract row', row, error)
       console.log('======================================')
     }
   })
 
   deletedRows$.subscribe((row) => {
-    const table_registry = getTableRegistry(row)
-    const variables = {
-      chain_id: row.chain_id,
-      contract: row.code,
-      table: row.table,
-      scope: row.scope,
-      primary_key: row.value[table_registry.table_key],
-    }
     try {
-      hasura.delete_table_row(variables)
+      const tableRowData = getChainGraphTableRowData(row)
+      hasura.delete_table_row(tableRowData)
     } catch (error) {
       console.log('======================================')
-      console.log('Error deleting contract row', variables, error)
+      console.log('Error deleting contract row', row, error)
       console.log('======================================')
     }
   })

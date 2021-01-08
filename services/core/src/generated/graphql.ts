@@ -20,6 +20,7 @@ export type Scalars = {
   Float: number
   jsonb: any
   numeric: any
+  timestamptz: any
 }
 
 /** expression to compare columns of type String. All fields are combined with logical 'AND'. */
@@ -231,6 +232,7 @@ export type Actions = {
   authorization: Scalars['jsonb']
   chain_id: Scalars['String']
   contract: Scalars['String']
+  created_at: Scalars['timestamptz']
   data: Scalars['jsonb']
   global_sequence: Scalars['String']
   transaction_id: Scalars['String']
@@ -295,6 +297,7 @@ export type Actions_Bool_Exp = {
   authorization?: Maybe<Jsonb_Comparison_Exp>
   chain_id?: Maybe<String_Comparison_Exp>
   contract?: Maybe<String_Comparison_Exp>
+  created_at?: Maybe<Timestamptz_Comparison_Exp>
   data?: Maybe<Jsonb_Comparison_Exp>
   global_sequence?: Maybe<String_Comparison_Exp>
   transaction_id?: Maybe<String_Comparison_Exp>
@@ -330,6 +333,7 @@ export type Actions_Insert_Input = {
   authorization?: Maybe<Scalars['jsonb']>
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['timestamptz']>
   data?: Maybe<Scalars['jsonb']>
   global_sequence?: Maybe<Scalars['String']>
   transaction_id?: Maybe<Scalars['String']>
@@ -341,6 +345,7 @@ export type Actions_Max_Fields = {
   action_name?: Maybe<Scalars['String']>
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['timestamptz']>
   global_sequence?: Maybe<Scalars['String']>
   transaction_id?: Maybe<Scalars['String']>
 }
@@ -350,6 +355,7 @@ export type Actions_Max_Order_By = {
   action_name?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
+  created_at?: Maybe<Order_By>
   global_sequence?: Maybe<Order_By>
   transaction_id?: Maybe<Order_By>
 }
@@ -360,6 +366,7 @@ export type Actions_Min_Fields = {
   action_name?: Maybe<Scalars['String']>
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['timestamptz']>
   global_sequence?: Maybe<Scalars['String']>
   transaction_id?: Maybe<Scalars['String']>
 }
@@ -369,6 +376,7 @@ export type Actions_Min_Order_By = {
   action_name?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
+  created_at?: Maybe<Order_By>
   global_sequence?: Maybe<Order_By>
   transaction_id?: Maybe<Order_By>
 }
@@ -401,6 +409,7 @@ export type Actions_Order_By = {
   authorization?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
+  created_at?: Maybe<Order_By>
   data?: Maybe<Order_By>
   global_sequence?: Maybe<Order_By>
   transaction_id?: Maybe<Order_By>
@@ -429,6 +438,8 @@ export enum Actions_Select_Column {
   /** column name */
   Contract = 'contract',
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Data = 'data',
   /** column name */
   GlobalSequence = 'global_sequence',
@@ -442,6 +453,7 @@ export type Actions_Set_Input = {
   authorization?: Maybe<Scalars['jsonb']>
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['timestamptz']>
   data?: Maybe<Scalars['jsonb']>
   global_sequence?: Maybe<Scalars['String']>
   transaction_id?: Maybe<Scalars['String']>
@@ -457,6 +469,8 @@ export enum Actions_Update_Column {
   ChainId = 'chain_id',
   /** column name */
   Contract = 'contract',
+  /** column name */
+  CreatedAt = 'created_at',
   /** column name */
   Data = 'data',
   /** column name */
@@ -1420,6 +1434,7 @@ export type Table_Rows = {
   primary_key: Scalars['String']
   scope: Scalars['String']
   table: Scalars['String']
+  updated_at: Scalars['timestamptz']
 }
 
 /** columns and relationships of "table_rows" */
@@ -1477,6 +1492,7 @@ export type Table_Rows_Bool_Exp = {
   primary_key?: Maybe<String_Comparison_Exp>
   scope?: Maybe<String_Comparison_Exp>
   table?: Maybe<String_Comparison_Exp>
+  updated_at?: Maybe<Timestamptz_Comparison_Exp>
 }
 
 /** unique or primary key constraints on table "table_rows" */
@@ -1508,6 +1524,7 @@ export type Table_Rows_Insert_Input = {
   primary_key?: Maybe<Scalars['String']>
   scope?: Maybe<Scalars['String']>
   table?: Maybe<Scalars['String']>
+  updated_at?: Maybe<Scalars['timestamptz']>
 }
 
 /** aggregate max on columns */
@@ -1518,6 +1535,7 @@ export type Table_Rows_Max_Fields = {
   primary_key?: Maybe<Scalars['String']>
   scope?: Maybe<Scalars['String']>
   table?: Maybe<Scalars['String']>
+  updated_at?: Maybe<Scalars['timestamptz']>
 }
 
 /** order by max() on columns of table "table_rows" */
@@ -1527,6 +1545,7 @@ export type Table_Rows_Max_Order_By = {
   primary_key?: Maybe<Order_By>
   scope?: Maybe<Order_By>
   table?: Maybe<Order_By>
+  updated_at?: Maybe<Order_By>
 }
 
 /** aggregate min on columns */
@@ -1537,6 +1556,7 @@ export type Table_Rows_Min_Fields = {
   primary_key?: Maybe<Scalars['String']>
   scope?: Maybe<Scalars['String']>
   table?: Maybe<Scalars['String']>
+  updated_at?: Maybe<Scalars['timestamptz']>
 }
 
 /** order by min() on columns of table "table_rows" */
@@ -1546,6 +1566,7 @@ export type Table_Rows_Min_Order_By = {
   primary_key?: Maybe<Order_By>
   scope?: Maybe<Order_By>
   table?: Maybe<Order_By>
+  updated_at?: Maybe<Order_By>
 }
 
 /** response of any mutation on the table "table_rows" */
@@ -1578,6 +1599,7 @@ export type Table_Rows_Order_By = {
   primary_key?: Maybe<Order_By>
   scope?: Maybe<Order_By>
   table?: Maybe<Order_By>
+  updated_at?: Maybe<Order_By>
 }
 
 /** primary key columns input for table: "table_rows" */
@@ -1608,6 +1630,8 @@ export enum Table_Rows_Select_Column {
   Scope = 'scope',
   /** column name */
   Table = 'table',
+  /** column name */
+  UpdatedAt = 'updated_at',
 }
 
 /** input type for updating data in table "table_rows" */
@@ -1618,6 +1642,7 @@ export type Table_Rows_Set_Input = {
   primary_key?: Maybe<Scalars['String']>
   scope?: Maybe<Scalars['String']>
   table?: Maybe<Scalars['String']>
+  updated_at?: Maybe<Scalars['timestamptz']>
 }
 
 /** update columns of table "table_rows" */
@@ -1634,6 +1659,21 @@ export enum Table_Rows_Update_Column {
   Scope = 'scope',
   /** column name */
   Table = 'table',
+  /** column name */
+  UpdatedAt = 'updated_at',
+}
+
+/** expression to compare columns of type timestamptz. All fields are combined with logical 'AND'. */
+export type Timestamptz_Comparison_Exp = {
+  _eq?: Maybe<Scalars['timestamptz']>
+  _gt?: Maybe<Scalars['timestamptz']>
+  _gte?: Maybe<Scalars['timestamptz']>
+  _in?: Maybe<Array<Scalars['timestamptz']>>
+  _is_null?: Maybe<Scalars['Boolean']>
+  _lt?: Maybe<Scalars['timestamptz']>
+  _lte?: Maybe<Scalars['timestamptz']>
+  _neq?: Maybe<Scalars['timestamptz']>
+  _nin?: Maybe<Array<Scalars['timestamptz']>>
 }
 
 /** columns and relationships of "transactions" */
@@ -1642,6 +1682,7 @@ export type Transactions = {
   block_id: Scalars['String']
   block_num: Scalars['numeric']
   chain_id: Scalars['String']
+  created_at: Scalars['timestamptz']
   data?: Maybe<Scalars['jsonb']>
   transaction_id: Scalars['String']
 }
@@ -1725,6 +1766,7 @@ export type Transactions_Bool_Exp = {
   block_id?: Maybe<String_Comparison_Exp>
   block_num?: Maybe<Numeric_Comparison_Exp>
   chain_id?: Maybe<String_Comparison_Exp>
+  created_at?: Maybe<Timestamptz_Comparison_Exp>
   data?: Maybe<Jsonb_Comparison_Exp>
   transaction_id?: Maybe<String_Comparison_Exp>
 }
@@ -1760,6 +1802,7 @@ export type Transactions_Insert_Input = {
   block_id?: Maybe<Scalars['String']>
   block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['timestamptz']>
   data?: Maybe<Scalars['jsonb']>
   transaction_id?: Maybe<Scalars['String']>
 }
@@ -1770,6 +1813,7 @@ export type Transactions_Max_Fields = {
   block_id?: Maybe<Scalars['String']>
   block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['timestamptz']>
   transaction_id?: Maybe<Scalars['String']>
 }
 
@@ -1778,6 +1822,7 @@ export type Transactions_Max_Order_By = {
   block_id?: Maybe<Order_By>
   block_num?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
+  created_at?: Maybe<Order_By>
   transaction_id?: Maybe<Order_By>
 }
 
@@ -1787,6 +1832,7 @@ export type Transactions_Min_Fields = {
   block_id?: Maybe<Scalars['String']>
   block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['timestamptz']>
   transaction_id?: Maybe<Scalars['String']>
 }
 
@@ -1795,6 +1841,7 @@ export type Transactions_Min_Order_By = {
   block_id?: Maybe<Order_By>
   block_num?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
+  created_at?: Maybe<Order_By>
   transaction_id?: Maybe<Order_By>
 }
 
@@ -1825,6 +1872,7 @@ export type Transactions_Order_By = {
   block_id?: Maybe<Order_By>
   block_num?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
+  created_at?: Maybe<Order_By>
   data?: Maybe<Order_By>
   transaction_id?: Maybe<Order_By>
 }
@@ -1850,6 +1898,8 @@ export enum Transactions_Select_Column {
   /** column name */
   ChainId = 'chain_id',
   /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
   Data = 'data',
   /** column name */
   TransactionId = 'transaction_id',
@@ -1860,6 +1910,7 @@ export type Transactions_Set_Input = {
   block_id?: Maybe<Scalars['String']>
   block_num?: Maybe<Scalars['numeric']>
   chain_id?: Maybe<Scalars['String']>
+  created_at?: Maybe<Scalars['timestamptz']>
   data?: Maybe<Scalars['jsonb']>
   transaction_id?: Maybe<Scalars['String']>
 }
@@ -1916,6 +1967,8 @@ export enum Transactions_Update_Column {
   BlockNum = 'block_num',
   /** column name */
   ChainId = 'chain_id',
+  /** column name */
+  CreatedAt = 'created_at',
   /** column name */
   Data = 'data',
   /** column name */
@@ -1974,6 +2027,18 @@ export type Upsert_Table_RowMutation = {
     scope: string
     primary_key: string
     data: any
+  }>
+}
+
+export type Insert_Table_RowsMutationVariables = Exact<{
+  objects?: Maybe<Array<Table_Rows_Insert_Input>>
+}>
+
+export type Insert_Table_RowsMutation = {
+  __typename?: 'mutation_root'
+  insert_table_rows?: Maybe<{
+    __typename?: 'table_rows_mutation_response'
+    affected_rows: number
   }>
 }
 
@@ -2069,6 +2134,13 @@ export const Upsert_Table_RowDocument = gql`
     }
   }
 `
+export const Insert_Table_RowsDocument = gql`
+  mutation insert_table_rows($objects: [table_rows_insert_input!] = {}) {
+    insert_table_rows(objects: $objects) {
+      affected_rows
+    }
+  }
+`
 export const Update_Block_HeightDocument = gql`
   mutation update_block_height(
     $chain_id: String!
@@ -2136,6 +2208,7 @@ export function getSdk(
   return {
     upsert_table_row(
       variables: Upsert_Table_RowMutationVariables,
+      requestHeaders?: Headers,
     ): Promise<{
         data?: Upsert_Table_RowMutation | undefined
         extensions?: any
@@ -2147,11 +2220,31 @@ export function getSdk(
         client.rawRequest<Upsert_Table_RowMutation>(
           print(Upsert_Table_RowDocument),
           variables,
+          requestHeaders,
+        ),
+      )
+    },
+    insert_table_rows(
+      variables?: Insert_Table_RowsMutationVariables,
+      requestHeaders?: Headers,
+    ): Promise<{
+        data?: Insert_Table_RowsMutation | undefined
+        extensions?: any
+        headers: Headers
+        status: number
+        errors?: GraphQLError[] | undefined
+      }> {
+      return withWrapper(() =>
+        client.rawRequest<Insert_Table_RowsMutation>(
+          print(Insert_Table_RowsDocument),
+          variables,
+          requestHeaders,
         ),
       )
     },
     update_block_height(
       variables: Update_Block_HeightMutationVariables,
+      requestHeaders?: Headers,
     ): Promise<{
         data?: Update_Block_HeightMutation | undefined
         extensions?: any
@@ -2163,11 +2256,13 @@ export function getSdk(
         client.rawRequest<Update_Block_HeightMutation>(
           print(Update_Block_HeightDocument),
           variables,
+          requestHeaders,
         ),
       )
     },
     delete_table_row(
       variables: Delete_Table_RowMutationVariables,
+      requestHeaders?: Headers,
     ): Promise<{
         data?: Delete_Table_RowMutation | undefined
         extensions?: any
@@ -2179,11 +2274,13 @@ export function getSdk(
         client.rawRequest<Delete_Table_RowMutation>(
           print(Delete_Table_RowDocument),
           variables,
+          requestHeaders,
         ),
       )
     },
     insert_transaction(
       variables: Insert_TransactionMutationVariables,
+      requestHeaders?: Headers,
     ): Promise<{
         data?: Insert_TransactionMutation | undefined
         extensions?: any
@@ -2195,11 +2292,13 @@ export function getSdk(
         client.rawRequest<Insert_TransactionMutation>(
           print(Insert_TransactionDocument),
           variables,
+          requestHeaders,
         ),
       )
     },
     insert_actions(
       variables: Insert_ActionsMutationVariables,
+      requestHeaders?: Headers,
     ): Promise<{
         data?: Insert_ActionsMutation | undefined
         extensions?: any
@@ -2211,6 +2310,7 @@ export function getSdk(
         client.rawRequest<Insert_ActionsMutation>(
           print(Insert_ActionsDocument),
           variables,
+          requestHeaders,
         ),
       )
     },

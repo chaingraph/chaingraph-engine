@@ -19,6 +19,13 @@ mutation upsert_table_row(
   }
 }
 
+mutation insert_table_rows($objects: [table_rows_insert_input!] = {}) {
+  insert_table_rows(objects: $objects) {
+    affected_rows
+  }
+}
+
+
 mutation update_block_height($chain_id: String!, $block_num: numeric!, $block_id: String!) {
   update_chains_by_pk(pk_columns: { chain_id: $chain_id }, _set: { block_id: $block_id, block_num: $block_num }) {
     block_id

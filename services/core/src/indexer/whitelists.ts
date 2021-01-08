@@ -3,7 +3,7 @@ import {
   EosioReaderTableRowFilter,
 } from '@blockmatic/eosio-ship-reader'
 
-interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
+export interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
   table_key: string
 }
 
@@ -62,6 +62,11 @@ export const chaingraph_registry: ChainGraphTableRegistry[] = [
     scope: 'eosusd',
     table: 'datapoints',
     table_key: 'id',
+  },
+  {
+    code: 'mockeostoken',
+    table: 'accounts',
+    table_key: 'standard_token',
   },
 ]
 
