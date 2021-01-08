@@ -7,6 +7,16 @@
 - table:
     schema: public
     name: balances
+  object_relationships:
+  - name: token
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: tokens
+        column_mapping:
+          chain_id: chain_id
+          contract: contract
 - table:
     schema: public
     name: chains
