@@ -5,17 +5,23 @@ import { getInfo } from './eosio'
 import {
   Transactions_Insert_Input,
   Actions_Insert_Input,
+  Balances_Insert_Input,
 } from 'generated/graphql'
 import omit from 'lodash.omit'
 import chunk from 'lodash.chunk'
-import { populate } from './populate'
+import { populateTableRows } from './populate-tables'
 import { getChainGraphTableRowData } from './table-utils'
+import { populateTokens } from './populate-tokens'
+import { chaingraph_token_registry } from './whitelists'
 
 export const startIndexer = async () => {
   console.log('Starting indexer ...')
 
   console.log('Populating db with current state ...')
-  populate()
+
+  // TODO: await
+  populateTokens()
+  populateTableRows()
 
   const { close$, rows$, blocks$, errors$ } = await loadReader()
 
@@ -89,10 +95,18 @@ export const startIndexer = async () => {
 
   upsertRows$.subscribe((row) => {
     try {
-      console.log('========== upsert_table_row ==========')
-      const tableRowData = getChainGraphTableRowData(row)
-      console.log(tableRowData)
-      hasura.upsert_table_row(tableRowData)
+      if (chaingraph_token_registry.indexOf(row.code) !== -1) {
+        const object: Balances_Insert_Input = {
+          account: row.scope,
+          balance: row.value.balance,
+          chain_id: row.chain_id,
+          contract: row.code,
+        }
+        hasura.upsert_balance({ object })
+      } else {
+        const tableRowData = getChainGraphTableRowData(row)
+        hasura.upsert_table_row(tableRowData)
+      }
     } catch (error) {
       console.log('======================================')
       console.log('Error updating contract row', row, error)

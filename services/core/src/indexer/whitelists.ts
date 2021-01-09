@@ -7,8 +7,26 @@ export interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
   table_key: string
 }
 
-export const chaingraph_registry: ChainGraphTableRegistry[] = [
-  // { code: 'eosio.token', table: 'accounts' },
+export const chaingraph_token_registry: string[] = ['mockeostoken']
+
+const chaingraph_token_tables_registry = chaingraph_token_registry
+  .map((token_contract) => {
+    return [
+      {
+        code: token_contract,
+        table: 'stats',
+        table_key: 'n/a',
+      },
+      {
+        code: token_contract,
+        table: 'accounts',
+        table_key: 'n/a',
+      },
+    ]
+  })
+  .flat()
+
+export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
   {
     code: 'bitcashtests',
     scope: 'bitcashtests',
@@ -63,14 +81,10 @@ export const chaingraph_registry: ChainGraphTableRegistry[] = [
     table: 'datapoints',
     table_key: 'id',
   },
-  {
-    code: 'mockeostoken',
-    table: 'accounts',
-    table_key: 'standard_token',
-  },
+  ...chaingraph_token_tables_registry,
 ]
 
-export const table_rows_whitelist: EosioReaderTableRowFilter[] = chaingraph_registry.map(
+export const table_rows_whitelist: EosioReaderTableRowFilter[] = chaingraph_table_registry.map(
   (reg) => ({ code: reg.code, scope: reg.scope, table: reg.table }),
 )
 

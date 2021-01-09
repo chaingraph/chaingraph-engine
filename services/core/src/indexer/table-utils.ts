@@ -1,10 +1,12 @@
-import { chaingraph_registry } from './whitelists'
+import { chaingraph_table_registry } from './whitelists'
 import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
 
 export const getTableRegistry = (row: EosioReaderTableRowsStreamData) => {
-  const table_registry = chaingraph_registry.find(({ code, scope, table }) => {
-    return code === row.code && scope === row.scope && table === row.table
-  })
+  const table_registry = chaingraph_table_registry.find(
+    ({ code, scope, table }) => {
+      return code === row.code && scope === row.scope && table === row.table
+    },
+  )
   if (!table_registry) {
     throw new Error('No table registry found, something is not right')
   }

@@ -19,7 +19,7 @@ mutation upsert_table_row(
   }
 }
 
-mutation insert_table_rows($objects: [table_rows_insert_input!] = {}) {
+mutation insert_table_rows($objects: [table_rows_insert_input!]! = {}) {
   insert_table_rows(objects: $objects) {
     affected_rows
   }
@@ -59,3 +59,24 @@ mutation insert_actions($objects: [actions_insert_input!]!) {
     affected_rows
   }
 }
+
+
+mutation insert_token($object: tokens_insert_input! = {}) {
+  insert_tokens_one(object: $object) {
+    updated_at
+    symbol
+  }
+}
+
+mutation insert_balances($objects: [balances_insert_input!]! = {}) {
+  insert_balances(objects: $objects) {
+    affected_rows
+  }
+}
+
+mutation upsert_balance($object: balances_insert_input! = {}) {
+  insert_balances_one(object: $object, on_conflict: {constraint: balances_pkey, update_columns: balance}) {
+    updated_at
+  }
+}
+

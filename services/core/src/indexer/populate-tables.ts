@@ -4,7 +4,7 @@ import { rpc } from './eosio'
 import { hasura } from './hasura-client'
 import {
   ChainGraphTableRegistry,
-  chaingraph_registry,
+  chaingraph_table_registry,
   table_rows_whitelist,
 } from './whitelists'
 
@@ -91,8 +91,8 @@ const populateTableRow = async (
   hasura.upsert_table_row(variables)
 }
 
-export const populate = () => {
-  chaingraph_registry.forEach(async (table_registry, index) => {
+export const populateTableRows = () => {
+  chaingraph_table_registry.forEach(async (table_registry, index) => {
     try {
       if (table_registry.table_key === 'standard_token') {
         populateStandardToken(table_registry)
