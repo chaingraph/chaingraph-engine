@@ -35,6 +35,8 @@ services:
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
       VIRTUAL_HOST: api.chaingraph.io
       VIRTUAL_PORT: 8088
+      LETSENCRYPT_HOST: api.chaingraph.io
+      LETSENCRYPT_EMAIL: admin@blockmatic.io
     networks:
       default:
         aliases:
