@@ -11,6 +11,17 @@ tasks:
   seed:
     cmds:
       - hasura seeds apply --project services/hasura 
+  
+  up:
+    cmds:
+      - docker-compose up -d --build hasura
+      - docker-compose up -d --build nginx
+      - docker-compose up -d --build nginx-letsencrypt nginx-gen
+      - docker-compose restart nginx
+  
+  down:
+    cmds:
+      - docker-compose down -v --remove-orphans
 
   boot:
     cmds:
@@ -20,4 +31,4 @@ tasks:
       - hasura metadata apply --project services/hasura 
       - hasura seeds apply --project services/hasura 
       - docker-compose up -d --build core
-
+ 
