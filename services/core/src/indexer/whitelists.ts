@@ -81,6 +81,12 @@ export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
     table: 'datapoints',
     table_key: 'id',
   },
+  {
+    code: 'bitcashtests',
+    scope: 'bitcashtests',
+    table: 'p2p',
+    table_key: 'id',
+  },
   ...chaingraph_token_tables_registry,
 ]
 
