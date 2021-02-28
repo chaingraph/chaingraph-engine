@@ -18,6 +18,8 @@ tasks:
       - docker-compose up -d --build nginx
       - docker-compose up -d --build nginx-letsencrypt nginx-gen
       - docker-compose restart nginx
+      - hasura seeds apply --project services/hasura 
+      - docker-compose up -d --build core
   
   down:
     cmds:

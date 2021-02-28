@@ -14,7 +14,7 @@ const chaingraph_token_tables_registry = chaingraph_token_registry
     return [
       {
         code: token_contract,
-        table: 'stats',
+        table: 'stat',
         table_key: 'n/a',
       },
       {
@@ -42,25 +42,7 @@ export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
   {
     code: 'bitcashtests',
     scope: 'bitcashtests',
-    table: 'fees',
-    table_key: 'singleton',
-  },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'accounts',
-    table_key: 'singleton',
-  },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
     table: 'gpositions',
-    table_key: 'singleton',
-  },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'limits',
     table_key: 'singleton',
   },
   {
@@ -68,12 +50,6 @@ export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
     scope: 'bitcashtests',
     table: 'positions',
     table_key: 'account',
-  },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'stat',
-    table_key: 'singleton',
   },
   {
     code: 'delphioracle',
