@@ -14,6 +14,7 @@
         remote_table:
           schema: public
           name: tokens
+        insertion_order: null
         column_mapping:
           chain_id: chain_id
           contract: contract
