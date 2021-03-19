@@ -23,10 +23,4 @@ export const bitcashtests = [
     table: 'positions',
     table_key: 'account',
   },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'p2p',
-    table_key: 'id',
-  },
 ]

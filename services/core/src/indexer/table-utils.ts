@@ -4,7 +4,11 @@ import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
 export const getTableRegistry = (row: EosioReaderTableRowsStreamData) => {
   const table_registry = chaingraph_table_registry.find(
     ({ code, scope, table }) => {
-      return code === row.code && scope === row.scope && table === row.table
+      return (
+        code === row.code &&
+        (scope ? scope === row.scope : true) &&
+        table === row.table
+      )
     },
   )
   if (!table_registry) {
