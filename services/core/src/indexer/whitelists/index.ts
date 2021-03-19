@@ -2,67 +2,42 @@ import {
   EosioReaderActionFilter,
   EosioReaderTableRowFilter,
 } from '@blockmatic/eosio-ship-reader'
+import { bitcashbank1 } from './bitcashbank1'
+import { bitcashtests } from './bitcashtests'
+import { delphioracle } from './delphioracle'
 
 export interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
   table_key: string
 }
 
-export const chaingraph_token_registry: string[] = ['mockeostoken']
+export const chaingraph_token_registry: string[] = [
+  'mockeostoken',
+  'tokenbitcash',
+  'bitcashtokns',
+]
 
+// TODO: ticker code
 const chaingraph_token_tables_registry = chaingraph_token_registry
   .map((token_contract) => {
     return [
       {
         code: token_contract,
         table: 'stat',
-        table_key: 'n/a',
+        table_key: 'supply-symbol',
       },
       {
         code: token_contract,
         table: 'accounts',
-        table_key: 'n/a',
+        table_key: 'balance-symbol',
       },
     ]
   })
   .flat()
 
 export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'appstates',
-    table_key: 'singleton',
-  },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'exfees',
-    table_key: 'singleton',
-  },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'gpositions',
-    table_key: 'singleton',
-  },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'positions',
-    table_key: 'account',
-  },
-  {
-    code: 'delphioracle',
-    scope: 'eosusd',
-    table: 'datapoints',
-    table_key: 'id',
-  },
-  {
-    code: 'bitcashtests',
-    scope: 'bitcashtests',
-    table: 'p2p',
-    table_key: 'id',
-  },
+  ...bitcashtests,
+  ...bitcashbank1,
+  ...delphioracle,
   ...chaingraph_token_tables_registry,
 ]
 

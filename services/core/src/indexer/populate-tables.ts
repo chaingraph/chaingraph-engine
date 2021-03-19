@@ -75,7 +75,12 @@ const populateTableRow = async (
       break
 
     default:
-      primary_key = row[table_registry.table_key]
+      if (table_registry.table_key.includes('-symbol')) {
+        primary_key =
+          row[table_registry.table_key.replace('-symbol', '').split(' ')[1]]
+      } else {
+        primary_key = row[table_registry.table_key]
+      }
       break
   }
 
