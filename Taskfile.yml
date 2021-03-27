@@ -26,8 +26,6 @@ tasks:
   boot:
     cmds:
       - docker-compose up -d --build hasura nginx
-      - docker-compose up -d --build nginx-letsencrypt nginx-gen
-      - docker-compose restart nginx
       - sleep 60
       - hasura migrate apply --project services/hasura 
       - hasura metadata apply --project services/hasura 
