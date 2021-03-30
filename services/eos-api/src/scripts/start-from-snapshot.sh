@@ -5,7 +5,8 @@ source $(dirname $0)/env.sh
 source $(dirname $0)/stop.sh
 
 #echo "Donwloading eosio snapshot ..."
-wget https://snapshots.eosnation.io/eos/latest -O latest-snapshot.bin.zst
+# v4 snapshots are for nodeos 2.0 and 2.1, v5 snapshots are for nodeos 2.1 only
+wget https://snapshots.eosnation.io/eos-v4/latest -O latest-snapshot.bin.zst
 unzstd ./latest-snapshot.bin.zst
 rm ./latest-snapshot.bin.zst
 
