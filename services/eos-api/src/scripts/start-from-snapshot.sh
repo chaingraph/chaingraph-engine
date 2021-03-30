@@ -5,9 +5,9 @@ source $(dirname $0)/env.sh
 source $(dirname $0)/stop.sh
 
 #echo "Donwloading eosio snapshot ..."
-#wget https://snapshots.eosnation.io/eos/latest -O latest-snapshot.bin.zst
-#unzstd ./latest-snapshot.bin.zst
-#rm ./latest-snapshot.bin.zst
+wget https://snapshots.eosnation.io/eos/latest -O latest-snapshot.bin.zst
+unzstd ./latest-snapshot.bin.zst
+rm ./latest-snapshot.bin.zst
 
 echo "Starting eosio service ..."
 LOGFILE=/var/log/nodeos.log
