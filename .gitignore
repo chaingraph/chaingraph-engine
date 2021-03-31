@@ -10,3 +10,5 @@ abi.json
 
 services/nginx/*
 !services/nginx/nginx.tmpl
+
+services/eos-api/src/data/*
