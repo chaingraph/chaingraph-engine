@@ -31,4 +31,6 @@ tasks:
       - hasura metadata apply --project services/hasura 
       - hasura seeds apply --project services/hasura 
       - docker-compose up -d --build core
+      - docker-compose up -d --build nginx-letsencrypt nginx-gen
+      - docker-compose restart nginx
  
