@@ -2,10 +2,11 @@ Manual Server Config
 
 ```
 # Install utilities
-apt update && apt install -y wget jq sudo curl git openssh-server zstd zsh
+apt update && apt install -y wget jq sudo curl git openssh-server zstd zsh hub
 
 # Install and setup OhMyZSH
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+## and copy aliases.zsh
 
 # Create ssh key and add it to github
 # https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
@@ -62,4 +63,10 @@ ufw reload
 
 sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
 
+# Install Hasura
+
+curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash
 ```
+
+## Measuring capacity
+
