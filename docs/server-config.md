@@ -66,7 +66,16 @@ sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/b
 # Install Hasura
 
 curl -L https://github.com/hasura/graphql-engine/raw/stable/cli/get.sh | bash
+
+# Fix problem with DNS resolvers, UWF and Docker 
+# https://superuser.com/questions/1130898/no-internet-connection-inside-docker-containers/1335054#1335054
+# https://stackoverflow.com/a/51741599/250435
+# https://github.com/chaifeng/ufw-docker
+# WIP: had to disable UWF, maybe firewall on cloudflare?
+
 ```
+
+## Move 
 
 ## Measuring capacity
 
