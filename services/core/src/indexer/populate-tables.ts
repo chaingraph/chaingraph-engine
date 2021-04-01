@@ -102,10 +102,17 @@ export const populateTableRows = () => {
       if (table_registry.table_key === 'standard_token') {
         populateStandardToken(table_registry)
       } else {
-        const { rows } = await rpc.get_table_rows(table_rows_whitelist[index])
-        rows.forEach((row: any) => {
-          populateTableRow(row, table_registry)
-        })
+        const entry = table_rows_whitelist[index]
+        console.log("==> populate rows", entry);
+        const { rows } = await rpc.get_table_rows(entry)
+
+        if(entry.scope){
+          rows.forEach((row: any) => {
+            populateTableRow(row, table_registry)
+          })
+        }else{
+          console.log('==================== MISSING SCOPES ===============')
+        }
       }
     } catch (error) {
       console.log(JSON.stringify(error, null, 2))
