@@ -148,7 +148,7 @@ services:
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
-      APOLLO_REMOTE_SCHEMA_ENDPOINT: http://209.58.139.166:4001
+      APOLLO_REMOTE_SCHEMA_ENDPOINT: http://apollo-bitcash:4001
       HASURA_GRAPHQL_SERVER_PORT: 8083
       VIRTUAL_HOST: api.100xtrade.io
       VIRTUAL_PORT: 8085
@@ -170,7 +170,7 @@ services:
     build:
       context: ../bitcash-satellite/services/apollo
     environment:
-      HASURA_API: ${BITCASH_HASURA_API}
+      HASURA_API: http://hasura-bitcash:8085/v1/graphql
       EOS_NODEOS_HOST: ${EOS_NODEOS_HOST}
       EOS_NODEOS_PORT: ${EOS_NODEOS_PORT} 
     ports:
