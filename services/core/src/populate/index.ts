@@ -5,6 +5,6 @@ export const populate = async () => {
   console.log('Populating db with current state ...')
 
   // TODO: await
-  populateTokens()
+  // populateTokens()
   populateTableRows()
 }

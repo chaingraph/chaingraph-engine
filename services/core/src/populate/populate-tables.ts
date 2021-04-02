@@ -1,4 +1,3 @@
-import { Upsert_Table_RowMutationVariables } from 'generated/hasura-graphql'
 import pAll from 'p-all'
 import { rpc } from '../utils/eosio'
 import { hasura } from '../hasura/hasura-client'
@@ -7,58 +6,6 @@ import {
   chaingraph_table_registry,
   table_rows_whitelist,
 } from '../whitelists'
-const { symbol, nameToUint64 } = require('eosjs-account-name')
-
-const populateStandardToken = async (
-  table_registry: ChainGraphTableRegistry,
-) => {
-  console.log('=============================================')
-  const { rows } = await rpc.get_table_by_scope({
-    code: table_registry.code,
-    table: table_registry.table,
-    limit: 10000000,
-  })
-  const table_rows_requests = rows.map(({ scope }: { scope: string }) => {
-    return async () => {
-      const { rows: rows2 } = await rpc.get_table_rows({
-        code: table_registry.code,
-        table: table_registry.table,
-        scope,
-      })
-      const chaingraphTableRowsData = rows2.map(
-        ({ balance }: { balance: string }) => {
-          return {
-            contract: table_registry.code,
-            table: table_registry.table,
-            scope,
-            chain_id:
-              'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
-            primary_key: balance.split(' ')[1],
-            data: { balance },
-          }
-        },
-      )
-      return chaingraphTableRowsData
-    }
-  })
-
-  const table_rows = (await (
-    await pAll(table_rows_requests, { concurrency: 50 })
-  ).flat()) as Upsert_Table_RowMutationVariables[]
-
-  // NOTE: WTF this!
-  // const table_rows_insert_rows: Array<Table_Rows_Insert_Input>=  table_rows.map((input:Table_Rows_Insert_Input) => {
-  //   return input!
-  // })
-
-  // const response = await hasura.insert_table_rows({ objects: table_rows_insert_rows! })
-
-  const table_rows_insert_requests = table_rows.map((row) => {
-    return () => hasura.upsert_table_row(row)
-  })
-
-  pAll(table_rows_insert_requests, { concurrency: 50 })
-}
 
 const populateTableRow = async (
   row: any,
@@ -72,19 +19,24 @@ const populateTableRow = async (
       break
 
     case 'standard_token':
+      console.log('standard token')
       primary_key = row.balance.split(' ')[1]
       break
 
     default:
-      if (table_registry.table_key.includes('-symbol')) {
-        primary_key =
-          row[table_registry.table_key.replace('-symbol', '').split(' ')[1]]
+      if (table_registry.table_key.includes('-asset-symbol')) {
+        primary_key = row[
+          table_registry.table_key.replace('-asset-symbol', '')
+        ].split(' ')[1]
+      } else if (table_registry.table_key.includes('-token-symbol')) {
+        primary_key = row[
+          table_registry.table_key.replace('-token-symbol', '')
+        ].split(',')[1]
       } else {
         primary_key = row[table_registry.table_key]
       }
       break
   }
-
   const variables = {
     chain_id:
       'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
@@ -100,32 +52,32 @@ const populateTableRow = async (
 export const populateTableRows = () => {
   chaingraph_table_registry.forEach(async (table_registry, index) => {
     try {
-      if (table_registry.table_key === 'standard_token') {
-        populateStandardToken(table_registry)
-      } else {
-        const entry = table_rows_whitelist[index]
-        console.log('==> populate rows', entry)
-        const { rows } = await rpc.get_table_rows(entry)
+      const entry = table_rows_whitelist[index]
 
-        if (entry.scope) {
-          rows.forEach((row: any) => {
-            populateTableRow(row, table_registry)
-          })
-        } else {
-          const scopes = await rpc.get_table_by_scope({
+      const scopes = entry.scope
+        ? [{ scope: entry.scope }]
+        : (
+          await rpc.get_table_by_scope({
             code: entry.code,
             table: entry.table,
           })
+        ).rows
 
-          console.log('==================== MISSING SCOPES ===============')
-          // console.log(scopes)
-          scopes.rows.map(({ scope }: { scope: 'string' }) => {
-            const uint64 = nameToUint64(scope)
-            const symbolName = symbol.toName(uint64)
-            console.log({ scope, symbolName })
-          })
-        }
-      }
+      const getTableRowsRequests = scopes.map(
+        ({ scope }: { scope: 'string' }) => {
+          return async () => {
+            const { rows } = await rpc.get_table_rows({ ...entry, scope })
+            return rows
+          }
+        },
+      )
+
+      const allRows = await pAll(getTableRowsRequests, { concurrency: 50 })
+      const rows = allRows.flat()
+
+      // console.log("===>", table_registry, {scopes: scopes.length, rows: rows.length })
+
+      rows.forEach((row: any) => populateTableRow(row, table_registry))
     } catch (error) {
       console.log(JSON.stringify(error, null, 2))
       throw new Error('Error populating data database')
