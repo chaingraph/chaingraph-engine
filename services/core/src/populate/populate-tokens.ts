@@ -6,7 +6,7 @@ import pAll from 'p-all'
 import { rpc } from '../utils/eosio'
 import { hasura } from '../hasura/hasura-client'
 import { asset } from 'eos-common'
-import { chaingraph_token_registry } from '../whitelists'
+import { chaingraph_token_registry } from '../whitelists/tokens'
 
 const populateToken = async (token_contract: string) => {
   const { rows } = await rpc.get_table_by_scope({
@@ -47,7 +47,7 @@ const populateToken = async (token_contract: string) => {
       precision: symbol.precision(),
       ...stat,
     }
-    return async () => hasura.insert_token({ object: tokenObj })
+    return async () => hasura.upsert_token({ object: tokenObj })
   })
 
   await pAll(insertStatRequests, { concurrency: 50 })
@@ -86,7 +86,7 @@ const populateBalances = async (token_contract: string) => {
     await pAll(table_rows_requests, { concurrency: 50 })
   ).flat()) as Balances_Insert_Input[]
 
-  hasura.insert_balances({ objects: balances })
+  hasura.upsert_balances({ objects: balances })
 }
 
 export const populateTokens = () => {

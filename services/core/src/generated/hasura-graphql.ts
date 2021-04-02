@@ -499,6 +499,7 @@ export type Balances = {
   balance: Scalars['String']
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
   /** An object relationship */
   token?: Maybe<Tokens>
   updated_at?: Maybe<Scalars['timestamptz']>
@@ -547,6 +548,7 @@ export type Balances_Bool_Exp = {
   balance?: Maybe<String_Comparison_Exp>
   chain_id?: Maybe<String_Comparison_Exp>
   contract?: Maybe<String_Comparison_Exp>
+  symbol?: Maybe<String_Comparison_Exp>
   token?: Maybe<Tokens_Bool_Exp>
   updated_at?: Maybe<Timestamptz_Comparison_Exp>
 }
@@ -563,6 +565,7 @@ export type Balances_Insert_Input = {
   balance?: Maybe<Scalars['String']>
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
+  symbol?: Maybe<Scalars['String']>
   token?: Maybe<Tokens_Obj_Rel_Insert_Input>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
@@ -574,6 +577,7 @@ export type Balances_Max_Fields = {
   balance?: Maybe<Scalars['String']>
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
+  symbol?: Maybe<Scalars['String']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
 
@@ -583,6 +587,7 @@ export type Balances_Max_Order_By = {
   balance?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
+  symbol?: Maybe<Order_By>
   updated_at?: Maybe<Order_By>
 }
 
@@ -593,6 +598,7 @@ export type Balances_Min_Fields = {
   balance?: Maybe<Scalars['String']>
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
+  symbol?: Maybe<Scalars['String']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
 
@@ -602,6 +608,7 @@ export type Balances_Min_Order_By = {
   balance?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
+  symbol?: Maybe<Order_By>
   updated_at?: Maybe<Order_By>
 }
 
@@ -633,6 +640,7 @@ export type Balances_Order_By = {
   balance?: Maybe<Order_By>
   chain_id?: Maybe<Order_By>
   contract?: Maybe<Order_By>
+  symbol?: Maybe<Order_By>
   token?: Maybe<Tokens_Order_By>
   updated_at?: Maybe<Order_By>
 }
@@ -642,6 +650,7 @@ export type Balances_Pk_Columns_Input = {
   account: Scalars['String']
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
 }
 
 /** select columns of table "balances" */
@@ -655,6 +664,8 @@ export enum Balances_Select_Column {
   /** column name */
   Contract = 'contract',
   /** column name */
+  Symbol = 'symbol',
+  /** column name */
   UpdatedAt = 'updated_at',
 }
 
@@ -664,6 +675,7 @@ export type Balances_Set_Input = {
   balance?: Maybe<Scalars['String']>
   chain_id?: Maybe<Scalars['String']>
   contract?: Maybe<Scalars['String']>
+  symbol?: Maybe<Scalars['String']>
   updated_at?: Maybe<Scalars['timestamptz']>
 }
 
@@ -677,6 +689,8 @@ export enum Balances_Update_Column {
   ChainId = 'chain_id',
   /** column name */
   Contract = 'contract',
+  /** column name */
+  Symbol = 'symbol',
   /** column name */
   UpdatedAt = 'updated_at',
 }
@@ -1116,6 +1130,7 @@ export type Mutation_RootDelete_Balances_By_PkArgs = {
   account: Scalars['String']
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
 }
 
 /** mutation root */
@@ -1151,6 +1166,7 @@ export type Mutation_RootDelete_TokensArgs = {
 export type Mutation_RootDelete_Tokens_By_PkArgs = {
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
 }
 
 /** mutation root */
@@ -1526,6 +1542,7 @@ export type Query_RootBalances_By_PkArgs = {
   account: Scalars['String']
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
 }
 
 /** query root */
@@ -1600,6 +1617,7 @@ export type Query_RootTokens_AggregateArgs = {
 export type Query_RootTokens_By_PkArgs = {
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
 }
 
 /** query root */
@@ -1745,6 +1763,7 @@ export type Subscription_RootBalances_By_PkArgs = {
   account: Scalars['String']
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
 }
 
 /** subscription root */
@@ -1819,6 +1838,7 @@ export type Subscription_RootTokens_AggregateArgs = {
 export type Subscription_RootTokens_By_PkArgs = {
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
 }
 
 /** subscription root */
@@ -2103,7 +2123,7 @@ export type Tokens = {
   chain_id: Scalars['String']
   contract: Scalars['String']
   issuer: Scalars['String']
-  max_supply: Scalars['String']
+  max_supply?: Maybe<Scalars['String']>
   precision: Scalars['Int']
   supply: Scalars['String']
   symbol: Scalars['String']
@@ -2297,6 +2317,7 @@ export type Tokens_Order_By = {
 export type Tokens_Pk_Columns_Input = {
   chain_id: Scalars['String']
   contract: Scalars['String']
+  symbol: Scalars['String']
 }
 
 /** select columns of table "tokens" */
@@ -2857,11 +2878,11 @@ export type Insert_ActionsMutation = {
   }>
 }
 
-export type Insert_TokenMutationVariables = Exact<{
+export type Upsert_TokenMutationVariables = Exact<{
   object?: Tokens_Insert_Input
 }>
 
-export type Insert_TokenMutation = {
+export type Upsert_TokenMutation = {
   __typename?: 'mutation_root'
   insert_tokens_one?: Maybe<{
     __typename?: 'tokens'
@@ -2870,11 +2891,11 @@ export type Insert_TokenMutation = {
   }>
 }
 
-export type Insert_BalancesMutationVariables = Exact<{
+export type Upsert_BalancesMutationVariables = Exact<{
   objects?: Array<Balances_Insert_Input>
 }>
 
-export type Insert_BalancesMutation = {
+export type Upsert_BalancesMutation = {
   __typename?: 'mutation_root'
   insert_balances?: Maybe<{
     __typename?: 'balances_mutation_response'
@@ -2986,17 +3007,29 @@ export const Insert_ActionsDocument = gql`
     }
   }
 `
-export const Insert_TokenDocument = gql`
-  mutation insert_token($object: tokens_insert_input! = {}) {
-    insert_tokens_one(object: $object) {
+export const Upsert_TokenDocument = gql`
+  mutation upsert_token($object: tokens_insert_input! = {}) {
+    insert_tokens_one(
+      object: $object
+      on_conflict: {
+        constraint: tokens_pkey
+        update_columns: [max_supply, supply, issuer, precision, updated_at]
+      }
+    ) {
       updated_at
       symbol
     }
   }
 `
-export const Insert_BalancesDocument = gql`
-  mutation insert_balances($objects: [balances_insert_input!]! = {}) {
-    insert_balances(objects: $objects) {
+export const Upsert_BalancesDocument = gql`
+  mutation upsert_balances($objects: [balances_insert_input!]! = {}) {
+    insert_balances(
+      objects: $objects
+      on_conflict: {
+        constraint: balances_pkey
+        update_columns: [balance, updated_at]
+      }
+    ) {
       affected_rows
     }
   }
@@ -3005,7 +3038,10 @@ export const Upsert_BalanceDocument = gql`
   mutation upsert_balance($object: balances_insert_input! = {}) {
     insert_balances_one(
       object: $object
-      on_conflict: { constraint: balances_pkey, update_columns: balance }
+      on_conflict: {
+        constraint: balances_pkey
+        update_columns: [balance, updated_at]
+      }
     ) {
       updated_at
     }
@@ -3128,37 +3164,37 @@ export function getSdk(
         ),
       )
     },
-    insert_token(
-      variables?: Insert_TokenMutationVariables,
+    upsert_token(
+      variables?: Upsert_TokenMutationVariables,
       requestHeaders?: Headers,
     ): Promise<{
-        data?: Insert_TokenMutation | undefined
+        data?: Upsert_TokenMutation | undefined
         extensions?: any
         headers: Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
       return withWrapper(() =>
-        client.rawRequest<Insert_TokenMutation>(
-          print(Insert_TokenDocument),
+        client.rawRequest<Upsert_TokenMutation>(
+          print(Upsert_TokenDocument),
           variables,
           requestHeaders,
         ),
       )
     },
-    insert_balances(
-      variables?: Insert_BalancesMutationVariables,
+    upsert_balances(
+      variables?: Upsert_BalancesMutationVariables,
       requestHeaders?: Headers,
     ): Promise<{
-        data?: Insert_BalancesMutation | undefined
+        data?: Upsert_BalancesMutation | undefined
         extensions?: any
         headers: Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
       return withWrapper(() =>
-        client.rawRequest<Insert_BalancesMutation>(
-          print(Insert_BalancesDocument),
+        client.rawRequest<Upsert_BalancesMutation>(
+          print(Upsert_BalancesDocument),
           variables,
           requestHeaders,
         ),

@@ -10,30 +10,6 @@ export interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
   table_key: string
 }
 
-export const chaingraph_token_registry: string[] = [
-  'mockeostoken',
-  'tokenbitcash',
-  'bitcashtokns',
-]
-
-// TODO: ticker code
-export const chaingraph_token_tables_registry = chaingraph_token_registry
-  .map((token_contract) => {
-    return [
-      {
-        code: token_contract,
-        table: 'stat',
-        table_key: 'supply-symbol',
-      },
-      {
-        code: token_contract,
-        table: 'accounts',
-        table_key: 'balance-symbol',
-      },
-    ]
-  })
-  .flat()
-
 export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
   ...bitcashtests,
   ...bitcashbank1,

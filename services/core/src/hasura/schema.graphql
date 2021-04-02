@@ -61,21 +61,25 @@ mutation insert_actions($objects: [actions_insert_input!]!) {
 }
 
 
-mutation insert_token($object: tokens_insert_input! = {}) {
-  insert_tokens_one(object: $object) {
+mutation upsert_token($object: tokens_insert_input! = {}) {
+  insert_tokens_one(object: $object, on_conflict: {
+    constraint: tokens_pkey, 
+    update_columns: [max_supply, supply, issuer, precision, updated_at]}) {
     updated_at
     symbol
   }
 }
 
-mutation insert_balances($objects: [balances_insert_input!]! = {}) {
-  insert_balances(objects: $objects) {
+
+mutation upsert_balances($objects: [balances_insert_input!]! = {}) {
+  insert_balances(objects: $objects, on_conflict: {constraint: balances_pkey, update_columns: [balance, updated_at]}) {
     affected_rows
   }
 }
 
+
 mutation upsert_balance($object: balances_insert_input! = {}) {
-  insert_balances_one(object: $object, on_conflict: {constraint: balances_pkey, update_columns: balance}) {
+  insert_balances_one(object: $object, on_conflict: {constraint: balances_pkey, update_columns: [balance, updated_at]}) {
     updated_at
   }
 }
