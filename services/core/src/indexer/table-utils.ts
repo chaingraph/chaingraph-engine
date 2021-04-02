@@ -32,7 +32,17 @@ export const getPrimaryKey = (row: EosioReaderTableRowsStreamData) => {
       break
 
     default:
-      primary_key = row.value[table_registry.table_key]
+      if (table_registry.table_key.includes('-asset-symbol')) {
+        primary_key = row.value[
+          table_registry.table_key.replace('-asset-symbol', '')
+        ].split(' ')[1]
+      } else if (table_registry.table_key.includes('-token-symbol')) {
+        primary_key = row.value[
+          table_registry.table_key.replace('-token-symbol', '')
+        ].split(',')[1]
+      } else {
+        primary_key = row.value[table_registry.table_key]
+      }
       break
   }
 

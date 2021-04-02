@@ -19,7 +19,6 @@ const populateTableRow = async (
       break
 
     case 'standard_token':
-      console.log('standard token')
       primary_key = row.balance.split(' ')[1]
       break
 
@@ -37,6 +36,7 @@ const populateTableRow = async (
       }
       break
   }
+
   const variables = {
     chain_id:
       'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',

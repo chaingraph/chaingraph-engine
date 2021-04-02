@@ -5,6 +5,7 @@ import {
 import { bitcashbank1 } from './bitcashbank1'
 import { bitcashtests } from './bitcashtests'
 import { delphioracle } from './delphioracle'
+import { chaingraph_token_tables_registry } from './tokens'
 
 export interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
   table_key: string
@@ -14,7 +15,7 @@ export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
   ...bitcashtests,
   ...bitcashbank1,
   ...delphioracle,
-  // ...chaingraph_token_tables_registry,  remove token tables from table_registry
+  ...chaingraph_token_tables_registry, // Required for whitelisting on eosio-ship-reader
 ]
 
 export const table_rows_whitelist: EosioReaderTableRowFilter[] = chaingraph_table_registry.map(
