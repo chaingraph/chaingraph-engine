@@ -17,7 +17,7 @@ export const chaingraph_token_registry: string[] = [
 ]
 
 // TODO: ticker code
-const chaingraph_token_tables_registry = chaingraph_token_registry
+export const chaingraph_token_tables_registry = chaingraph_token_registry
   .map((token_contract) => {
     return [
       {
@@ -38,7 +38,7 @@ export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
   ...bitcashtests,
   ...bitcashbank1,
   ...delphioracle,
-  ...chaingraph_token_tables_registry,
+  // ...chaingraph_token_tables_registry,  remove token tables from table_registry
 ]
 
 export const table_rows_whitelist: EosioReaderTableRowFilter[] = chaingraph_table_registry.map(
@@ -47,4 +47,5 @@ export const table_rows_whitelist: EosioReaderTableRowFilter[] = chaingraph_tabl
 
 export const actions_whitelist: EosioReaderActionFilter[] = [
   { code: 'bitcashtests', action: '*' },
+  { code: 'bitcashbank1', action: '*' },
 ]

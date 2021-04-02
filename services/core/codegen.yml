@@ -6,7 +6,7 @@ schema:
   # 'x-hasura-admin-secret': "${HASURA_GRAPHQL_ADMIN_SECRET}"
 documents: src/**/*.graphql
 generates:
-  src/generated/graphql.ts:
+  src/generated/hasura-graphql.ts:
     plugins:
       - typescript
       - typescript-operations

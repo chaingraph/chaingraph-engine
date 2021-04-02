@@ -1,12 +1,13 @@
-import { Upsert_Table_RowMutationVariables } from 'generated/graphql'
+import { Upsert_Table_RowMutationVariables } from 'generated/hasura-graphql'
 import pAll from 'p-all'
-import { rpc } from './eosio'
-import { hasura } from './hasura-client'
+import { rpc } from '../utils/eosio'
+import { hasura } from '../hasura/hasura-client'
 import {
   ChainGraphTableRegistry,
   chaingraph_table_registry,
   table_rows_whitelist,
-} from './whitelists'
+} from '../whitelists'
+const { symbol, nameToUint64 } = require('eosjs-account-name')
 
 const populateStandardToken = async (
   table_registry: ChainGraphTableRegistry,
@@ -103,15 +104,26 @@ export const populateTableRows = () => {
         populateStandardToken(table_registry)
       } else {
         const entry = table_rows_whitelist[index]
-        console.log("==> populate rows", entry);
+        console.log('==> populate rows', entry)
         const { rows } = await rpc.get_table_rows(entry)
 
-        if(entry.scope){
+        if (entry.scope) {
           rows.forEach((row: any) => {
             populateTableRow(row, table_registry)
           })
-        }else{
+        } else {
+          const scopes = await rpc.get_table_by_scope({
+            code: entry.code,
+            table: entry.table,
+          })
+
           console.log('==================== MISSING SCOPES ===============')
+          // console.log(scopes)
+          scopes.rows.map(({ scope }: { scope: 'string' }) => {
+            const uint64 = nameToUint64(scope)
+            const symbolName = symbol.toName(uint64)
+            console.log({ scope, symbolName })
+          })
         }
       }
     } catch (error) {

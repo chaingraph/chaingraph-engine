@@ -1,9 +1,12 @@
-import { Balances_Insert_Input, Tokens_Insert_Input } from 'generated/graphql'
+import {
+  Balances_Insert_Input,
+  Tokens_Insert_Input,
+} from 'generated/hasura-graphql'
 import pAll from 'p-all'
-import { rpc } from './eosio'
-import { hasura } from './hasura-client'
+import { rpc } from '../utils/eosio'
+import { hasura } from '../hasura/hasura-client'
 import { asset } from 'eos-common'
-import { chaingraph_token_registry } from './whitelists'
+import { chaingraph_token_registry } from '../whitelists'
 
 const populateToken = async (token_contract: string) => {
   const { rows } = await rpc.get_table_by_scope({

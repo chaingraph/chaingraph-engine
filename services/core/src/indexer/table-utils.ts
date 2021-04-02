@@ -1,4 +1,4 @@
-import { chaingraph_table_registry } from './whitelists'
+import { chaingraph_table_registry } from '../whitelists'
 import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
 
 export const getTableRegistry = (row: EosioReaderTableRowsStreamData) => {
