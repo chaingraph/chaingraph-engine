@@ -58,6 +58,7 @@
   "dependencies": {
     "@blockmatic/eosio-ship-reader": "^0.1.4",
     "@eosrio/node-abieos": "^2.1.0-beta.0",
+    "@greymass/eosio": "^0.4.1",
     "env-cmd": "^10.1.0",
     "eos-common": "^0.8.0",
     "eosjs": "^21.0.3",
