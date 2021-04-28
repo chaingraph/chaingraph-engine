@@ -24,6 +24,11 @@ export const bitcashbank1 = [
   },
   {
     code: 'bitcashbank1',
+    table: 'loans',
+    table_key: 'key',
+  },
+  {
+    code: 'bitcashbank1',
     scope: 'bitcashbank1',
     table: 'p2p',
     table_key: 'id',
