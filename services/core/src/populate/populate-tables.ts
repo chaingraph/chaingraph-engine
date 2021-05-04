@@ -75,8 +75,6 @@ export const populateTableRows = () => {
       const allRows = await pAll(getTableRowsRequests, { concurrency: 50 })
       const rows = allRows.flat()
 
-      // console.log("===>", table_registry, {scopes: scopes.length, rows: rows.length })
-
       rows.forEach((row: any) => populateTableRow(row, table_registry))
     } catch (error) {
       console.log(JSON.stringify(error, null, 2))
