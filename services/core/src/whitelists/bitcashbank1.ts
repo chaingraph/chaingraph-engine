@@ -41,7 +41,7 @@ export const bitcashbank1 = [
   {
     code: 'bitcashbank1',
     scope: 'bitcashbank1',
-    table: 'actactivity',
+    table: 'activity',
     table_key: 'account',
   },
 ]

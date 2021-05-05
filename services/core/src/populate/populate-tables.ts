@@ -66,7 +66,12 @@ export const populateTableRows = () => {
       const getTableRowsRequests = scopes.map(
         ({ scope }: { scope: 'string' }) => {
           return async () => {
-            const { rows } = await rpc.get_table_rows({ ...entry, scope })
+            const { rows } = await rpc.get_table_rows({
+              ...entry,
+              scope,
+              limit: 1000,
+            })
+            // TODO: recursive if more than 1000 entries
             return rows
           }
         },
@@ -78,7 +83,7 @@ export const populateTableRows = () => {
       rows.forEach((row: any) => populateTableRow(row, table_registry))
     } catch (error) {
       console.log(JSON.stringify(error, null, 2))
-      throw new Error('Error populating data database')
+      throw new Error('Error populating database')
     }
   })
 }
