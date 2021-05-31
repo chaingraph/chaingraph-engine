@@ -1,7 +1,7 @@
 import { GraphQLClient } from 'graphql-request'
-import { print } from 'graphql'
+import * as Dom from 'graphql-request/dist/types.dom'
 import { GraphQLError } from 'graphql-request/dist/types'
-import { Headers } from 'graphql-request/dist/types.dom'
+import { print } from 'graphql'
 import gql from 'graphql-tag'
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = {
@@ -490,6 +490,149 @@ export enum Actions_Update_Column {
   GlobalSequence = 'global_sequence',
   /** column name */
   TransactionId = 'transaction_id',
+}
+
+/** columns and relationships of "api_users" */
+export type Api_Users = {
+  __typename?: 'api_users'
+  account: Scalars['String']
+  api_key: Scalars['String']
+}
+
+/** aggregated selection of "api_users" */
+export type Api_Users_Aggregate = {
+  __typename?: 'api_users_aggregate'
+  aggregate?: Maybe<Api_Users_Aggregate_Fields>
+  nodes: Array<Api_Users>
+}
+
+/** aggregate fields of "api_users" */
+export type Api_Users_Aggregate_Fields = {
+  __typename?: 'api_users_aggregate_fields'
+  count?: Maybe<Scalars['Int']>
+  max?: Maybe<Api_Users_Max_Fields>
+  min?: Maybe<Api_Users_Min_Fields>
+}
+
+/** aggregate fields of "api_users" */
+export type Api_Users_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Api_Users_Select_Column>>
+  distinct?: Maybe<Scalars['Boolean']>
+}
+
+/** order by aggregate values of table "api_users" */
+export type Api_Users_Aggregate_Order_By = {
+  count?: Maybe<Order_By>
+  max?: Maybe<Api_Users_Max_Order_By>
+  min?: Maybe<Api_Users_Min_Order_By>
+}
+
+/** input type for inserting array relation for remote table "api_users" */
+export type Api_Users_Arr_Rel_Insert_Input = {
+  data: Array<Api_Users_Insert_Input>
+  on_conflict?: Maybe<Api_Users_On_Conflict>
+}
+
+/** Boolean expression to filter rows from the table "api_users". All fields are combined with a logical 'AND'. */
+export type Api_Users_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Api_Users_Bool_Exp>>>
+  _not?: Maybe<Api_Users_Bool_Exp>
+  _or?: Maybe<Array<Maybe<Api_Users_Bool_Exp>>>
+  account?: Maybe<String_Comparison_Exp>
+  api_key?: Maybe<String_Comparison_Exp>
+}
+
+/** unique or primary key constraints on table "api_users" */
+export enum Api_Users_Constraint {
+  /** unique or primary key constraint */
+  UsersPkey = 'users_pkey',
+}
+
+/** input type for inserting data into table "api_users" */
+export type Api_Users_Insert_Input = {
+  account?: Maybe<Scalars['String']>
+  api_key?: Maybe<Scalars['String']>
+}
+
+/** aggregate max on columns */
+export type Api_Users_Max_Fields = {
+  __typename?: 'api_users_max_fields'
+  account?: Maybe<Scalars['String']>
+  api_key?: Maybe<Scalars['String']>
+}
+
+/** order by max() on columns of table "api_users" */
+export type Api_Users_Max_Order_By = {
+  account?: Maybe<Order_By>
+  api_key?: Maybe<Order_By>
+}
+
+/** aggregate min on columns */
+export type Api_Users_Min_Fields = {
+  __typename?: 'api_users_min_fields'
+  account?: Maybe<Scalars['String']>
+  api_key?: Maybe<Scalars['String']>
+}
+
+/** order by min() on columns of table "api_users" */
+export type Api_Users_Min_Order_By = {
+  account?: Maybe<Order_By>
+  api_key?: Maybe<Order_By>
+}
+
+/** response of any mutation on the table "api_users" */
+export type Api_Users_Mutation_Response = {
+  __typename?: 'api_users_mutation_response'
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int']
+  /** data of the affected rows by the mutation */
+  returning: Array<Api_Users>
+}
+
+/** input type for inserting object relation for remote table "api_users" */
+export type Api_Users_Obj_Rel_Insert_Input = {
+  data: Api_Users_Insert_Input
+  on_conflict?: Maybe<Api_Users_On_Conflict>
+}
+
+/** on conflict condition type for table "api_users" */
+export type Api_Users_On_Conflict = {
+  constraint: Api_Users_Constraint
+  update_columns: Array<Api_Users_Update_Column>
+  where?: Maybe<Api_Users_Bool_Exp>
+}
+
+/** ordering options when selecting data from "api_users" */
+export type Api_Users_Order_By = {
+  account?: Maybe<Order_By>
+  api_key?: Maybe<Order_By>
+}
+
+/** primary key columns input for table: "api_users" */
+export type Api_Users_Pk_Columns_Input = {
+  account: Scalars['String']
+}
+
+/** select columns of table "api_users" */
+export enum Api_Users_Select_Column {
+  /** column name */
+  Account = 'account',
+  /** column name */
+  ApiKey = 'api_key',
+}
+
+/** input type for updating data in table "api_users" */
+export type Api_Users_Set_Input = {
+  account?: Maybe<Scalars['String']>
+  api_key?: Maybe<Scalars['String']>
+}
+
+/** update columns of table "api_users" */
+export enum Api_Users_Update_Column {
+  /** column name */
+  Account = 'account',
+  /** column name */
+  ApiKey = 'api_key',
 }
 
 /** columns and relationships of "balances" */
@@ -1020,6 +1163,10 @@ export type Mutation_Root = {
   delete_actions?: Maybe<Actions_Mutation_Response>
   /** delete single row from the table: "actions" */
   delete_actions_by_pk?: Maybe<Actions>
+  /** delete data from the table: "api_users" */
+  delete_api_users?: Maybe<Api_Users_Mutation_Response>
+  /** delete single row from the table: "api_users" */
+  delete_api_users_by_pk?: Maybe<Api_Users>
   /** delete data from the table: "balances" */
   delete_balances?: Maybe<Balances_Mutation_Response>
   /** delete single row from the table: "balances" */
@@ -1048,6 +1195,10 @@ export type Mutation_Root = {
   insert_actions?: Maybe<Actions_Mutation_Response>
   /** insert a single row into the table: "actions" */
   insert_actions_one?: Maybe<Actions>
+  /** insert data into the table: "api_users" */
+  insert_api_users?: Maybe<Api_Users_Mutation_Response>
+  /** insert a single row into the table: "api_users" */
+  insert_api_users_one?: Maybe<Api_Users>
   /** insert data into the table: "balances" */
   insert_balances?: Maybe<Balances_Mutation_Response>
   /** insert a single row into the table: "balances" */
@@ -1076,6 +1227,10 @@ export type Mutation_Root = {
   update_actions?: Maybe<Actions_Mutation_Response>
   /** update single row of the table: "actions" */
   update_actions_by_pk?: Maybe<Actions>
+  /** update data of the table: "api_users" */
+  update_api_users?: Maybe<Api_Users_Mutation_Response>
+  /** update single row of the table: "api_users" */
+  update_api_users_by_pk?: Maybe<Api_Users>
   /** update data of the table: "balances" */
   update_balances?: Maybe<Balances_Mutation_Response>
   /** update single row of the table: "balances" */
@@ -1118,6 +1273,16 @@ export type Mutation_RootDelete_ActionsArgs = {
 export type Mutation_RootDelete_Actions_By_PkArgs = {
   chain_id: Scalars['String']
   global_sequence: Scalars['String']
+}
+
+/** mutation root */
+export type Mutation_RootDelete_Api_UsersArgs = {
+  where: Api_Users_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootDelete_Api_Users_By_PkArgs = {
+  account: Scalars['String']
 }
 
 /** mutation root */
@@ -1203,6 +1368,18 @@ export type Mutation_RootInsert_ActionsArgs = {
 export type Mutation_RootInsert_Actions_OneArgs = {
   object: Actions_Insert_Input
   on_conflict?: Maybe<Actions_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Api_UsersArgs = {
+  objects: Array<Api_Users_Insert_Input>
+  on_conflict?: Maybe<Api_Users_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Api_Users_OneArgs = {
+  object: Api_Users_Insert_Input
+  on_conflict?: Maybe<Api_Users_On_Conflict>
 }
 
 /** mutation root */
@@ -1307,6 +1484,18 @@ export type Mutation_RootUpdate_Actions_By_PkArgs = {
   _prepend?: Maybe<Actions_Prepend_Input>
   _set?: Maybe<Actions_Set_Input>
   pk_columns: Actions_Pk_Columns_Input
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_Api_UsersArgs = {
+  _set?: Maybe<Api_Users_Set_Input>
+  where: Api_Users_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_Api_Users_By_PkArgs = {
+  _set?: Maybe<Api_Users_Set_Input>
+  pk_columns: Api_Users_Pk_Columns_Input
 }
 
 /** mutation root */
@@ -1439,6 +1628,12 @@ export type Query_Root = {
   actions_aggregate: Actions_Aggregate
   /** fetch data from the table: "actions" using primary key columns */
   actions_by_pk?: Maybe<Actions>
+  /** fetch data from the table: "api_users" */
+  api_users: Array<Api_Users>
+  /** fetch aggregated fields from the table: "api_users" */
+  api_users_aggregate: Api_Users_Aggregate
+  /** fetch data from the table: "api_users" using primary key columns */
+  api_users_by_pk?: Maybe<Api_Users>
   /** fetch data from the table: "balances" */
   balances: Array<Balances>
   /** fetch aggregated fields from the table: "balances" */
@@ -1517,6 +1712,29 @@ export type Query_RootActions_AggregateArgs = {
 export type Query_RootActions_By_PkArgs = {
   chain_id: Scalars['String']
   global_sequence: Scalars['String']
+}
+
+/** query root */
+export type Query_RootApi_UsersArgs = {
+  distinct_on?: Maybe<Array<Api_Users_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Api_Users_Order_By>>
+  where?: Maybe<Api_Users_Bool_Exp>
+}
+
+/** query root */
+export type Query_RootApi_Users_AggregateArgs = {
+  distinct_on?: Maybe<Array<Api_Users_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Api_Users_Order_By>>
+  where?: Maybe<Api_Users_Bool_Exp>
+}
+
+/** query root */
+export type Query_RootApi_Users_By_PkArgs = {
+  account: Scalars['String']
 }
 
 /** query root */
@@ -1660,6 +1878,12 @@ export type Subscription_Root = {
   actions_aggregate: Actions_Aggregate
   /** fetch data from the table: "actions" using primary key columns */
   actions_by_pk?: Maybe<Actions>
+  /** fetch data from the table: "api_users" */
+  api_users: Array<Api_Users>
+  /** fetch aggregated fields from the table: "api_users" */
+  api_users_aggregate: Api_Users_Aggregate
+  /** fetch data from the table: "api_users" using primary key columns */
+  api_users_by_pk?: Maybe<Api_Users>
   /** fetch data from the table: "balances" */
   balances: Array<Balances>
   /** fetch aggregated fields from the table: "balances" */
@@ -1738,6 +1962,29 @@ export type Subscription_RootActions_AggregateArgs = {
 export type Subscription_RootActions_By_PkArgs = {
   chain_id: Scalars['String']
   global_sequence: Scalars['String']
+}
+
+/** subscription root */
+export type Subscription_RootApi_UsersArgs = {
+  distinct_on?: Maybe<Array<Api_Users_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Api_Users_Order_By>>
+  where?: Maybe<Api_Users_Bool_Exp>
+}
+
+/** subscription root */
+export type Subscription_RootApi_Users_AggregateArgs = {
+  distinct_on?: Maybe<Array<Api_Users_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Api_Users_Order_By>>
+  where?: Maybe<Api_Users_Bool_Exp>
+}
+
+/** subscription root */
+export type Subscription_RootApi_Users_By_PkArgs = {
+  account: Scalars['String']
 }
 
 /** subscription root */
@@ -2804,7 +3051,7 @@ export type Upsert_Table_RowMutation = {
 }
 
 export type Insert_Table_RowsMutationVariables = Exact<{
-  objects?: Array<Table_Rows_Insert_Input>
+  objects?: Array<Table_Rows_Insert_Input> | Table_Rows_Insert_Input
 }>
 
 export type Insert_Table_RowsMutation = {
@@ -2855,7 +3102,7 @@ export type Delete_Table_RowMutation = {
 }
 
 export type Insert_TransactionMutationVariables = Exact<{
-  objects: Array<Transactions_Insert_Input>
+  objects: Array<Transactions_Insert_Input> | Transactions_Insert_Input
 }>
 
 export type Insert_TransactionMutation = {
@@ -2867,7 +3114,7 @@ export type Insert_TransactionMutation = {
 }
 
 export type Insert_ActionsMutationVariables = Exact<{
-  objects: Array<Actions_Insert_Input>
+  objects: Array<Actions_Insert_Input> | Actions_Insert_Input
 }>
 
 export type Insert_ActionsMutation = {
@@ -2892,7 +3139,7 @@ export type Upsert_TokenMutation = {
 }
 
 export type Upsert_BalancesMutationVariables = Exact<{
-  objects?: Array<Balances_Insert_Input>
+  objects?: Array<Balances_Insert_Input> | Balances_Insert_Input
 }>
 
 export type Upsert_BalancesMutation = {
@@ -2912,6 +3159,19 @@ export type Upsert_BalanceMutation = {
   insert_balances_one?: Maybe<{
     __typename?: 'balances'
     updated_at?: Maybe<any>
+  }>
+}
+
+export type Get_Api_User_By_KeyQueryVariables = Exact<{
+  api_key?: Maybe<Scalars['String']>
+}>
+
+export type Get_Api_User_By_KeyQuery = {
+  __typename?: 'query_root'
+  api_users: Array<{
+    __typename?: 'api_users'
+    account: string
+    api_key: string
   }>
 }
 
@@ -3047,10 +3307,31 @@ export const Upsert_BalanceDocument = gql`
     }
   }
 `
+export const Get_Api_User_By_KeyDocument = gql`
+  query get_api_user_by_key($api_key: String) {
+    api_users(where: { api_key: { _eq: $api_key } }) {
+      account
+      api_key
+    }
+  }
+`
 
-export type SdkFunctionWrapper = <T>(action: () => Promise<T>) => Promise<T>
+export type SdkFunctionWrapper = <T>(
+  action: (requestHeaders?: Record<string, string>) => Promise<T>,
+  operationName: string,
+) => Promise<T>
 
-const defaultWrapper: SdkFunctionWrapper = (sdkFunction) => sdkFunction()
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action()
+const Upsert_Table_RowDocumentString = print(Upsert_Table_RowDocument)
+const Insert_Table_RowsDocumentString = print(Insert_Table_RowsDocument)
+const Update_Block_HeightDocumentString = print(Update_Block_HeightDocument)
+const Delete_Table_RowDocumentString = print(Delete_Table_RowDocument)
+const Insert_TransactionDocumentString = print(Insert_TransactionDocument)
+const Insert_ActionsDocumentString = print(Insert_ActionsDocument)
+const Upsert_TokenDocumentString = print(Upsert_TokenDocument)
+const Upsert_BalancesDocumentString = print(Upsert_BalancesDocument)
+const Upsert_BalanceDocumentString = print(Upsert_BalanceDocument)
+const Get_Api_User_By_KeyDocumentString = print(Get_Api_User_By_KeyDocument)
 export function getSdk(
   client: GraphQLClient,
   withWrapper: SdkFunctionWrapper = defaultWrapper,
@@ -3058,164 +3339,202 @@ export function getSdk(
   return {
     upsert_table_row(
       variables: Upsert_Table_RowMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Upsert_Table_RowMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Upsert_Table_RowMutation>(
-          print(Upsert_Table_RowDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Upsert_Table_RowMutation>(
+            Upsert_Table_RowDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'upsert_table_row',
       )
     },
     insert_table_rows(
       variables?: Insert_Table_RowsMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Insert_Table_RowsMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Insert_Table_RowsMutation>(
-          print(Insert_Table_RowsDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Insert_Table_RowsMutation>(
+            Insert_Table_RowsDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'insert_table_rows',
       )
     },
     update_block_height(
       variables: Update_Block_HeightMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Update_Block_HeightMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Update_Block_HeightMutation>(
-          print(Update_Block_HeightDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Update_Block_HeightMutation>(
+            Update_Block_HeightDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'update_block_height',
       )
     },
     delete_table_row(
       variables: Delete_Table_RowMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Delete_Table_RowMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Delete_Table_RowMutation>(
-          print(Delete_Table_RowDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Delete_Table_RowMutation>(
+            Delete_Table_RowDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'delete_table_row',
       )
     },
     insert_transaction(
       variables: Insert_TransactionMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Insert_TransactionMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Insert_TransactionMutation>(
-          print(Insert_TransactionDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Insert_TransactionMutation>(
+            Insert_TransactionDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'insert_transaction',
       )
     },
     insert_actions(
       variables: Insert_ActionsMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Insert_ActionsMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Insert_ActionsMutation>(
-          print(Insert_ActionsDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Insert_ActionsMutation>(
+            Insert_ActionsDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'insert_actions',
       )
     },
     upsert_token(
       variables?: Upsert_TokenMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Upsert_TokenMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Upsert_TokenMutation>(
-          print(Upsert_TokenDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Upsert_TokenMutation>(
+            Upsert_TokenDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'upsert_token',
       )
     },
     upsert_balances(
       variables?: Upsert_BalancesMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Upsert_BalancesMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Upsert_BalancesMutation>(
-          print(Upsert_BalancesDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Upsert_BalancesMutation>(
+            Upsert_BalancesDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'upsert_balances',
       )
     },
     upsert_balance(
       variables?: Upsert_BalanceMutationVariables,
-      requestHeaders?: Headers,
+      requestHeaders?: Dom.RequestInit['headers'],
     ): Promise<{
         data?: Upsert_BalanceMutation | undefined
         extensions?: any
-        headers: Headers
+        headers: Dom.Headers
         status: number
         errors?: GraphQLError[] | undefined
       }> {
-      return withWrapper(() =>
-        client.rawRequest<Upsert_BalanceMutation>(
-          print(Upsert_BalanceDocument),
-          variables,
-          requestHeaders,
-        ),
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Upsert_BalanceMutation>(
+            Upsert_BalanceDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'upsert_balance',
+      )
+    },
+    get_api_user_by_key(
+      variables?: Get_Api_User_By_KeyQueryVariables,
+      requestHeaders?: Dom.RequestInit['headers'],
+    ): Promise<{
+        data?: Get_Api_User_By_KeyQuery | undefined
+        extensions?: any
+        headers: Dom.Headers
+        status: number
+        errors?: GraphQLError[] | undefined
+      }> {
+      return withWrapper(
+        (wrappedRequestHeaders) =>
+          client.rawRequest<Get_Api_User_By_KeyQuery>(
+            Get_Api_User_By_KeyDocumentString,
+            variables,
+            { ...requestHeaders, ...wrappedRequestHeaders },
+          ),
+        'get_api_user_by_key',
       )
     },
   }

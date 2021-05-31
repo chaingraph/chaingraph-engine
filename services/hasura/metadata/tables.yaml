@@ -6,6 +6,9 @@
     name: actions
 - table:
     schema: public
+    name: api_users
+- table:
+    schema: public
     name: balances
   object_relationships:
   - name: token
@@ -14,7 +17,6 @@
         remote_table:
           schema: public
           name: tokens
-        insertion_order: null
         column_mapping:
           chain_id: chain_id
           contract: contract

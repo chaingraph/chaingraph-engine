@@ -1,6 +1,6 @@
 import pAll from 'p-all'
 import { rpc } from '../utils/eosio'
-import { hasura } from '../hasura/hasura-client'
+import { hasura } from '../../../../modules/hasura-client'
 import {
   ChainGraphTableRegistry,
   chaingraph_table_registry,
@@ -57,11 +57,11 @@ export const populateTableRows = () => {
       const scopes = entry.scope
         ? [{ scope: entry.scope }]
         : (
-          await rpc.get_table_by_scope({
-            code: entry.code,
-            table: entry.table,
-          })
-        ).rows
+            await rpc.get_table_by_scope({
+              code: entry.code,
+              table: entry.table,
+            })
+          ).rows
 
       const getTableRowsRequests = scopes.map(
         ({ scope }: { scope: 'string' }) => {

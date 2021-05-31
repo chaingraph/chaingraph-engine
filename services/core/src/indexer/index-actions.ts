@@ -3,10 +3,10 @@ import { Subject } from 'rxjs'
 import {
   Transactions_Insert_Input,
   Actions_Insert_Input,
-} from 'generated/hasura-graphql'
+} from '../../../../modules/hasura-client/generated/hasura-graphql'
 import omit from 'lodash.omit'
 import chunk from 'lodash.chunk'
-import { hasura } from '../hasura/hasura-client'
+import { hasura } from '../../../../modules/hasura-client'
 import { getInfo } from '../utils/eosio'
 
 export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {

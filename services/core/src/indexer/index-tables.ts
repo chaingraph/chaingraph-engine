@@ -4,7 +4,7 @@ import {
   Balances_Insert_Input,
   Tokens_Insert_Input,
 } from 'generated/hasura-graphql'
-import { hasura } from '../hasura/hasura-client'
+import { hasura } from '../../../../modules/hasura-client'
 import { Observable } from 'rxjs'
 import { filter } from 'rxjs/internal/operators/filter'
 import { chaingraph_token_registry } from '../whitelists/tokens'
