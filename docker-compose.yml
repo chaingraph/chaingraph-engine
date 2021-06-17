@@ -23,7 +23,7 @@ services:
       - '8088:8080'
     depends_on:
       - postgres
-      - auth
+    #  - auth
     restart: always
     environment:
       # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html

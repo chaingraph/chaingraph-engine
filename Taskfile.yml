@@ -25,9 +25,9 @@ tasks:
 
   boot:
     cmds:
-      - docker-compose up -d --build auth
+      # - docker-compose up -d --build auth
       - docker-compose up -d --build hasura  # nginx
-      - sleep 60
+      - sleep 30
       - hasura migrate apply --project services/hasura 
       - hasura metadata apply --project services/hasura 
       - hasura seeds apply --project services/hasura 
