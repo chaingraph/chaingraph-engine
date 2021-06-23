@@ -28,6 +28,14 @@
 - table:
     schema: public
     name: api_users
+  array_relationships:
+  - name: mappings
+    using:
+      foreign_key_constraint_on:
+        column: api_user_id
+        table:
+          schema: public
+          name: mappings
 - table:
     schema: public
     name: balances
@@ -65,6 +73,37 @@
       - block_num
       - block_id
       filter: {}
+- table:
+    schema: public
+    name: mappings
+  object_relationships:
+  - name: api_user
+    using:
+      foreign_key_constraint_on: api_user_id
+  insert_permissions:
+  - role: api_user
+    permission:
+      check:
+        api_user_id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - mapping
+      backend_only: false
+  select_permissions:
+  - role: api_user
+    permission:
+      columns:
+      - contract_name
+      - mapping
+      filter: {}
+  update_permissions:
+  - role: api_user
+    permission:
+      columns: []
+      filter:
+        api_user_id:
+          _eq: X-Hasura-User-Id
+      check: null
 - table:
     schema: public
     name: table_rows

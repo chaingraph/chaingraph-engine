@@ -498,6 +498,29 @@ export type Api_Users = {
   account: Scalars['String']
   api_key: Scalars['String']
   domain_names?: Maybe<Scalars['String']>
+  id: Scalars['Int']
+  /** An array relationship */
+  mappings: Array<Mappings>
+  /** An aggregated array relationship */
+  mappings_aggregate: Mappings_Aggregate
+}
+
+/** columns and relationships of "api_users" */
+export type Api_UsersMappingsArgs = {
+  distinct_on?: Maybe<Array<Mappings_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Mappings_Order_By>>
+  where?: Maybe<Mappings_Bool_Exp>
+}
+
+/** columns and relationships of "api_users" */
+export type Api_UsersMappings_AggregateArgs = {
+  distinct_on?: Maybe<Array<Mappings_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Mappings_Order_By>>
+  where?: Maybe<Mappings_Bool_Exp>
 }
 
 /** aggregated selection of "api_users" */
@@ -510,9 +533,17 @@ export type Api_Users_Aggregate = {
 /** aggregate fields of "api_users" */
 export type Api_Users_Aggregate_Fields = {
   __typename?: 'api_users_aggregate_fields'
+  avg?: Maybe<Api_Users_Avg_Fields>
   count?: Maybe<Scalars['Int']>
   max?: Maybe<Api_Users_Max_Fields>
   min?: Maybe<Api_Users_Min_Fields>
+  stddev?: Maybe<Api_Users_Stddev_Fields>
+  stddev_pop?: Maybe<Api_Users_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Api_Users_Stddev_Samp_Fields>
+  sum?: Maybe<Api_Users_Sum_Fields>
+  var_pop?: Maybe<Api_Users_Var_Pop_Fields>
+  var_samp?: Maybe<Api_Users_Var_Samp_Fields>
+  variance?: Maybe<Api_Users_Variance_Fields>
 }
 
 /** aggregate fields of "api_users" */
@@ -523,15 +554,34 @@ export type Api_Users_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "api_users" */
 export type Api_Users_Aggregate_Order_By = {
+  avg?: Maybe<Api_Users_Avg_Order_By>
   count?: Maybe<Order_By>
   max?: Maybe<Api_Users_Max_Order_By>
   min?: Maybe<Api_Users_Min_Order_By>
+  stddev?: Maybe<Api_Users_Stddev_Order_By>
+  stddev_pop?: Maybe<Api_Users_Stddev_Pop_Order_By>
+  stddev_samp?: Maybe<Api_Users_Stddev_Samp_Order_By>
+  sum?: Maybe<Api_Users_Sum_Order_By>
+  var_pop?: Maybe<Api_Users_Var_Pop_Order_By>
+  var_samp?: Maybe<Api_Users_Var_Samp_Order_By>
+  variance?: Maybe<Api_Users_Variance_Order_By>
 }
 
 /** input type for inserting array relation for remote table "api_users" */
 export type Api_Users_Arr_Rel_Insert_Input = {
   data: Array<Api_Users_Insert_Input>
   on_conflict?: Maybe<Api_Users_On_Conflict>
+}
+
+/** aggregate avg on columns */
+export type Api_Users_Avg_Fields = {
+  __typename?: 'api_users_avg_fields'
+  id?: Maybe<Scalars['Float']>
+}
+
+/** order by avg() on columns of table "api_users" */
+export type Api_Users_Avg_Order_By = {
+  id?: Maybe<Order_By>
 }
 
 /** Boolean expression to filter rows from the table "api_users". All fields are combined with a logical 'AND'. */
@@ -542,6 +592,8 @@ export type Api_Users_Bool_Exp = {
   account?: Maybe<String_Comparison_Exp>
   api_key?: Maybe<String_Comparison_Exp>
   domain_names?: Maybe<String_Comparison_Exp>
+  id?: Maybe<Int_Comparison_Exp>
+  mappings?: Maybe<Mappings_Bool_Exp>
 }
 
 /** unique or primary key constraints on table "api_users" */
@@ -549,7 +601,12 @@ export enum Api_Users_Constraint {
   /** unique or primary key constraint */
   ApiUsersApiKeyKey = 'api_users_api_key_key',
   /** unique or primary key constraint */
-  UsersPkey = 'users_pkey',
+  ApiUsersPkey = 'api_users_pkey',
+}
+
+/** input type for incrementing integer column in table "api_users" */
+export type Api_Users_Inc_Input = {
+  id?: Maybe<Scalars['Int']>
 }
 
 /** input type for inserting data into table "api_users" */
@@ -557,6 +614,8 @@ export type Api_Users_Insert_Input = {
   account?: Maybe<Scalars['String']>
   api_key?: Maybe<Scalars['String']>
   domain_names?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['Int']>
+  mappings?: Maybe<Mappings_Arr_Rel_Insert_Input>
 }
 
 /** aggregate max on columns */
@@ -565,6 +624,7 @@ export type Api_Users_Max_Fields = {
   account?: Maybe<Scalars['String']>
   api_key?: Maybe<Scalars['String']>
   domain_names?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['Int']>
 }
 
 /** order by max() on columns of table "api_users" */
@@ -572,6 +632,7 @@ export type Api_Users_Max_Order_By = {
   account?: Maybe<Order_By>
   api_key?: Maybe<Order_By>
   domain_names?: Maybe<Order_By>
+  id?: Maybe<Order_By>
 }
 
 /** aggregate min on columns */
@@ -580,6 +641,7 @@ export type Api_Users_Min_Fields = {
   account?: Maybe<Scalars['String']>
   api_key?: Maybe<Scalars['String']>
   domain_names?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['Int']>
 }
 
 /** order by min() on columns of table "api_users" */
@@ -587,6 +649,7 @@ export type Api_Users_Min_Order_By = {
   account?: Maybe<Order_By>
   api_key?: Maybe<Order_By>
   domain_names?: Maybe<Order_By>
+  id?: Maybe<Order_By>
 }
 
 /** response of any mutation on the table "api_users" */
@@ -616,11 +679,13 @@ export type Api_Users_Order_By = {
   account?: Maybe<Order_By>
   api_key?: Maybe<Order_By>
   domain_names?: Maybe<Order_By>
+  id?: Maybe<Order_By>
+  mappings_aggregate?: Maybe<Mappings_Aggregate_Order_By>
 }
 
 /** primary key columns input for table: "api_users" */
 export type Api_Users_Pk_Columns_Input = {
-  account: Scalars['String']
+  id: Scalars['Int']
 }
 
 /** select columns of table "api_users" */
@@ -631,6 +696,8 @@ export enum Api_Users_Select_Column {
   ApiKey = 'api_key',
   /** column name */
   DomainNames = 'domain_names',
+  /** column name */
+  Id = 'id',
 }
 
 /** input type for updating data in table "api_users" */
@@ -638,6 +705,51 @@ export type Api_Users_Set_Input = {
   account?: Maybe<Scalars['String']>
   api_key?: Maybe<Scalars['String']>
   domain_names?: Maybe<Scalars['String']>
+  id?: Maybe<Scalars['Int']>
+}
+
+/** aggregate stddev on columns */
+export type Api_Users_Stddev_Fields = {
+  __typename?: 'api_users_stddev_fields'
+  id?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev() on columns of table "api_users" */
+export type Api_Users_Stddev_Order_By = {
+  id?: Maybe<Order_By>
+}
+
+/** aggregate stddev_pop on columns */
+export type Api_Users_Stddev_Pop_Fields = {
+  __typename?: 'api_users_stddev_pop_fields'
+  id?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev_pop() on columns of table "api_users" */
+export type Api_Users_Stddev_Pop_Order_By = {
+  id?: Maybe<Order_By>
+}
+
+/** aggregate stddev_samp on columns */
+export type Api_Users_Stddev_Samp_Fields = {
+  __typename?: 'api_users_stddev_samp_fields'
+  id?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev_samp() on columns of table "api_users" */
+export type Api_Users_Stddev_Samp_Order_By = {
+  id?: Maybe<Order_By>
+}
+
+/** aggregate sum on columns */
+export type Api_Users_Sum_Fields = {
+  __typename?: 'api_users_sum_fields'
+  id?: Maybe<Scalars['Int']>
+}
+
+/** order by sum() on columns of table "api_users" */
+export type Api_Users_Sum_Order_By = {
+  id?: Maybe<Order_By>
 }
 
 /** update columns of table "api_users" */
@@ -648,6 +760,41 @@ export enum Api_Users_Update_Column {
   ApiKey = 'api_key',
   /** column name */
   DomainNames = 'domain_names',
+  /** column name */
+  Id = 'id',
+}
+
+/** aggregate var_pop on columns */
+export type Api_Users_Var_Pop_Fields = {
+  __typename?: 'api_users_var_pop_fields'
+  id?: Maybe<Scalars['Float']>
+}
+
+/** order by var_pop() on columns of table "api_users" */
+export type Api_Users_Var_Pop_Order_By = {
+  id?: Maybe<Order_By>
+}
+
+/** aggregate var_samp on columns */
+export type Api_Users_Var_Samp_Fields = {
+  __typename?: 'api_users_var_samp_fields'
+  id?: Maybe<Scalars['Float']>
+}
+
+/** order by var_samp() on columns of table "api_users" */
+export type Api_Users_Var_Samp_Order_By = {
+  id?: Maybe<Order_By>
+}
+
+/** aggregate variance on columns */
+export type Api_Users_Variance_Fields = {
+  __typename?: 'api_users_variance_fields'
+  id?: Maybe<Scalars['Float']>
+}
+
+/** order by variance() on columns of table "api_users" */
+export type Api_Users_Variance_Order_By = {
+  id?: Maybe<Order_By>
 }
 
 /** columns and relationships of "balances" */
@@ -1167,6 +1314,302 @@ export type Jsonb_Comparison_Exp = {
   _nin?: Maybe<Array<Scalars['jsonb']>>
 }
 
+/** columns and relationships of "mappings" */
+export type Mappings = {
+  __typename?: 'mappings'
+  /** An object relationship */
+  api_user: Api_Users
+  api_user_id: Scalars['Int']
+  contract_name: Scalars['String']
+  mapping: Scalars['jsonb']
+}
+
+/** columns and relationships of "mappings" */
+export type MappingsMappingArgs = {
+  path?: Maybe<Scalars['String']>
+}
+
+/** aggregated selection of "mappings" */
+export type Mappings_Aggregate = {
+  __typename?: 'mappings_aggregate'
+  aggregate?: Maybe<Mappings_Aggregate_Fields>
+  nodes: Array<Mappings>
+}
+
+/** aggregate fields of "mappings" */
+export type Mappings_Aggregate_Fields = {
+  __typename?: 'mappings_aggregate_fields'
+  avg?: Maybe<Mappings_Avg_Fields>
+  count?: Maybe<Scalars['Int']>
+  max?: Maybe<Mappings_Max_Fields>
+  min?: Maybe<Mappings_Min_Fields>
+  stddev?: Maybe<Mappings_Stddev_Fields>
+  stddev_pop?: Maybe<Mappings_Stddev_Pop_Fields>
+  stddev_samp?: Maybe<Mappings_Stddev_Samp_Fields>
+  sum?: Maybe<Mappings_Sum_Fields>
+  var_pop?: Maybe<Mappings_Var_Pop_Fields>
+  var_samp?: Maybe<Mappings_Var_Samp_Fields>
+  variance?: Maybe<Mappings_Variance_Fields>
+}
+
+/** aggregate fields of "mappings" */
+export type Mappings_Aggregate_FieldsCountArgs = {
+  columns?: Maybe<Array<Mappings_Select_Column>>
+  distinct?: Maybe<Scalars['Boolean']>
+}
+
+/** order by aggregate values of table "mappings" */
+export type Mappings_Aggregate_Order_By = {
+  avg?: Maybe<Mappings_Avg_Order_By>
+  count?: Maybe<Order_By>
+  max?: Maybe<Mappings_Max_Order_By>
+  min?: Maybe<Mappings_Min_Order_By>
+  stddev?: Maybe<Mappings_Stddev_Order_By>
+  stddev_pop?: Maybe<Mappings_Stddev_Pop_Order_By>
+  stddev_samp?: Maybe<Mappings_Stddev_Samp_Order_By>
+  sum?: Maybe<Mappings_Sum_Order_By>
+  var_pop?: Maybe<Mappings_Var_Pop_Order_By>
+  var_samp?: Maybe<Mappings_Var_Samp_Order_By>
+  variance?: Maybe<Mappings_Variance_Order_By>
+}
+
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Mappings_Append_Input = {
+  mapping?: Maybe<Scalars['jsonb']>
+}
+
+/** input type for inserting array relation for remote table "mappings" */
+export type Mappings_Arr_Rel_Insert_Input = {
+  data: Array<Mappings_Insert_Input>
+  on_conflict?: Maybe<Mappings_On_Conflict>
+}
+
+/** aggregate avg on columns */
+export type Mappings_Avg_Fields = {
+  __typename?: 'mappings_avg_fields'
+  api_user_id?: Maybe<Scalars['Float']>
+}
+
+/** order by avg() on columns of table "mappings" */
+export type Mappings_Avg_Order_By = {
+  api_user_id?: Maybe<Order_By>
+}
+
+/** Boolean expression to filter rows from the table "mappings". All fields are combined with a logical 'AND'. */
+export type Mappings_Bool_Exp = {
+  _and?: Maybe<Array<Maybe<Mappings_Bool_Exp>>>
+  _not?: Maybe<Mappings_Bool_Exp>
+  _or?: Maybe<Array<Maybe<Mappings_Bool_Exp>>>
+  api_user?: Maybe<Api_Users_Bool_Exp>
+  api_user_id?: Maybe<Int_Comparison_Exp>
+  contract_name?: Maybe<String_Comparison_Exp>
+  mapping?: Maybe<Jsonb_Comparison_Exp>
+}
+
+/** unique or primary key constraints on table "mappings" */
+export enum Mappings_Constraint {
+  /** unique or primary key constraint */
+  MappingsPkey = 'mappings_pkey',
+}
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Mappings_Delete_At_Path_Input = {
+  mapping?: Maybe<Array<Maybe<Scalars['String']>>>
+}
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Mappings_Delete_Elem_Input = {
+  mapping?: Maybe<Scalars['Int']>
+}
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Mappings_Delete_Key_Input = {
+  mapping?: Maybe<Scalars['String']>
+}
+
+/** input type for incrementing integer column in table "mappings" */
+export type Mappings_Inc_Input = {
+  api_user_id?: Maybe<Scalars['Int']>
+}
+
+/** input type for inserting data into table "mappings" */
+export type Mappings_Insert_Input = {
+  api_user?: Maybe<Api_Users_Obj_Rel_Insert_Input>
+  api_user_id?: Maybe<Scalars['Int']>
+  contract_name?: Maybe<Scalars['String']>
+  mapping?: Maybe<Scalars['jsonb']>
+}
+
+/** aggregate max on columns */
+export type Mappings_Max_Fields = {
+  __typename?: 'mappings_max_fields'
+  api_user_id?: Maybe<Scalars['Int']>
+  contract_name?: Maybe<Scalars['String']>
+}
+
+/** order by max() on columns of table "mappings" */
+export type Mappings_Max_Order_By = {
+  api_user_id?: Maybe<Order_By>
+  contract_name?: Maybe<Order_By>
+}
+
+/** aggregate min on columns */
+export type Mappings_Min_Fields = {
+  __typename?: 'mappings_min_fields'
+  api_user_id?: Maybe<Scalars['Int']>
+  contract_name?: Maybe<Scalars['String']>
+}
+
+/** order by min() on columns of table "mappings" */
+export type Mappings_Min_Order_By = {
+  api_user_id?: Maybe<Order_By>
+  contract_name?: Maybe<Order_By>
+}
+
+/** response of any mutation on the table "mappings" */
+export type Mappings_Mutation_Response = {
+  __typename?: 'mappings_mutation_response'
+  /** number of affected rows by the mutation */
+  affected_rows: Scalars['Int']
+  /** data of the affected rows by the mutation */
+  returning: Array<Mappings>
+}
+
+/** input type for inserting object relation for remote table "mappings" */
+export type Mappings_Obj_Rel_Insert_Input = {
+  data: Mappings_Insert_Input
+  on_conflict?: Maybe<Mappings_On_Conflict>
+}
+
+/** on conflict condition type for table "mappings" */
+export type Mappings_On_Conflict = {
+  constraint: Mappings_Constraint
+  update_columns: Array<Mappings_Update_Column>
+  where?: Maybe<Mappings_Bool_Exp>
+}
+
+/** ordering options when selecting data from "mappings" */
+export type Mappings_Order_By = {
+  api_user?: Maybe<Api_Users_Order_By>
+  api_user_id?: Maybe<Order_By>
+  contract_name?: Maybe<Order_By>
+  mapping?: Maybe<Order_By>
+}
+
+/** primary key columns input for table: "mappings" */
+export type Mappings_Pk_Columns_Input = {
+  contract_name: Scalars['String']
+}
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Mappings_Prepend_Input = {
+  mapping?: Maybe<Scalars['jsonb']>
+}
+
+/** select columns of table "mappings" */
+export enum Mappings_Select_Column {
+  /** column name */
+  ApiUserId = 'api_user_id',
+  /** column name */
+  ContractName = 'contract_name',
+  /** column name */
+  Mapping = 'mapping',
+}
+
+/** input type for updating data in table "mappings" */
+export type Mappings_Set_Input = {
+  api_user_id?: Maybe<Scalars['Int']>
+  contract_name?: Maybe<Scalars['String']>
+  mapping?: Maybe<Scalars['jsonb']>
+}
+
+/** aggregate stddev on columns */
+export type Mappings_Stddev_Fields = {
+  __typename?: 'mappings_stddev_fields'
+  api_user_id?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev() on columns of table "mappings" */
+export type Mappings_Stddev_Order_By = {
+  api_user_id?: Maybe<Order_By>
+}
+
+/** aggregate stddev_pop on columns */
+export type Mappings_Stddev_Pop_Fields = {
+  __typename?: 'mappings_stddev_pop_fields'
+  api_user_id?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev_pop() on columns of table "mappings" */
+export type Mappings_Stddev_Pop_Order_By = {
+  api_user_id?: Maybe<Order_By>
+}
+
+/** aggregate stddev_samp on columns */
+export type Mappings_Stddev_Samp_Fields = {
+  __typename?: 'mappings_stddev_samp_fields'
+  api_user_id?: Maybe<Scalars['Float']>
+}
+
+/** order by stddev_samp() on columns of table "mappings" */
+export type Mappings_Stddev_Samp_Order_By = {
+  api_user_id?: Maybe<Order_By>
+}
+
+/** aggregate sum on columns */
+export type Mappings_Sum_Fields = {
+  __typename?: 'mappings_sum_fields'
+  api_user_id?: Maybe<Scalars['Int']>
+}
+
+/** order by sum() on columns of table "mappings" */
+export type Mappings_Sum_Order_By = {
+  api_user_id?: Maybe<Order_By>
+}
+
+/** update columns of table "mappings" */
+export enum Mappings_Update_Column {
+  /** column name */
+  ApiUserId = 'api_user_id',
+  /** column name */
+  ContractName = 'contract_name',
+  /** column name */
+  Mapping = 'mapping',
+}
+
+/** aggregate var_pop on columns */
+export type Mappings_Var_Pop_Fields = {
+  __typename?: 'mappings_var_pop_fields'
+  api_user_id?: Maybe<Scalars['Float']>
+}
+
+/** order by var_pop() on columns of table "mappings" */
+export type Mappings_Var_Pop_Order_By = {
+  api_user_id?: Maybe<Order_By>
+}
+
+/** aggregate var_samp on columns */
+export type Mappings_Var_Samp_Fields = {
+  __typename?: 'mappings_var_samp_fields'
+  api_user_id?: Maybe<Scalars['Float']>
+}
+
+/** order by var_samp() on columns of table "mappings" */
+export type Mappings_Var_Samp_Order_By = {
+  api_user_id?: Maybe<Order_By>
+}
+
+/** aggregate variance on columns */
+export type Mappings_Variance_Fields = {
+  __typename?: 'mappings_variance_fields'
+  api_user_id?: Maybe<Scalars['Float']>
+}
+
+/** order by variance() on columns of table "mappings" */
+export type Mappings_Variance_Order_By = {
+  api_user_id?: Maybe<Order_By>
+}
+
 /** mutation root */
 export type Mutation_Root = {
   __typename?: 'mutation_root'
@@ -1190,6 +1633,10 @@ export type Mutation_Root = {
   delete_chains?: Maybe<Chains_Mutation_Response>
   /** delete single row from the table: "chains" */
   delete_chains_by_pk?: Maybe<Chains>
+  /** delete data from the table: "mappings" */
+  delete_mappings?: Maybe<Mappings_Mutation_Response>
+  /** delete single row from the table: "mappings" */
+  delete_mappings_by_pk?: Maybe<Mappings>
   /** delete data from the table: "table_rows" */
   delete_table_rows?: Maybe<Table_Rows_Mutation_Response>
   /** delete single row from the table: "table_rows" */
@@ -1222,6 +1669,10 @@ export type Mutation_Root = {
   insert_chains?: Maybe<Chains_Mutation_Response>
   /** insert a single row into the table: "chains" */
   insert_chains_one?: Maybe<Chains>
+  /** insert data into the table: "mappings" */
+  insert_mappings?: Maybe<Mappings_Mutation_Response>
+  /** insert a single row into the table: "mappings" */
+  insert_mappings_one?: Maybe<Mappings>
   /** insert data into the table: "table_rows" */
   insert_table_rows?: Maybe<Table_Rows_Mutation_Response>
   /** insert a single row into the table: "table_rows" */
@@ -1254,6 +1705,10 @@ export type Mutation_Root = {
   update_chains?: Maybe<Chains_Mutation_Response>
   /** update single row of the table: "chains" */
   update_chains_by_pk?: Maybe<Chains>
+  /** update data of the table: "mappings" */
+  update_mappings?: Maybe<Mappings_Mutation_Response>
+  /** update single row of the table: "mappings" */
+  update_mappings_by_pk?: Maybe<Mappings>
   /** update data of the table: "table_rows" */
   update_table_rows?: Maybe<Table_Rows_Mutation_Response>
   /** update single row of the table: "table_rows" */
@@ -1297,7 +1752,7 @@ export type Mutation_RootDelete_Api_UsersArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Api_Users_By_PkArgs = {
-  account: Scalars['String']
+  id: Scalars['Int']
 }
 
 /** mutation root */
@@ -1321,6 +1776,16 @@ export type Mutation_RootDelete_ChainsArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Chains_By_PkArgs = {
   chain_id: Scalars['String']
+}
+
+/** mutation root */
+export type Mutation_RootDelete_MappingsArgs = {
+  where: Mappings_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootDelete_Mappings_By_PkArgs = {
+  contract_name: Scalars['String']
 }
 
 /** mutation root */
@@ -1422,6 +1887,18 @@ export type Mutation_RootInsert_Chains_OneArgs = {
 }
 
 /** mutation root */
+export type Mutation_RootInsert_MappingsArgs = {
+  objects: Array<Mappings_Insert_Input>
+  on_conflict?: Maybe<Mappings_On_Conflict>
+}
+
+/** mutation root */
+export type Mutation_RootInsert_Mappings_OneArgs = {
+  object: Mappings_Insert_Input
+  on_conflict?: Maybe<Mappings_On_Conflict>
+}
+
+/** mutation root */
 export type Mutation_RootInsert_Table_RowsArgs = {
   objects: Array<Table_Rows_Insert_Input>
   on_conflict?: Maybe<Table_Rows_On_Conflict>
@@ -1503,12 +1980,14 @@ export type Mutation_RootUpdate_Actions_By_PkArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Api_UsersArgs = {
+  _inc?: Maybe<Api_Users_Inc_Input>
   _set?: Maybe<Api_Users_Set_Input>
   where: Api_Users_Bool_Exp
 }
 
 /** mutation root */
 export type Mutation_RootUpdate_Api_Users_By_PkArgs = {
+  _inc?: Maybe<Api_Users_Inc_Input>
   _set?: Maybe<Api_Users_Set_Input>
   pk_columns: Api_Users_Pk_Columns_Input
 }
@@ -1537,6 +2016,30 @@ export type Mutation_RootUpdate_Chains_By_PkArgs = {
   _inc?: Maybe<Chains_Inc_Input>
   _set?: Maybe<Chains_Set_Input>
   pk_columns: Chains_Pk_Columns_Input
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_MappingsArgs = {
+  _append?: Maybe<Mappings_Append_Input>
+  _delete_at_path?: Maybe<Mappings_Delete_At_Path_Input>
+  _delete_elem?: Maybe<Mappings_Delete_Elem_Input>
+  _delete_key?: Maybe<Mappings_Delete_Key_Input>
+  _inc?: Maybe<Mappings_Inc_Input>
+  _prepend?: Maybe<Mappings_Prepend_Input>
+  _set?: Maybe<Mappings_Set_Input>
+  where: Mappings_Bool_Exp
+}
+
+/** mutation root */
+export type Mutation_RootUpdate_Mappings_By_PkArgs = {
+  _append?: Maybe<Mappings_Append_Input>
+  _delete_at_path?: Maybe<Mappings_Delete_At_Path_Input>
+  _delete_elem?: Maybe<Mappings_Delete_Elem_Input>
+  _delete_key?: Maybe<Mappings_Delete_Key_Input>
+  _inc?: Maybe<Mappings_Inc_Input>
+  _prepend?: Maybe<Mappings_Prepend_Input>
+  _set?: Maybe<Mappings_Set_Input>
+  pk_columns: Mappings_Pk_Columns_Input
 }
 
 /** mutation root */
@@ -1661,6 +2164,12 @@ export type Query_Root = {
   chains_aggregate: Chains_Aggregate
   /** fetch data from the table: "chains" using primary key columns */
   chains_by_pk?: Maybe<Chains>
+  /** fetch data from the table: "mappings" */
+  mappings: Array<Mappings>
+  /** fetch aggregated fields from the table: "mappings" */
+  mappings_aggregate: Mappings_Aggregate
+  /** fetch data from the table: "mappings" using primary key columns */
+  mappings_by_pk?: Maybe<Mappings>
   /** fetch data from the table: "table_rows" */
   table_rows: Array<Table_Rows>
   /** fetch aggregated fields from the table: "table_rows" */
@@ -1749,7 +2258,7 @@ export type Query_RootApi_Users_AggregateArgs = {
 
 /** query root */
 export type Query_RootApi_Users_By_PkArgs = {
-  account: Scalars['String']
+  id: Scalars['Int']
 }
 
 /** query root */
@@ -1799,6 +2308,29 @@ export type Query_RootChains_AggregateArgs = {
 /** query root */
 export type Query_RootChains_By_PkArgs = {
   chain_id: Scalars['String']
+}
+
+/** query root */
+export type Query_RootMappingsArgs = {
+  distinct_on?: Maybe<Array<Mappings_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Mappings_Order_By>>
+  where?: Maybe<Mappings_Bool_Exp>
+}
+
+/** query root */
+export type Query_RootMappings_AggregateArgs = {
+  distinct_on?: Maybe<Array<Mappings_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Mappings_Order_By>>
+  where?: Maybe<Mappings_Bool_Exp>
+}
+
+/** query root */
+export type Query_RootMappings_By_PkArgs = {
+  contract_name: Scalars['String']
 }
 
 /** query root */
@@ -1911,6 +2443,12 @@ export type Subscription_Root = {
   chains_aggregate: Chains_Aggregate
   /** fetch data from the table: "chains" using primary key columns */
   chains_by_pk?: Maybe<Chains>
+  /** fetch data from the table: "mappings" */
+  mappings: Array<Mappings>
+  /** fetch aggregated fields from the table: "mappings" */
+  mappings_aggregate: Mappings_Aggregate
+  /** fetch data from the table: "mappings" using primary key columns */
+  mappings_by_pk?: Maybe<Mappings>
   /** fetch data from the table: "table_rows" */
   table_rows: Array<Table_Rows>
   /** fetch aggregated fields from the table: "table_rows" */
@@ -1999,7 +2537,7 @@ export type Subscription_RootApi_Users_AggregateArgs = {
 
 /** subscription root */
 export type Subscription_RootApi_Users_By_PkArgs = {
-  account: Scalars['String']
+  id: Scalars['Int']
 }
 
 /** subscription root */
@@ -2049,6 +2587,29 @@ export type Subscription_RootChains_AggregateArgs = {
 /** subscription root */
 export type Subscription_RootChains_By_PkArgs = {
   chain_id: Scalars['String']
+}
+
+/** subscription root */
+export type Subscription_RootMappingsArgs = {
+  distinct_on?: Maybe<Array<Mappings_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Mappings_Order_By>>
+  where?: Maybe<Mappings_Bool_Exp>
+}
+
+/** subscription root */
+export type Subscription_RootMappings_AggregateArgs = {
+  distinct_on?: Maybe<Array<Mappings_Select_Column>>
+  limit?: Maybe<Scalars['Int']>
+  offset?: Maybe<Scalars['Int']>
+  order_by?: Maybe<Array<Mappings_Order_By>>
+  where?: Maybe<Mappings_Bool_Exp>
+}
+
+/** subscription root */
+export type Subscription_RootMappings_By_PkArgs = {
+  contract_name: Scalars['String']
 }
 
 /** subscription root */
@@ -3185,6 +3746,7 @@ export type Get_Api_User_By_KeyQuery = {
   __typename?: 'query_root'
   api_users: Array<{
     __typename?: 'api_users'
+    id: number
     account: string
     api_key: string
     domain_names?: Maybe<string>
@@ -3326,6 +3888,7 @@ export const Upsert_BalanceDocument = gql`
 export const Get_Api_User_By_KeyDocument = gql`
   query get_api_user_by_key($api_key: String) {
     api_users(where: { api_key: { _eq: $api_key } }) {
+      id
       account
       api_key
       domain_names
