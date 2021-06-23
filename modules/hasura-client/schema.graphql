@@ -88,6 +88,7 @@ query get_api_user_by_key( $api_key: String) {
   api_users(where: {api_key: {_eq: $api_key}}) {
     account
     api_key
+    domain_names
   }
 }
 
