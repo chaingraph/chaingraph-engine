@@ -34,7 +34,7 @@ app.post('/', async (req: any, res: any) => {
   }
 
   res.send({
-    "X-Hasura-User-Id": user?.account,
+    "X-Hasura-User-Id":`${user.id}`,
     "X-Hasura-Role": "api_user",
     "X-Hasura-Is-Owner": "true",
     "Cache-Control": "max-age=600"
