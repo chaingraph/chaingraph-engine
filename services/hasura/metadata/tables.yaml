@@ -2,7 +2,7 @@
     schema: public
     name: accounts
   select_permissions:
-  - role: tester
+  - role: api_user
     permission:
       columns:
       - chain_id
@@ -13,7 +13,7 @@
     schema: public
     name: actions
   select_permissions:
-  - role: tester
+  - role: api_user
     permission:
       columns:
       - chain_id
@@ -42,7 +42,7 @@
           chain_id: chain_id
           contract: contract
   select_permissions:
-  - role: tester
+  - role: api_user
     permission:
       columns:
       - chain_id
@@ -56,7 +56,7 @@
     schema: public
     name: chains
   select_permissions:
-  - role: tester
+  - role: api_user
     permission:
       columns:
       - name
@@ -69,7 +69,7 @@
     schema: public
     name: table_rows
   select_permissions:
-  - role: tester
+  - role: api_user
     permission:
       columns:
       - chain_id
@@ -84,7 +84,7 @@
     schema: public
     name: tokens
   select_permissions:
-  - role: tester
+  - role: api_user
     permission:
       columns:
       - chain_id
@@ -100,7 +100,7 @@
     schema: public
     name: transactions
   select_permissions:
-  - role: tester
+  - role: api_user
     permission:
       columns:
       - chain_id

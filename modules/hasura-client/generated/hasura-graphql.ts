@@ -497,6 +497,7 @@ export type Api_Users = {
   __typename?: 'api_users'
   account: Scalars['String']
   api_key: Scalars['String']
+  domain_names?: Maybe<Scalars['String']>
 }
 
 /** aggregated selection of "api_users" */
@@ -540,10 +541,13 @@ export type Api_Users_Bool_Exp = {
   _or?: Maybe<Array<Maybe<Api_Users_Bool_Exp>>>
   account?: Maybe<String_Comparison_Exp>
   api_key?: Maybe<String_Comparison_Exp>
+  domain_names?: Maybe<String_Comparison_Exp>
 }
 
 /** unique or primary key constraints on table "api_users" */
 export enum Api_Users_Constraint {
+  /** unique or primary key constraint */
+  ApiUsersApiKeyKey = 'api_users_api_key_key',
   /** unique or primary key constraint */
   UsersPkey = 'users_pkey',
 }
@@ -552,6 +556,7 @@ export enum Api_Users_Constraint {
 export type Api_Users_Insert_Input = {
   account?: Maybe<Scalars['String']>
   api_key?: Maybe<Scalars['String']>
+  domain_names?: Maybe<Scalars['String']>
 }
 
 /** aggregate max on columns */
@@ -559,12 +564,14 @@ export type Api_Users_Max_Fields = {
   __typename?: 'api_users_max_fields'
   account?: Maybe<Scalars['String']>
   api_key?: Maybe<Scalars['String']>
+  domain_names?: Maybe<Scalars['String']>
 }
 
 /** order by max() on columns of table "api_users" */
 export type Api_Users_Max_Order_By = {
   account?: Maybe<Order_By>
   api_key?: Maybe<Order_By>
+  domain_names?: Maybe<Order_By>
 }
 
 /** aggregate min on columns */
@@ -572,12 +579,14 @@ export type Api_Users_Min_Fields = {
   __typename?: 'api_users_min_fields'
   account?: Maybe<Scalars['String']>
   api_key?: Maybe<Scalars['String']>
+  domain_names?: Maybe<Scalars['String']>
 }
 
 /** order by min() on columns of table "api_users" */
 export type Api_Users_Min_Order_By = {
   account?: Maybe<Order_By>
   api_key?: Maybe<Order_By>
+  domain_names?: Maybe<Order_By>
 }
 
 /** response of any mutation on the table "api_users" */
@@ -606,6 +615,7 @@ export type Api_Users_On_Conflict = {
 export type Api_Users_Order_By = {
   account?: Maybe<Order_By>
   api_key?: Maybe<Order_By>
+  domain_names?: Maybe<Order_By>
 }
 
 /** primary key columns input for table: "api_users" */
@@ -619,12 +629,15 @@ export enum Api_Users_Select_Column {
   Account = 'account',
   /** column name */
   ApiKey = 'api_key',
+  /** column name */
+  DomainNames = 'domain_names',
 }
 
 /** input type for updating data in table "api_users" */
 export type Api_Users_Set_Input = {
   account?: Maybe<Scalars['String']>
   api_key?: Maybe<Scalars['String']>
+  domain_names?: Maybe<Scalars['String']>
 }
 
 /** update columns of table "api_users" */
@@ -633,6 +646,8 @@ export enum Api_Users_Update_Column {
   Account = 'account',
   /** column name */
   ApiKey = 'api_key',
+  /** column name */
+  DomainNames = 'domain_names',
 }
 
 /** columns and relationships of "balances" */
@@ -3172,6 +3187,7 @@ export type Get_Api_User_By_KeyQuery = {
     __typename?: 'api_users'
     account: string
     api_key: string
+    domain_names?: Maybe<string>
   }>
 }
 
@@ -3312,6 +3328,7 @@ export const Get_Api_User_By_KeyDocument = gql`
     api_users(where: { api_key: { _eq: $api_key } }) {
       account
       api_key
+      domain_names
     }
   }
 `
