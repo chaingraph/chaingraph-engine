@@ -33,14 +33,14 @@ services:
       HASURA_GRAPHQL_DEV_MODE: 'true'
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
-      VIRTUAL_HOST: api.chaingraph.dev
+      VIRTUAL_HOST: dev.chaingraph.io
       VIRTUAL_PORT: 8088
-      LETSENCRYPT_HOST: api.dev.chaingraph.io
+      LETSENCRYPT_HOST: dev.chaingraph.io
       LETSENCRYPT_EMAIL: admin@blockmatic.io
     networks:
       default:
         aliases:
-          - api.chaingraph.dev
+          - dev.chaingraph.io
     volumes:
       - ./services/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
       - ./services/hasura/metadata:/hasura-metadata #  mount hasura metadata folder
