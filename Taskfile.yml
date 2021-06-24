@@ -34,6 +34,17 @@ tasks:
       - docker-compose up -d --build nginx-letsencrypt nginx-gen
       - docker-compose restart nginx
 
+  boot-dev:
+    cmds:
+      - docker-compose -f docker-compose.dev.yml up -d --build hasura
+      - sleep 60
+      - hasura migrate apply --project services/hasura 
+      - hasura metadata apply --project services/hasura 
+      - hasura seeds apply --project services/hasura 
+      - docker-compose -f docker-compose.dev.yml up -d --build core
+      - docker-compose -f docker-compose.dev.yml up -d --build nginx-letsencrypt nginx-gen
+      - docker-compose -f docker-compose.dev.yml up -d nginx
+
   boot-prod:
     cmds:
       - docker-compose -f docker-compose.prod.yml up -d --build hasura hasura-bitcash 
