@@ -25,7 +25,7 @@ export const bitcashtests = [
   {
     code: 'bitcashtests',
     table: 'loans',
-    table_key: 'key',
+    table_key: 'pair',
   },
   {
     code: 'bitcashtests',
@@ -41,7 +41,7 @@ export const bitcashtests = [
   {
     code: 'bitcashtests',
     scope: 'bitcashtests',
-    table: 'actactivity',
+    table: 'activity',
     table_key: 'account',
   },
 ]
