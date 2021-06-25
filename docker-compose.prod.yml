@@ -30,23 +30,35 @@ services:
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
       HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      HASURA_GRAPHQL_AUTH_HOOK: ${HASURA_GRAPHQL_AUTH_HOOK}
+      HASURA_GRAPHQL_AUTH_HOOK_MODE: POST
       HASURA_GRAPHQL_DEV_MODE: 'true'
-      HASURA_GRAPHQL_ENABLE_CONSOLE: 'false'
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
-      VIRTUAL_HOST: api.chaingraph.io
+      VIRTUAL_HOST: ${CHAINGRAPH_API_DOMAIN}
       VIRTUAL_PORT: 8088
-      LETSENCRYPT_HOST: api.chaingraph.io
+      LETSENCRYPT_HOST: ${CHAINGRAPH_API_DOMAIN}
       LETSENCRYPT_EMAIL: admin@blockmatic.io
     networks:
       default:
         aliases:
-          - api.chaingraph.io
+          - ${CHAINGRAPH_API_DOMAIN}
     volumes:
       - ./services/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
       - ./services/hasura/metadata:/hasura-metadata #  mount hasura metadata folder
     command:
       - graphql-engine
       - serve
+
+  auth:
+    container_name: chaingraph_auth
+    build:
+      context: ./services/auth
+    environment:
+      HASURA_API: ${HASURA_API}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+    ports:
+      - '3000:3000'
 
   core:
     container_name: chaingraph_core
@@ -56,6 +68,7 @@ services:
       - hasura
     environment:
       HASURA_API: ${HASURA_API}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
       EOS_NODEOS_HOST: ${EOS_NODEOS_HOST}
       EOS_NODEOS_PORT: ${EOS_NODEOS_PORT}
       WAIT_HOSTS: ${HASURA_HOST}:8088
@@ -148,7 +161,7 @@ services:
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'false'
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
-      APOLLO_REMOTE_SCHEMA_ENDPOINT: http://apollo-bitcash:4001
+      APOLLO_REMOTE_SCHEMA_ENDPOINT: http://209.58.139.166:4001
       HASURA_GRAPHQL_SERVER_PORT: 8083
       VIRTUAL_HOST: api.100xtrade.io
       VIRTUAL_PORT: 8085
@@ -170,7 +183,7 @@ services:
     build:
       context: ../bitcash-satellite/services/apollo
     environment:
-      HASURA_API: http://hasura-bitcash:8085/v1/graphql
+      HASURA_API: http://209.58.139.166:8085/v1/graphql
       EOS_NODEOS_HOST: ${EOS_NODEOS_HOST}
       EOS_NODEOS_PORT: ${EOS_NODEOS_PORT} 
     ports:
