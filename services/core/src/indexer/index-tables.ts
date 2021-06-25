@@ -3,8 +3,8 @@ import { asset } from 'eos-common'
 import {
   Balances_Insert_Input,
   Tokens_Insert_Input,
-} from 'generated/hasura-graphql'
-import { hasura } from '../../../../modules/hasura-client'
+} from '@chaingraph.io/hasura-client/dist/generated/hasura-graphql'
+import { hasura } from '../hasura'
 import { Observable } from 'rxjs'
 import { filter } from 'rxjs/internal/operators/filter'
 import { chaingraph_token_registry } from '../whitelists/tokens'

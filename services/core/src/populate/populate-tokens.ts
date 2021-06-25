@@ -1,10 +1,10 @@
 import {
   Balances_Insert_Input,
   Tokens_Insert_Input,
-} from 'generated/hasura-graphql'
+} from '@chaingraph.io/hasura-client/dist/generated/hasura-graphql'
 import pAll from 'p-all'
 import { rpc } from '../utils/eosio'
-import { hasura } from '../../../../modules/hasura-client'
+import { hasura } from '../hasura'
 import { asset } from 'eos-common'
 import { chaingraph_token_registry } from '../whitelists/tokens'
 
