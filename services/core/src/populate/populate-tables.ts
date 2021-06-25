@@ -1,6 +1,6 @@
 import pAll from 'p-all'
 import { rpc } from '../utils/eosio'
-import { hasura } from '../hasura/hasura-client'
+import { hasura } from '../hasura'
 import {
   ChainGraphTableRegistry,
   chaingraph_table_registry,

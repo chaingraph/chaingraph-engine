@@ -29,9 +29,9 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
       HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
-      # HASURA_GRAPHQL_ADMIN_SECRET: =NBc;?2eduh)?mxq
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
       HASURA_GRAPHQL_DEV_MODE: 'true'
-      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'false'
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
       VIRTUAL_HOST: api.chaingraph.io
       VIRTUAL_PORT: 8088
@@ -143,9 +143,9 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres-bitcash:5432/bitcash?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
       HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
-      # HASURA_GRAPHQL_ADMIN_SECRET: super-secret
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
       HASURA_GRAPHQL_DEV_MODE: 'true'
-      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'false'
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
       APOLLO_REMOTE_SCHEMA_ENDPOINT: http://apollo-bitcash:4001

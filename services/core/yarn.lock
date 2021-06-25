@@ -532,6 +532,15 @@
   resolved "https://registry.yarnpkg.com/@blockmatic/tsconfig/-/tsconfig-1.10.0.tgz#c2ca8cea53b4d4af72ae9ed78bbdfbc9c0466116"
   integrity sha512-5IHW2B4Ff0dJjgH7HP6sg6/kQBKC/Y+QWGnnqH2BbLpfE+hTWK1pBCQrG2jtViaLQnF/stwNMxr/hL8KP8/RRg==
 
+"@chaingraph.io/hasura-client@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@chaingraph.io/hasura-client/-/hasura-client-0.1.3.tgz#b032f234cb5229e1a8e724b9b4d1583a6c370d19"
+  integrity sha512-E5P/Qo5l7190ChNuf7sH/22jcv09zbZtnkeJHq/vk+LOK9c697j7J9N6KYzUXpJvc3UXiNqgxtXJQx/jjf81Qw==
+  dependencies:
+    graphql "^15.5.1"
+    graphql-request "3.4.0"
+    node-fetch "^2.6.1"
+
 "@dabh/diagnostics@^2.0.2":
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/@dabh/diagnostics/-/diagnostics-2.0.2.tgz#290d08f7b381b8f94607dc8f471a12c675f9db31"
@@ -3281,6 +3290,11 @@ graphql@^15.4.0:
   version "15.4.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.4.0.tgz#e459dea1150da5a106486ba7276518b5295a4347"
   integrity sha512-EB3zgGchcabbsU9cFe1j+yxdzKQKAbGUWRb13DsrsMN1yyfmmIq+2+L5MqVWcDCE4V89R5AyUOi7sMOGxdsYtA==
+
+graphql@^15.5.1:
+  version "15.5.1"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.5.1.tgz#f2f84415d8985e7b84731e7f3536f8bb9d383aad"
+  integrity sha512-FeTRX67T3LoE3LWAxxOlW2K3Bz+rMYAC18rRguK4wgXaTZMiJwSUwDmPFo3UadAKbzirKIg5Qy+sNJXbpPRnQw==
 
 har-schema@^2.0.0:
   version "2.0.0"

@@ -14,19 +14,29 @@ tasks:
   
   up:
     cmds:
-      - docker-compose up -d --build hasura nginx
-      - docker-compose up -d --build nginx-letsencrypt nginx-gen
-      - docker-compose restart nginx
-      - docker-compose up -d --build core
+      - docker-compose up -d --build hasura auth # nginx
+      # - docker-compose up -d --build nginx-letsencrypt nginx-gen
+      # - docker-compose restart nginx
+      # - docker-compose up -d --build core
   
   down:
     cmds:
       - docker-compose down -v --remove-orphans
 
+  restart:
+    cmds:
+      - docker-compose stop
+      - task up
+  
+  reboot:
+    cmds:
+      - task down
+      - task boot
+
   boot:
     cmds:
-      - docker-compose up -d --build hasura nginx
-      - sleep 60
+      - docker-compose up -d --build hasura auth nginx
+      - sleep 30
       - hasura migrate apply --project services/hasura 
       - hasura metadata apply --project services/hasura 
       - hasura seeds apply --project services/hasura 

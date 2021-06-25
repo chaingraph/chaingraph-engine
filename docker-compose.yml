@@ -23,13 +23,16 @@ services:
       - '8088:8080'
     depends_on:
       - postgres
+    #  - auth
     restart: always
     environment:
       # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html
       HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
       HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
-      # HASURA_GRAPHQL_ADMIN_SECRET: =NBc;?2eduh)?mxq
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      HASURA_GRAPHQL_AUTH_HOOK: ${HASURA_GRAPHQL_AUTH_HOOK}
+      HASURA_GRAPHQL_AUTH_HOOK_MODE: POST
       HASURA_GRAPHQL_DEV_MODE: 'true'
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
@@ -48,6 +51,16 @@ services:
       - graphql-engine
       - serve
 
+  auth:
+    container_name: chaingraph_auth
+    build:
+      context: ./services/auth
+    environment:
+      HASURA_API: ${HASURA_API}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+    ports:
+      - '3000:3000'
+  
   core:
     container_name: chaingraph_core
     build:
@@ -56,6 +69,7 @@ services:
       - hasura
     environment:
       HASURA_API: ${HASURA_API}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
       EOS_NODEOS_HOST: ${EOS_NODEOS_HOST}
       EOS_NODEOS_PORT: ${EOS_NODEOS_PORT}
       WAIT_HOSTS: ${HASURA_HOST}:8088
