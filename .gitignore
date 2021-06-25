@@ -8,6 +8,10 @@ abi.json
 .env
 !.env.example
 
+# temporary copy hack
+services/auth/modules
+services/core/modules
+
 services/nginx/*
 !services/nginx/nginx.tmpl
 
