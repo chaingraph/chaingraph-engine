@@ -5,6 +5,7 @@
     "baseUrl": "./src",
     "rootDirs": ["src/"],
     "outDir": "dist",
+    "skipLibCheck": true,
     "allowSyntheticDefaultImports": true
   },
   "exclude": ["node_modules"]

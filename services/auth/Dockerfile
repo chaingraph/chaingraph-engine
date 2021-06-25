@@ -1,6 +1,5 @@
 FROM node:12 as builder
 WORKDIR /usr/src/app
-COPY ./modules /usr/modules
 COPY package.json .
 COPY yarn*.lock .
 RUN yarn --ignore-optional --frozen-lockfile install

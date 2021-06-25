@@ -1,6 +1,6 @@
 const express = require('express')
 require('dotenv').config()
-import { hasura } from '../../../modules/hasura-client'
+import { getHasuraSDK } from '@chaingraph.io/hasura-client'
 const bodyParser = require('body-parser')
 import { URL } from 'url'
 
@@ -12,6 +12,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.post('/', async (req: any, res: any) => {
+  console.log({
+    hasuraApi:process.env.HASURA_API!, 
+    adminSecret:process.env.HASURA_GRAPHQL_ADMIN_SECRET!
+  })
+  
+  const hasura = getHasuraSDK({
+    hasuraApi:process.env.HASURA_API!, 
+    adminSecret:process.env.HASURA_GRAPHQL_ADMIN_SECRET!
+  })
 
   console.log('body', req.body)
   console.log('headers', req.headers)

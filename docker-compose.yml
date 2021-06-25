@@ -55,10 +55,9 @@ services:
     container_name: chaingraph_auth
     build:
       context: ./services/auth
-    volumes:
-        - ./usr/modules:./modules #  mount hasura migrations folder
     environment:
       HASURA_API: ${HASURA_API}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
     ports:
       - '3000:3000'
   
