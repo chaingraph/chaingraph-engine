@@ -2,7 +2,7 @@ FROM node:12 as builder
 WORKDIR /usr/src/app
 COPY package.json .
 COPY yarn*.lock .
-RUN yarn --ignore-optional --frozen-lockfile install
+RUN yarn --ignore-optional install --network-timeout 100000
 COPY . .
 RUN yarn build
 
