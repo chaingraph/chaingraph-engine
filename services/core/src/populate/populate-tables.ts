@@ -1,4 +1,4 @@
-import pAll from 'p-all'
+// const pAll = require('p-all')
 import { rpc } from '../utils/eosio'
 import { hasura } from '../hasura'
 import {
@@ -56,6 +56,8 @@ export const populateTableRows = () => {
     try {
       const entry = table_rows_whitelist()[index]
 
+      if(!entry) throw new Error("Entry not found");
+      
       const scopes = entry.scope
         ? [{ scope: entry.scope }]
         : (
@@ -65,8 +67,7 @@ export const populateTableRows = () => {
             })
           ).rows
 
-      const getTableRowsRequests = scopes.map(({ scope }: any) => {
-        return async () => {
+      const getTableRowsRequests = scopes.map(async ({ scope }: any) => {
           const { rows } = await rpc.get_table_rows({
             ...entry,
             scope,
@@ -74,10 +75,11 @@ export const populateTableRows = () => {
           })
           // TODO: recursive if more than 1000 entries
           return rows
-        }
       })
 
-      const allRows = await pAll(getTableRowsRequests, { concurrency: 50 })
+      // TODO: concurrency?
+      // const allRows = await pAll(getTableRowsRequests, { concurrency: 50 })
+      const allRows = await Promise.all(getTableRowsRequests)
       const rows = allRows.flat()
 
       rows.forEach((row: any) => populateTableRow(row, table_registry))
