@@ -47,7 +47,7 @@ const populateToken = async (token_contract: string) => {
       precision: symbol.precision(),
       ...stat,
     }
-    return async () => hasura.upsert_token({ object: tokenObj })
+    return async () => hasura.query.upsert_token({ object: tokenObj })
   })
 
   await pAll(insertStatRequests, { concurrency: 50 })
@@ -86,7 +86,7 @@ const populateBalances = async (token_contract: string) => {
     await pAll(table_rows_requests, { concurrency: 50 })
   ).flat()) as Balances_Insert_Input[]
 
-  hasura.upsert_balances({ objects: balances })
+  hasura.query.upsert_balances({ objects: balances })
 }
 
 export const populateTokens = () => {

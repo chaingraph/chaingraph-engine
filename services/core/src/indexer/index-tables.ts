@@ -26,7 +26,7 @@ const upsertTableRows = async (
             contract: row.code,
             symbol: row.value.balance.split(' ')[1],
           }
-          hasura.upsert_balance({ object })
+          hasura.query.upsert_balance({ object })
         }
 
         // TODO: review this
@@ -40,11 +40,11 @@ const upsertTableRows = async (
             ...row.value,
           }
           console.log({ row, tokenObj })
-          hasura.upsert_token({ object: tokenObj })
+          hasura.query.upsert_token({ object: tokenObj })
         }
       } else {
         const tableRowData = getChainGraphTableRowData(row)
-        hasura.upsert_table_row(tableRowData)
+        hasura.query.upsert_table_row(tableRowData)
       }
     } catch (error) {
       console.log('======================================')
@@ -60,7 +60,7 @@ const deleteTableRows = async (
   tableRows$.subscribe((row) => {
     try {
       const tableRowData = getChainGraphTableRowData(row)
-      hasura.delete_table_row(tableRowData)
+      hasura.query.delete_table_row(tableRowData)
     } catch (error) {
       console.log('======================================')
       console.log('Error deleting contract row', row, error)

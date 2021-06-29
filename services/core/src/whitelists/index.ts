@@ -7,7 +7,7 @@ import { bitcashtests } from './bitcashtests'
 import { delphioracle } from './delphioracle'
 import { bitcashaccts } from './bitcashaccts'
 import { chaingraph_token_tables_registry } from './tokens'
-import { subscribe } from '@chaingraph.io/hasura-client'
+import { hasura } from 'hasura'
 
 export interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
   table_key: string

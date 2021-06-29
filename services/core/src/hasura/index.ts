@@ -1,6 +1,7 @@
 import { getHasuraSDK } from '@chaingraph.io/hasura-client'
 
 export const hasura = getHasuraSDK({
-  hasuraApi: process.env.HASURA_API!,
+  url: process.env.HASURA_URL!,
+  wsUrl: process.env.HASURA_WSURL!,
   adminSecret: process.env.HASURA_GRAPHQL_ADMIN_SECRET!,
 })
