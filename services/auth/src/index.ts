@@ -24,6 +24,8 @@ app.post('/', async (req: any, res: any) => {
 
   console.log('body', req.body)
   console.log('headers', req.headers)
+  const hostname = new URL(req.body.headers['Origin'] || req.body.headers['origin']).hostname
+  console.log('hostname:', hostname)
   
   const apiKey: string = req.body.headers['x-hasura-chaingraph-api-key'] || ''
 
@@ -36,8 +38,7 @@ app.post('/', async (req: any, res: any) => {
 
   const user = result?.data?.api_users[0]
 
-  const hostname = new URL(req.body.headers['Origin']).hostname
-  console.log('hostname', hostname)
+  
   if (!user?.domain_names?.split(',').includes(hostname)){
     return res.sendStatus(404).end();
   }
