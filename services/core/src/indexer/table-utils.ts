@@ -1,24 +1,30 @@
-import { chaingraph_table_registry } from '../whitelists'
+import { LoaderBuffer } from '../whitelists/loader'
 import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
 
-export const getTableRegistry = (row: EosioReaderTableRowsStreamData) => {
-  const table_registry = chaingraph_table_registry.find(
-    ({ code, scope, table }) => {
+export const getTableRegistry = (
+  row: EosioReaderTableRowsStreamData,
+  whitelistReader: LoaderBuffer,
+) => {
+  const table_registry = whitelistReader
+    .chaingraph_table_registry()
+    .find(({ code, scope, table }) => {
       return (
         code === row.code &&
         (scope ? scope === row.scope : true) &&
         table === row.table
       )
-    },
-  )
+    })
   if (!table_registry) {
     throw new Error('No table registry found, something is not right')
   }
   return table_registry
 }
 
-export const getPrimaryKey = (row: EosioReaderTableRowsStreamData) => {
-  const table_registry = getTableRegistry(row)
+export const getPrimaryKey = (
+  row: EosioReaderTableRowsStreamData,
+  whitelistReader: LoaderBuffer,
+) => {
+  const table_registry = getTableRegistry(row, whitelistReader)
 
   let primary_key: string
 
@@ -33,13 +39,15 @@ export const getPrimaryKey = (row: EosioReaderTableRowsStreamData) => {
 
     default:
       if (table_registry.table_key.includes('-asset-symbol')) {
-        primary_key = row.value[
-          table_registry.table_key.replace('-asset-symbol', '')
-        ].split(' ')[1]
+        primary_key =
+          row.value[
+            table_registry.table_key.replace('-asset-symbol', '')
+          ].split(' ')[1]
       } else if (table_registry.table_key.includes('-token-symbol')) {
-        primary_key = row.value[
-          table_registry.table_key.replace('-token-symbol', '')
-        ].split(',')[1]
+        primary_key =
+          row.value[
+            table_registry.table_key.replace('-token-symbol', '')
+          ].split(',')[1]
       } else {
         primary_key = row.value[table_registry.table_key]
       }
@@ -51,13 +59,14 @@ export const getPrimaryKey = (row: EosioReaderTableRowsStreamData) => {
 
 export const getChainGraphTableRowData = (
   row: EosioReaderTableRowsStreamData,
+  whitelistReader: LoaderBuffer,
 ) => {
   const variables = {
     chain_id: row.chain_id,
     contract: row.code,
     table: row.table,
     scope: row.scope,
-    primary_key: getPrimaryKey(row),
+    primary_key: getPrimaryKey(row, whitelistReader),
     data: row.value,
   }
 

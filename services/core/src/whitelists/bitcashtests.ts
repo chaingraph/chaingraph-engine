@@ -36,7 +36,7 @@ export const bitcashtests = [
   {
     code: 'bitcashtests',
     table: 'ltvlevels',
-    table_key: 'token_symbol-token-symbol',
+    table_key: 'ltv_level_name',
   },
   {
     code: 'bitcashtests',

@@ -11,9 +11,6 @@ import { getInfo } from '../utils/eosio'
 
 export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
   let info = await getInfo()
-  setInterval(async () => {
-    info = await getInfo()
-  }, 300)
 
   console.log('Indexing actions ...')
   blocks$.subscribe(async ({ chain_id, block_num, block_id, actions }) => {
@@ -22,17 +19,18 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
       const transactions = [
         ...new Set(actions?.map(({ transaction_id }) => transaction_id)),
       ]
-      const transactionsInsertInput: Transactions_Insert_Input[] = transactions.map(
-        (transaction_id) => ({
+      const transactionsInsertInput: Transactions_Insert_Input[] =
+        transactions.map((transaction_id) => ({
           chain_id,
           block_num,
           block_id,
           transaction_id,
-        }),
-      )
+        }))
       const insertedTransactions =
         transactions &&
-        (await hasura.insert_transaction({ objects: transactionsInsertInput }))
+        (await hasura.query.insert_transaction({
+          objects: transactionsInsertInput,
+        }))
 
       // insert the whitelisted actions
       let actionsInsertInput: Actions_Insert_Input[]
@@ -53,7 +51,7 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
         const actionsChunks = chunk(actionsInsertInput, 100)
         insertedActions = await Promise.all(
           actionsChunks.map((actionsChunk) =>
-            hasura.insert_actions({ objects: actionsChunk }),
+            hasura.query.insert_actions({ objects: actionsChunk }),
           ),
         )
       }
@@ -63,7 +61,8 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
           return acc + (data?.insert_actions?.affected_rows || 0)
         }, 0) || 0
 
-      await hasura.update_block_height({ chain_id, block_num, block_id })
+      await hasura.query.update_block_height({ chain_id, block_num, block_id })
+      // TODO:R uncomment
       console.log(
         `\nIndexed block ${block_num}. Nodeos head block ${info.head_block_num}. \nInserted transactions ${insertedTransactions?.data?.insert_transactions?.affected_rows}, Inserted actions ${numberOfInsertedActions} in ${insertedActions?.length} chunks,`,
       )

@@ -7,15 +7,18 @@ import {
 import { hasura } from '../hasura'
 import { Observable } from 'rxjs'
 import { filter } from 'rxjs/internal/operators/filter'
-import { chaingraph_token_registry } from '../whitelists/tokens'
 import { getChainGraphTableRowData } from './table-utils'
+import { LoaderBuffer } from './../whitelists/loader'
 
 const upsertTableRows = async (
   tableRows$: Observable<EosioReaderTableRowsStreamData>,
+  whitelistReader: LoaderBuffer,
 ) => {
   tableRows$.subscribe((row) => {
     try {
-      if (chaingraph_token_registry.indexOf(row.code) !== -1) {
+      if (
+        whitelistReader.chaingraph_token_registry().indexOf(row.code) !== -1
+      ) {
         console.log('--------------is token balance--------------')
 
         if (row.table === 'accounts') {
@@ -26,7 +29,7 @@ const upsertTableRows = async (
             contract: row.code,
             symbol: row.value.balance.split(' ')[1],
           }
-          hasura.upsert_balance({ object })
+          hasura.query.upsert_balance({ object })
         }
 
         // TODO: review this
@@ -40,11 +43,11 @@ const upsertTableRows = async (
             ...row.value,
           }
           console.log({ row, tokenObj })
-          hasura.upsert_token({ object: tokenObj })
+          hasura.query.upsert_token({ object: tokenObj })
         }
       } else {
-        const tableRowData = getChainGraphTableRowData(row)
-        hasura.upsert_table_row(tableRowData)
+        const tableRowData = getChainGraphTableRowData(row, whitelistReader)
+        hasura.query.upsert_table_row(tableRowData)
       }
     } catch (error) {
       console.log('======================================')
@@ -56,11 +59,12 @@ const upsertTableRows = async (
 
 const deleteTableRows = async (
   tableRows$: Observable<EosioReaderTableRowsStreamData>,
+  whitelistReader: LoaderBuffer,
 ) => {
   tableRows$.subscribe((row) => {
     try {
-      const tableRowData = getChainGraphTableRowData(row)
-      hasura.delete_table_row(tableRowData)
+      const tableRowData = getChainGraphTableRowData(row, whitelistReader)
+      hasura.query.delete_table_row(tableRowData)
     } catch (error) {
       console.log('======================================')
       console.log('Error deleting contract row', row, error)
@@ -71,10 +75,11 @@ const deleteTableRows = async (
 
 export const indexTableRows = async (
   tableRows$: Observable<EosioReaderTableRowsStreamData>,
+  whitelistReader: LoaderBuffer,
 ) => {
   const upsertRows$ = tableRows$.pipe(filter((row) => Boolean(row.present)))
   const deletedRows$ = tableRows$.pipe(filter((row) => !Boolean(row.present)))
 
-  upsertTableRows(upsertRows$)
-  deleteTableRows(deletedRows$)
+  upsertTableRows(upsertRows$, whitelistReader)
+  deleteTableRows(deletedRows$, whitelistReader)
 }

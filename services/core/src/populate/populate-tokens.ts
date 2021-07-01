@@ -6,7 +6,7 @@ import pAll from 'p-all'
 import { rpc } from '../utils/eosio'
 import { hasura } from '../hasura'
 import { asset } from 'eos-common'
-import { chaingraph_token_registry } from '../whitelists/tokens'
+import { LoaderBuffer } from './../whitelists/loader'
 
 const populateToken = async (token_contract: string) => {
   const { rows } = await rpc.get_table_by_scope({
@@ -47,7 +47,7 @@ const populateToken = async (token_contract: string) => {
       precision: symbol.precision(),
       ...stat,
     }
-    return async () => hasura.upsert_token({ object: tokenObj })
+    return async () => hasura.query.upsert_token({ object: tokenObj })
   })
 
   await pAll(insertStatRequests, { concurrency: 50 })
@@ -86,17 +86,26 @@ const populateBalances = async (token_contract: string) => {
     await pAll(table_rows_requests, { concurrency: 50 })
   ).flat()) as Balances_Insert_Input[]
 
-  hasura.upsert_balances({ objects: balances })
+  hasura.query.upsert_balances({ objects: balances })
 }
 
-export const populateTokens = () => {
-  chaingraph_token_registry.forEach(async (token_contract) => {
-    try {
-      await populateToken(token_contract)
-      await populateBalances(token_contract)
-    } catch (error) {
-      console.log(JSON.stringify(error, null, 2))
-      throw new Error('Error populating tokens')
-    }
-  })
+export const populateTokens = async (whitelistReader: LoaderBuffer) => {
+  // TODO:R comment
+  console.log('---------chaingraph_token_registry---------')
+  console.dir(whitelistReader.chaingraph_token_registry(), { depth: null })
+  //TODO: R remove any
+  whitelistReader
+    .chaingraph_token_registry()
+    .forEach(async (token_contract: any) => {
+      try {
+        console.log('populateTokens A')
+        await populateToken(token_contract)
+        console.log('populateTokens B')
+        await populateBalances(token_contract)
+        console.log('populateTokens C')
+      } catch (error) {
+        console.log(JSON.stringify(error, null, 2))
+        // throw new Error('Error populating tokens')
+      }
+    })
 }
