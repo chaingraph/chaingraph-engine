@@ -19,20 +19,22 @@ const populateTableRow = async (
       break
 
     case 'standard_token':
-      primary_key = row.balance.split(' ')[1]
+      primary_key = row.data.balance.split(' ')[1]
       break
 
     default:
       if (table_registry.table_key.includes('-asset-symbol')) {
-        primary_key = row[
-          table_registry.table_key.replace('-asset-symbol', '')
-        ].split(' ')[1]
+        primary_key =
+          row.data[table_registry.table_key.replace('-asset-symbol', '')].split(
+            ' ',
+          )[1]
       } else if (table_registry.table_key.includes('-token-symbol')) {
-        primary_key = row[
-          table_registry.table_key.replace('-token-symbol', '')
-        ].split(',')[1]
+        primary_key =
+          row.data[table_registry.table_key.replace('-token-symbol', '')].split(
+            ',',
+          )[1]
       } else {
-        primary_key = row[table_registry.table_key]
+        primary_key = row.data[table_registry.table_key]
       }
       break
   }
@@ -42,7 +44,7 @@ const populateTableRow = async (
       'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
     contract: table_registry.code,
     table: table_registry.table,
-    scope: table_registry.scope || table_registry.code,
+    scope: row.scope,
     primary_key: primary_key.toString(),
     data: row,
   }
@@ -72,13 +74,14 @@ export const populateTableRows = () => {
               limit: 1000,
             })
             // TODO: recursive if more than 1000 entries
-            return rows
+            return rows.map((row: any) => ({ scope, data: row }))
           }
         },
       )
 
       const allRows = await pAll(getTableRowsRequests, { concurrency: 50 })
       const rows = allRows.flat()
+      // console.log(rows)
 
       rows.forEach((row: any) => populateTableRow(row, table_registry))
     } catch (error) {

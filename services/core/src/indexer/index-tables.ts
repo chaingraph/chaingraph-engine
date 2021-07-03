@@ -43,6 +43,7 @@ const upsertTableRows = async (
           hasura.upsert_token({ object: tokenObj })
         }
       } else {
+        console.log('indexing', { row })
         const tableRowData = getChainGraphTableRowData(row)
         hasura.upsert_table_row(tableRowData)
       }
