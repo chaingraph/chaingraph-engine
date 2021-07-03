@@ -24,18 +24,47 @@ const populateTableRow = async (
 
     default:
       if (table_registry.table_key.includes('-asset-symbol')) {
-        primary_key = row[
-          table_registry.table_key.replace('-asset-symbol', '')
-        ].split(' ')[1]
+        primary_key =
+          row[table_registry.table_key.replace('-asset-symbol', '')].split(
+            ' ',
+          )[1]
       } else if (table_registry.table_key.includes('-token-symbol')) {
-        primary_key = row[
-          table_registry.table_key.replace('-token-symbol', '')
-        ].split(',')[1]
+        try {
+          primary_key =
+            row[table_registry.table_key.replace('-token-symbol', '')].split(
+              ',',
+            )[1]
+        } catch (err) {
+          console.log({ row, table_registry })
+          throw new Error(' index error')
+        }
       } else {
-        primary_key = row[table_registry.table_key]
+        // hard fix
+        if (row.account_v0) {
+          console.log('account_v0')
+          primary_key = row.account_v0[table_registry.table_key]
+        } else if (row.member_v0) {
+          console.log('member_v0')
+          primary_key = row.member_v0[table_registry.table_key]
+        } else if (row.endorsement_v0) {
+          console.log('endorsement_v0')
+          primary_key = row.endorsement_v0[table_registry.table_key]
+        } else if (row.induction_v0) {
+          console.log('induction_v0')
+          primary_key = row.induction_v0[table_registry.table_key]
+        } else if (row.auction_v0) {
+          primary_key = row.auction_v0[table_registry.table_key]
+        } else {
+          primary_key = row[table_registry.table_key]
+        }
       }
       break
   }
+
+  // if (primary_key === undefined) {
+  //   console.log({ row, table_registry })
+  //   throw new Error('HERE')
+  // }
 
   const variables = {
     chain_id:
@@ -43,7 +72,7 @@ const populateTableRow = async (
     contract: table_registry.code,
     table: table_registry.table,
     scope: table_registry.scope || table_registry.code,
-    primary_key: primary_key.toString(),
+    primary_key: primary_key?.toString() || 'error',
     data: row,
   }
   hasura.upsert_table_row(variables)

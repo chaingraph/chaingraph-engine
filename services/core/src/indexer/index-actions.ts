@@ -22,14 +22,13 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
       const transactions = [
         ...new Set(actions?.map(({ transaction_id }) => transaction_id)),
       ]
-      const transactionsInsertInput: Transactions_Insert_Input[] = transactions.map(
-        (transaction_id) => ({
+      const transactionsInsertInput: Transactions_Insert_Input[] =
+        transactions.map((transaction_id) => ({
           chain_id,
           block_num,
           block_id,
           transaction_id,
-        }),
-      )
+        }))
       const insertedTransactions =
         transactions &&
         (await hasura.insert_transaction({ objects: transactionsInsertInput }))

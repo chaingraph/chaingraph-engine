@@ -15,6 +15,7 @@ export const loadReader = async () => {
   const uniqueContractNames = [
     ...new Set(table_rows_whitelist?.map((row: any) => row.code)),
   ]
+
   const abisArr = await Promise.all(
     uniqueContractNames.map((account_name) => fecthAbi(account_name)),
   )

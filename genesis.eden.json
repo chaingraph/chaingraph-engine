@@ -1,0 +1,776 @@
+{
+  "version": "eosio::abi/1.1",
+  "types": [
+    {
+      "new_type_name": "INT8_VEC",
+      "type": "int8[]"
+    },
+    {
+      "new_type_name": "INT16_VEC",
+      "type": "int16[]"
+    },
+    {
+      "new_type_name": "INT32_VEC",
+      "type": "int32[]"
+    },
+    {
+      "new_type_name": "INT64_VEC",
+      "type": "int64[]"
+    },
+    {
+      "new_type_name": "UINT8_VEC",
+      "type": "uint8[]"
+    },
+    {
+      "new_type_name": "UINT16_VEC",
+      "type": "uint16[]"
+    },
+    {
+      "new_type_name": "UINT32_VEC",
+      "type": "uint32[]"
+    },
+    {
+      "new_type_name": "UINT64_VEC",
+      "type": "uint64[]"
+    },
+    {
+      "new_type_name": "FLOAT_VEC",
+      "type": "float32[]"
+    },
+    {
+      "new_type_name": "DOUBLE_VEC",
+      "type": "float64[]"
+    },
+    {
+      "new_type_name": "STRING_VEC",
+      "type": "string[]"
+    }
+  ],
+  "structs": [
+    {
+      "name": "withdraw",
+      "base": "",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "name"
+        },
+        {
+          "name": "quantity",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "donate",
+      "base": "",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "name"
+        },
+        {
+          "name": "quantity",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "transfer",
+      "base": "",
+      "fields": [
+        {
+          "name": "to",
+          "type": "name"
+        },
+        {
+          "name": "quantity",
+          "type": "asset"
+        },
+        {
+          "name": "memo",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "attribute",
+      "base": "",
+      "fields": [
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "value",
+          "type": "attribute_value"
+        }
+      ]
+    },
+    {
+      "name": "genesis",
+      "base": "",
+      "fields": [
+        {
+          "name": "community",
+          "type": "string"
+        },
+        {
+          "name": "community_symbol",
+          "type": "symbol"
+        },
+        {
+          "name": "minimum_donation",
+          "type": "asset"
+        },
+        {
+          "name": "initial_members",
+          "type": "name[]"
+        },
+        {
+          "name": "genesis_video",
+          "type": "string"
+        },
+        {
+          "name": "collection_attributes",
+          "type": "attribute[]"
+        },
+        {
+          "name": "auction_starting_bid",
+          "type": "asset"
+        },
+        {
+          "name": "auction_duration",
+          "type": "uint32"
+        },
+        {
+          "name": "memo",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "addtogenesis",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "expiration",
+          "type": "time_point"
+        }
+      ]
+    },
+    {
+      "name": "gensetexpire",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "new_expiration",
+          "type": "time_point"
+        }
+      ]
+    },
+    {
+      "name": "clearall",
+      "base": "",
+      "fields": []
+    },
+    {
+      "name": "inductinit",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "inviter",
+          "type": "name"
+        },
+        {
+          "name": "invitee",
+          "type": "name"
+        },
+        {
+          "name": "witnesses",
+          "type": "name[]"
+        }
+      ]
+    },
+    {
+      "name": "new_member_profile",
+      "base": "",
+      "fields": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "img",
+          "type": "string"
+        },
+        {
+          "name": "bio",
+          "type": "string"
+        },
+        {
+          "name": "social",
+          "type": "string"
+        },
+        {
+          "name": "attributions",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "inductprofil",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "new_member_profile",
+          "type": "new_member_profile"
+        }
+      ]
+    },
+    {
+      "name": "inductvideo",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "video",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "inductendors",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "induction_data_hash",
+          "type": "checksum256"
+        }
+      ]
+    },
+    {
+      "name": "inductdonate",
+      "base": "",
+      "fields": [
+        {
+          "name": "payer",
+          "type": "name"
+        },
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "quantity",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "inductcancel",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "id",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "inducted",
+      "base": "",
+      "fields": [
+        {
+          "name": "inductee",
+          "type": "name"
+        }
+      ]
+    },
+    {
+      "name": "gc",
+      "base": "",
+      "fields": [
+        {
+          "name": "limit",
+          "type": "uint32"
+        }
+      ]
+    },
+    {
+      "name": "migrate",
+      "base": "",
+      "fields": [
+        {
+          "name": "limit",
+          "type": "uint32"
+        }
+      ]
+    },
+    {
+      "name": "unmigrate",
+      "base": "",
+      "fields": []
+    },
+    {
+      "name": "account_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "owner",
+          "type": "name"
+        },
+        {
+          "name": "balance",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "auction_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "asset_id",
+          "type": "uint64"
+        },
+        {
+          "name": "last_known_end_time",
+          "type": "time_point_sec"
+        }
+      ]
+    },
+    {
+      "name": "endorsement_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "inviter",
+          "type": "name"
+        },
+        {
+          "name": "invitee",
+          "type": "name"
+        },
+        {
+          "name": "endorser",
+          "type": "name"
+        },
+        {
+          "name": "induction_id",
+          "type": "uint64"
+        },
+        {
+          "name": "endorsed",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "global_data_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "community",
+          "type": "string"
+        },
+        {
+          "name": "minimum_donation",
+          "type": "asset"
+        },
+        {
+          "name": "auction_starting_bid",
+          "type": "asset"
+        },
+        {
+          "name": "auction_duration",
+          "type": "uint32"
+        },
+        {
+          "name": "stage",
+          "type": "uint8"
+        }
+      ]
+    },
+    {
+      "name": "induction_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "id",
+          "type": "uint64"
+        },
+        {
+          "name": "inviter",
+          "type": "name"
+        },
+        {
+          "name": "invitee",
+          "type": "name"
+        },
+        {
+          "name": "endorsements",
+          "type": "uint32"
+        },
+        {
+          "name": "created_at",
+          "type": "block_timestamp_type"
+        },
+        {
+          "name": "video",
+          "type": "string"
+        },
+        {
+          "name": "new_member_profile",
+          "type": "new_member_profile"
+        }
+      ]
+    },
+    {
+      "name": "member_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "account",
+          "type": "name"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "status",
+          "type": "uint8"
+        },
+        {
+          "name": "nft_template_id",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "member_stats_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "active_members",
+          "type": "uint16"
+        },
+        {
+          "name": "pending_members",
+          "type": "uint16"
+        },
+        {
+          "name": "completed_waiting_inductions",
+          "type": "uint16"
+        }
+      ]
+    },
+    {
+      "name": "migrate_auction_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "last_auction_id",
+          "type": "uint64"
+        }
+      ]
+    },
+    {
+      "name": "migrate_account_v0",
+      "base": "",
+      "fields": [
+        {
+          "name": "last_visited",
+          "type": "name"
+        },
+        {
+          "name": "user_total",
+          "type": "asset"
+        }
+      ]
+    },
+    {
+      "name": "no_migration<0>",
+      "base": "",
+      "fields": []
+    }
+  ],
+  "actions": [
+    {
+      "name": "withdraw",
+      "type": "withdraw",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Withdraw my unspent balance\nsummary: Withdraw {{nowrap quantity}} from unspent balance\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nI am withdrawing {{quantity}} from my remaining available balance. (This action should rarely need to be used, and currently only if a transfer is made to the contract but that balance isn't followed-up by a donation action spending it to the recipient account.)"
+    },
+    {
+      "name": "donate",
+      "type": "donate",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "transfer",
+      "type": "transfer",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "genesis",
+      "type": "genesis",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Start an Eden Community\nsummary: Found a new community with Genesis members\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nI hereby start a new Eden community named {{community}} with the following founding Peace Treaty and Bylaws:\n\n## Peace Treaty\n{{$clauses.peacetreaty}}\n\n## Bylaws\n{{$clauses.bylaws}}"
+    },
+    {
+      "name": "addtogenesis",
+      "type": "addtogenesis",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "gensetexpire",
+      "type": "gensetexpire",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "clearall",
+      "type": "clearall",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Clear Eden Community\nsummary: WARNING - DELETING COMMUNITY RECORDS\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nI hereby clear and remove all tables relating to this Eden community. I affirm that I am authorized to do so by the aforementioned community. I understand that this will remove all community members, and destroy community information stored in chain state. Member information will, however, remain in the blockchain history."
+    },
+    {
+      "name": "inductinit",
+      "type": "inductinit",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Extend Eden Invitation\nsummary: Invite someone into the community\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nAs an active member of this Eden community, I extend an invitation to {{invitee}} to join the Eden community, pending {{invitee}}'s completion of the induction process as witnessed by the following other currently-active community members: {{witnesses.[0]}} and {{witnesses.[1]}}."
+    },
+    {
+      "name": "inductprofil",
+      "type": "inductprofil",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Create My Eden Profile\nsummary: Affirm profile, Peace Treaty and Bylaws\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nI, {{new_member_profile.name}}, certify that, to the best of my knowledge, the profile information I am submitting herein is accurate and is my own. I affirm and agree to abide by this Eden community's Peace Treaty and Bylaws:\n\n## Peace Treaty\n{{$clauses.peacetreaty}}\n\n## Bylaws\n{{$clauses.bylaws}}"
+    },
+    {
+      "name": "inductvideo",
+      "type": "inductvideo",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Add Induction Ceremony to the Record\nsummary: Add video recording of invitee's induction ceremony to the record\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nI witnessed the Eden induction ceremony for the invitee in Induction #{{id}} and hereby attach the IPFS CID of said video recording hereto."
+    },
+    {
+      "name": "inductendors",
+      "type": "inductendors",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Endorse Prospective Eden Member\nsummary: Endorsement of invitee for induction into Eden community\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nI witnessed the Eden induction ceremony for the invitee in Induction #{{id}}. I believe they understand the Peace Treaty and will abide by it. I have carefully reviewed the prospective member's profile information, including their name, profile statement, social links, and induction ceremony video recording, and I affirm their accuracy to the best of my knowledge. I hereby endorse this prospective Eden member for induction into this Eden community in accordance with the Peace Treaty and Bylaws:\n\n## Peace Treaty\n{{$clauses.peacetreaty}}\n\n## Bylaws\n{{$clauses.bylaws}}"
+    },
+    {
+      "name": "inductdonate",
+      "type": "inductdonate",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Donate to the Eden Community\nsummary: Submit {{nowrap quantity}} donation and activate your membership\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nI have carefully reviewed the profile information I submitted, including my name, profile statement, and social links, and I affirm their accuracy to the best of my knowledge. I hereby donate {{quantity}} to this Eden community. I affirm that I have read and understand the Eden Peace Treaty. I agree to abide by the Peace Treaty.\n\n## Peace Treaty\n{{$clauses.peacetreaty}}\n\n## Bylaws\n{{$clauses.bylaws}}"
+    },
+    {
+      "name": "inductcancel",
+      "type": "inductcancel",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Cancel Induction\nsummary: Cancel Induction {{nowrap id}}\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nCancel induction (pending invitation) #{{id}}. Only the inviter or a witness can cancel the pending induction. This action will delete the induction record and any related witness endorsement records stored in chain state. This information will, however, remain in the blockchain history."
+    },
+    {
+      "name": "inducted",
+      "type": "inducted",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Inducted (Inline Action)\nsummary: Internal inline action\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nThis action is not intended to be called directly. It is an inline action called at the end of eden::inductdonate that activates the member and cleans up induction tables."
+    },
+    {
+      "name": "gc",
+      "type": "gc",
+      "ricardian_contract": "---\nspec_version: \"0.2.0\"\ntitle: Garbage Collect\nsummary: Clean up expired or moot invitations and endorsements\nicon: https://ipfs.io/ipfs/QmToeuuNcTXgZPhGLShi9E18qFyQfr92b8fmjWS3roJwq5#aae9c37e262c08f73151a6d415df37d4317de36d76aabfaa1a6249cfdeaffeb2\n---\n\nRemove expired induction records, moot duplicate induction records, and related endorsement records. This is a safe-to-call, housekeeping action."
+    },
+    {
+      "name": "migrate",
+      "type": "migrate",
+      "ricardian_contract": ""
+    },
+    {
+      "name": "unmigrate",
+      "type": "unmigrate",
+      "ricardian_contract": ""
+    }
+  ],
+  "tables": [
+    {
+      "name": "account",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "variant<account_v0>"
+    },
+    {
+      "name": "auction",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "variant<auction_v0>"
+    },
+    {
+      "name": "endorsement",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "variant<endorsement_v0>"
+    },
+    {
+      "name": "global",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "variant<global_data_v0>"
+    },
+    {
+      "name": "induction",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "variant<induction_v0>"
+    },
+    {
+      "name": "member",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "variant<member_v0>"
+    },
+    {
+      "name": "memberstats",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "variant<member_stats_v0>"
+    },
+    {
+      "name": "migration",
+      "index_type": "i64",
+      "key_names": [],
+      "key_types": [],
+      "type": "variant<migrate_auction_v0,migrate_account_v0,no_migration<0>>"
+    }
+  ],
+  "ricardian_clauses": [
+    {
+      "id": "peacetreaty",
+      "body": "I. The size of an independent Eden community shall not exceed 10,000 members.\nII. Leaders shall be elected by the following process:\nII.a. Members are randomly organized into roughly equally-sized groups of 12 or fewer, where total number of groups = population / average group size.\nII.b. Each group must select a representative from their group with greater than ⅔ approval.\nII.c. The process shall then repeat, fractally, by randomly grouping the representatives approved in the previous round of elections, until a single lead representative is chosen.\nIII. Elections shall occur at least annually or may be triggered by a petition of 10% of the membership or according to the bylaws.\nIV. The community may adopt bylaws, which contain all rules, processes, regulations that are binding on anyone who wishes to remain a member.\nIV.a. The level of representation that voted in the lead representative shall be known as the Board.\nIV.b. The active and a proposed set of bylaws are indivisible, single documents, ie. the former Board cannot provide the next board numerous options.\nIV.c. Bylaws may only be ratified if they were proposed at least 3 months before the last election.\nIV.d. The lead representative can act inside the existing bylaws.\nIV.e. The board can propose a new set of bylaws. The vote to approve a proposal as well as ratify a proposed set of bylaws shall be approved by ⅔+1 vote, which shall include the lead representative.\nV. Bylaws may not override, change, eliminate, or extend the Peace Treaty.\nVI. Members must be invited according to community bylaws and can be removed according to community bylaws.\nVII. Membership is voluntary. Members may leave at any time by giving notice.\nVIII. The Peace Treaty may be amended by a ⅔+1 vote of all members."
+    },
+    {
+      "id": "bylaws",
+      "body": "I. The initial Board shall consist of the people on the Genesis Call and shall have the power to propose and ratify bylaws until such time as the first election occurs.\nII. Genesis members are to only participate in up to 15 induction meetings until membership reaches 100 members."
+    }
+  ],
+  "error_messages": [],
+  "abi_extensions": [],
+  "variants": [
+    {
+      "name": "attribute_value",
+      "types": [
+        "int8",
+        "int16",
+        "int32",
+        "int64",
+        "uint8",
+        "uint16",
+        "uint32",
+        "uint64",
+        "float32",
+        "float64",
+        "string",
+        "INT8_VEC",
+        "INT16_VEC",
+        "INT32_VEC",
+        "INT64_VEC",
+        "UINT8_VEC",
+        "UINT16_VEC",
+        "UINT32_VEC",
+        "UINT64_VEC",
+        "FLOAT_VEC",
+        "DOUBLE_VEC",
+        "STRING_VEC"
+      ]
+    },
+    {
+      "name": "variant<account_v0>",
+      "types": [
+        "account_v0"
+      ]
+    },
+    {
+      "name": "variant<auction_v0>",
+      "types": [
+        "auction_v0"
+      ]
+    },
+    {
+      "name": "variant<endorsement_v0>",
+      "types": [
+        "endorsement_v0"
+      ]
+    },
+    {
+      "name": "variant<global_data_v0>",
+      "types": [
+        "global_data_v0"
+      ]
+    },
+    {
+      "name": "variant<induction_v0>",
+      "types": [
+        "induction_v0"
+      ]
+    },
+    {
+      "name": "variant<member_v0>",
+      "types": [
+        "member_v0"
+      ]
+    },
+    {
+      "name": "variant<member_stats_v0>",
+      "types": [
+        "member_stats_v0"
+      ]
+    },
+    {
+      "name": "variant<migrate_auction_v0,migrate_account_v0,no_migration<0>>",
+      "types": [
+        "migrate_auction_v0",
+        "migrate_account_v0",
+        "no_migration<0>"
+      ]
+    }
+  ],
+  "action_results": [],
+  "kv_tables": {}
+}

@@ -19,6 +19,7 @@ export const fecthAbi = (account_name: string) =>
     }),
   }).then(async (res: any) => {
     const response = await res.json()
+    console.log({ account_name, response })
     return {
       account_name,
       abi: response.abi as RpcInterfaces.Abi,

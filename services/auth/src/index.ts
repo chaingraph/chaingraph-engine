@@ -27,7 +27,7 @@ app.post('/', async (req: any, res: any) => {
   const hostname = new URL(req.body.headers['Origin'] || req.body.headers['origin']).hostname
   console.log('hostname:', hostname)
   
-  const apiKey: string = req.body.headers['x-hasura-chaingraph-api-key'] || ''
+  const apiKey: string = req.body.headers['x-chaingraph-api-key'] || ''
 
   const result = await hasura.get_api_user_by_key({ api_key: apiKey })
 
