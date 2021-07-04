@@ -1,5 +1,4 @@
-import { EosioReaderLightBlock } from '@blockmatic/eosio-ship-reader'
-import { Subject } from 'rxjs'
+import { EosioReaderLightBlock, Subject } from '@blockmatic/eosio-ship-reader'
 import {
   Transactions_Insert_Input,
   Actions_Insert_Input,
@@ -32,7 +31,7 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
       )
       const insertedTransactions =
         transactions &&
-        (await hasura.insert_transaction({ objects: transactionsInsertInput }))
+        (await hasura.query.insert_transaction({ objects: transactionsInsertInput }))
 
       // insert the whitelisted actions
       let actionsInsertInput: Actions_Insert_Input[]
@@ -53,7 +52,7 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
         const actionsChunks = chunk(actionsInsertInput, 100)
         insertedActions = await Promise.all(
           actionsChunks.map((actionsChunk) =>
-            hasura.insert_actions({ objects: actionsChunk }),
+            hasura.query.insert_actions({ objects: actionsChunk }),
           ),
         )
       }
@@ -63,7 +62,7 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
           return acc + (data?.insert_actions?.affected_rows || 0)
         }, 0) || 0
 
-      await hasura.update_block_height({ chain_id, block_num, block_id })
+      await hasura.query.update_block_height({ chain_id, block_num, block_id })
       console.log(
         `\nIndexed block ${block_num}. Nodeos head block ${info.head_block_num}. \nInserted transactions ${insertedTransactions?.data?.insert_transactions?.affected_rows}, Inserted actions ${numberOfInsertedActions} in ${insertedActions?.length} chunks,`,
       )

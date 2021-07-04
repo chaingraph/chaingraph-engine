@@ -1,4 +1,4 @@
-import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
+import { EosioReaderTableRowsStreamData, Subject } from '@blockmatic/eosio-ship-reader'
 import { asset } from 'eos-common'
 import {
   Balances_Insert_Input,
@@ -26,7 +26,8 @@ const upsertTableRows = async (
             contract: row.code,
             symbol: row.value.balance.split(' ')[1],
           }
-          hasura.upsert_balance({ object })
+          console.log('balances =>', object)
+          hasura.query.upsert_balance({ object })
         }
 
         // TODO: review this
@@ -40,12 +41,12 @@ const upsertTableRows = async (
             ...row.value,
           }
           console.log({ row, tokenObj })
-          hasura.upsert_token({ object: tokenObj })
+          hasura.query.upsert_token({ object: tokenObj })
         }
       } else {
         console.log('indexing', { row })
         const tableRowData = getChainGraphTableRowData(row)
-        hasura.upsert_table_row(tableRowData)
+        hasura.query.upsert_table_row(tableRowData)
       }
     } catch (error) {
       console.log('======================================')
@@ -61,7 +62,7 @@ const deleteTableRows = async (
   tableRows$.subscribe((row) => {
     try {
       const tableRowData = getChainGraphTableRowData(row)
-      hasura.delete_table_row(tableRowData)
+      hasura.query.delete_table_row(tableRowData)
     } catch (error) {
       console.log('======================================')
       console.log('Error deleting contract row', row, error)
@@ -71,7 +72,7 @@ const deleteTableRows = async (
 }
 
 export const indexTableRows = async (
-  tableRows$: Observable<EosioReaderTableRowsStreamData>,
+  tableRows$: Subject<EosioReaderTableRowsStreamData>,
 ) => {
   const upsertRows$ = tableRows$.pipe(filter((row) => Boolean(row.present)))
   const deletedRows$ = tableRows$.pipe(filter((row) => !Boolean(row.present)))

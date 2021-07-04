@@ -1,4 +1,3 @@
-import pAll from 'p-all'
 import { rpc } from '../utils/eosio'
 import { hasura } from '../hasura'
 import {
@@ -48,7 +47,7 @@ const populateTableRow = async (
     primary_key: primary_key.toString(),
     data: row.data,
   }
-  hasura.upsert_table_row(variables)
+  hasura.query.upsert_table_row(variables)
 }
 
 export const populateTableRows = () => {
@@ -62,24 +61,23 @@ export const populateTableRows = () => {
           await rpc.get_table_by_scope({
             code: entry.code,
             table: entry.table,
+            limit: 1000000,
           })
         ).rows
 
       const getTableRowsRequests = scopes.map(
-        ({ scope }: { scope: 'string' }) => {
-          return async () => {
+        async ({ scope }: { scope: string }) => {
             const { rows } = await rpc.get_table_rows({
               ...entry,
               scope,
-              limit: 1000,
+              limit: 1000000,
             })
             // TODO: recursive if more than 1000 entries
             return rows.map((row: any) => ({ scope, data: row }))
           }
-        },
       )
 
-      const allRows = await pAll(getTableRowsRequests, { concurrency: 50 })
+      const allRows = await Promise.all(getTableRowsRequests)
       const rows = allRows.flat()
       // console.log(rows)
 

@@ -5,13 +5,13 @@ import { indexTableRows } from './index-tables'
 export const startIndexer = async () => {
   console.log('Starting indexer ...')
 
-  const { close$, rows$, blocks$, errors$ } = await loadReader()
+  const { close$, rows$, blocks$, errors$, log$ } = await loadReader()
 
   indexActions(blocks$)
   indexTableRows(rows$)
 
   close$.subscribe(() => console.log('connection closed'))
 
-  // log$.subscribe(({ message }) => console.log('ShipReader:', message))
+  log$.subscribe(({ message }:any) => console.log('ShipReader:', message))
   errors$.subscribe((error) => console.log('ShipReader:', error))
 }

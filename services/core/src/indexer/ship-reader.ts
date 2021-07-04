@@ -29,10 +29,10 @@ export const loadReader = async () => {
     rpc_url: eosioApi,
     ds_threads: 6,
     ds_experimental: false,
-    delta_whitelist: ['contract_table', 'contract_row', 'contract_index64'],
-    table_rows_whitelist,
-    actions_whitelist,
-    contract_abis,
+    delta_whitelist: () =>['contract_table', 'contract_row', 'contract_index64'],
+    table_rows_whitelist: () => table_rows_whitelist,
+    actions_whitelist: () => actions_whitelist,
+    contract_abis: () => contract_abis,
     request: {
       start_block_num: info.head_block_num + 10,
       end_block_num: 0xffffffff,
@@ -42,6 +42,7 @@ export const loadReader = async () => {
       fetch_block: true,
       fetch_traces: true,
       fetch_deltas: true,
+      fetch_block_header: true
     },
     auto_start: true,
   }
