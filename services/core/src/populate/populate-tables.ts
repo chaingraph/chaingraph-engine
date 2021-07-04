@@ -46,7 +46,7 @@ const populateTableRow = async (
     table: table_registry.table,
     scope: row.scope,
     primary_key: primary_key.toString(),
-    data: row,
+    data: row.data,
   }
   hasura.upsert_table_row(variables)
 }
