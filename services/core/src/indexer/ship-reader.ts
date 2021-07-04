@@ -57,6 +57,7 @@ export const loadReader = async (whitelistReader: LoaderBuffer) => {
       fetch_block: true,
       fetch_traces: true,
       fetch_deltas: true,
+      fetch_block_header: true
     },
     auto_start: true,
   }

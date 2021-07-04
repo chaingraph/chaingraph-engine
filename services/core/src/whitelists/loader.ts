@@ -63,20 +63,21 @@ const onData = (data: unknown) => {
       }
       table_registry = contractInfo?.mapping?.table_registry.map(
         (registry: any) => {
+          const code = registry.code ?? contract_name
           if (contractInfo?.mapping?.type) {
             token_registry.push({
-              code: registry.code ?? contract_name,
+              code,
               table: registry.table,
               table_key: registry.table_key,
             })
           }
           table_rows_whitelist.push({
-            code: registry.code,
+            code,
             scope: registry.scope,
             table: registry.table,
           })
           return {
-            code: registry.code ?? contract_name,
+            code,
             scope: registry.scope,
             table: registry.table,
             lower_bound: registry.lower_bound,

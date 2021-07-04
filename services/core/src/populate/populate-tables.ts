@@ -9,6 +9,8 @@ const populateTableRow = async (
 ) => {
   let primary_key: string = ''
 
+  console.log('RAW', row)
+
   try {
     switch (table_registry.table_key) {
       case 'singleton':
