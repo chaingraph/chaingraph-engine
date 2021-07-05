@@ -6,13 +6,15 @@ import { LoaderBuffer } from './../whitelists/loader'
 export const startIndexer = async (whitelistReader: LoaderBuffer) => {
   console.log('Starting indexer ...')
 
-  const { close$, rows$, blocks$, errors$ } = await loadReader(whitelistReader)
+  const { close$, rows$, blocks$, errors$, log$ } = await loadReader(
+    whitelistReader,
+  )
 
   indexActions(blocks$)
   indexTableRows(rows$, whitelistReader)
 
   close$.subscribe(() => console.log('connection closed'))
 
-  // log$.subscribe(({ message }) => console.log('ShipReader:', message))
+  log$.subscribe(({ message }: any) => console.log('ShipReader:', message))
   errors$.subscribe((error) => console.log('ShipReader:', error))
 }

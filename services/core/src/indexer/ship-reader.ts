@@ -27,14 +27,6 @@ export const loadReader = async (whitelistReader: LoaderBuffer) => {
     return abis
   }
 
-  // TODO:R comment
-  console.log('---------table_rows_whitelist---------')
-  console.dir(whitelistReader.table_rows_whitelist(), { depth: null })
-  console.log('---------actions_whitelist---------')
-  console.dir(whitelistReader.actions_whitelist(), { depth: null })
-  console.log('---------contract_abis---------')
-  // console.dir(contract_abis, { depth: null })
-
   const eosioReaderConfig: EosioReaderConfig = {
     ws_url: `ws://${eosioHost}:8080`,
     rpc_url: eosioApi,
@@ -57,7 +49,7 @@ export const loadReader = async (whitelistReader: LoaderBuffer) => {
       fetch_block: true,
       fetch_traces: true,
       fetch_deltas: true,
-      fetch_block_header: true
+      fetch_block_header: true,
     },
     auto_start: true,
   }

@@ -7,4 +7,6 @@ export const populate = async (whitelistReader: LoaderBuffer) => {
 
   await populateTokens(whitelistReader)
   await populateTableRows(whitelistReader)
+  // TODO:R add populate actions
+  // populateActions()
 }

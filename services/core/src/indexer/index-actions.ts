@@ -1,5 +1,4 @@
-import { EosioReaderLightBlock } from '@blockmatic/eosio-ship-reader'
-import { Subject } from 'rxjs'
+import { EosioReaderLightBlock, Subject } from '@blockmatic/eosio-ship-reader'
 import {
   Transactions_Insert_Input,
   Actions_Insert_Input,
@@ -62,7 +61,6 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
         }, 0) || 0
 
       await hasura.query.update_block_height({ chain_id, block_num, block_id })
-      // TODO:R uncomment
       console.log(
         `\nIndexed block ${block_num}. Nodeos head block ${info.head_block_num}. \nInserted transactions ${insertedTransactions?.data?.insert_transactions?.affected_rows}, Inserted actions ${numberOfInsertedActions} in ${insertedActions?.length} chunks,`,
       )

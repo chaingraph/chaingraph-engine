@@ -2,7 +2,6 @@ import {
   Balances_Insert_Input,
   Tokens_Insert_Input,
 } from '@chaingraph.io/hasura-client/dist/generated/hasura-graphql'
-import pAll from 'p-all'
 import { rpc } from '../utils/eosio'
 import { hasura } from '../hasura'
 import { asset } from 'eos-common'
@@ -15,15 +14,13 @@ const populateToken = async (token_contract: string) => {
     limit: 10000000,
   })
 
-  const statsRequests = rows.map(({ scope }: { scope: string }) => {
-    return async () => {
-      const { rows: rows2 } = await rpc.get_table_rows({
-        code: token_contract,
-        table: 'stat',
-        scope,
-      })
-      return rows2
-    }
+  const statsRequests = rows.map(async ({ scope }: { scope: string }) => {
+    const { rows: rows2 } = await rpc.get_table_rows({
+      code: token_contract,
+      table: 'stat',
+      scope,
+    })
+    return rows2
   })
 
   type Stat = {
@@ -32,9 +29,7 @@ const populateToken = async (token_contract: string) => {
     issuer: string
   }
 
-  const stats = (await (
-    await pAll(statsRequests, { concurrency: 50 })
-  ).flat()) as Stat[]
+  const stats = (await Promise.all(statsRequests)).flat() as Stat[]
 
   const insertStatRequests = stats.map((stat) => {
     const { symbol } = asset(stat.supply)
@@ -47,10 +42,10 @@ const populateToken = async (token_contract: string) => {
       precision: symbol.precision(),
       ...stat,
     }
-    return async () => hasura.query.upsert_token({ object: tokenObj })
+    return hasura.query.upsert_token({ object: tokenObj })
   })
 
-  await pAll(insertStatRequests, { concurrency: 50 })
+  await Promise.all(insertStatRequests)
 }
 
 const populateBalances = async (token_contract: string) => {
@@ -60,8 +55,8 @@ const populateBalances = async (token_contract: string) => {
     limit: 10000000,
   })
 
-  const table_rows_requests = scopes.map(({ scope }: { scope: string }) => {
-    return async () => {
+  const table_rows_requests = scopes.map(
+    async ({ scope }: { scope: string }) => {
       const { rows } = await rpc.get_table_rows({
         code: token_contract,
         table: 'accounts',
@@ -79,30 +74,24 @@ const populateBalances = async (token_contract: string) => {
         }
       })
       return balancesData
-    }
-  })
+    },
+  )
 
-  const balances = (await (
-    await pAll(table_rows_requests, { concurrency: 50 })
-  ).flat()) as Balances_Insert_Input[]
+  const balances = (
+    await Promise.all(table_rows_requests)
+  ).flat() as Balances_Insert_Input[]
 
   hasura.query.upsert_balances({ objects: balances })
+
 }
 
 export const populateTokens = async (whitelistReader: LoaderBuffer) => {
-  // TODO:R comment
-  console.log('---------chaingraph_token_registry---------')
-  console.dir(whitelistReader.chaingraph_token_registry(), { depth: null })
-  //TODO: R remove any
   whitelistReader
-    .chaingraph_token_registry()
-    .forEach(async (token_contract: any) => {
+    .token_list()
+    .forEach(async (token_contract: string) => {
       try {
-        console.log('populateTokens A')
         await populateToken(token_contract)
-        console.log('populateTokens B')
         await populateBalances(token_contract)
-        console.log('populateTokens C')
       } catch (error) {
         console.log(JSON.stringify(error, null, 2))
         // throw new Error('Error populating tokens')

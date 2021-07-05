@@ -1,4 +1,7 @@
-import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
+import {
+  EosioReaderTableRowsStreamData,
+  Subject,
+} from '@blockmatic/eosio-ship-reader'
 import { asset } from 'eos-common'
 import {
   Balances_Insert_Input,
@@ -29,6 +32,7 @@ const upsertTableRows = async (
             contract: row.code,
             symbol: row.value.balance.split(' ')[1],
           }
+          console.log('balances =>', object)
           hasura.query.upsert_balance({ object })
         }
 
