@@ -557,10 +557,10 @@
   resolved "https://registry.yarnpkg.com/@blockmatic/tsconfig/-/tsconfig-2.0.0.tgz#e2b470d23a767256705728620e6e0138d5dd9171"
   integrity sha512-UsQoOvaX5nAFdIaRDoHXPWNo5kTLtuO33UxKjLrCt9FhiXttkRjN6OAKRm7Qgd7VA8KpDbg3x7Tk8ZGcY21Llw==
 
-"@chaingraph.io/hasura-client@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@chaingraph.io/hasura-client/-/hasura-client-1.0.0.tgz#ac829f4972000babbed1f1e7ba9bffc0c46832ee"
-  integrity sha512-HIuOrMXe+ntaIJkEjnw3V9IUn4wmEJFA/5rJ4BeHVX0eBAwoJ6sxbTD+En6vfkWKQn/i/R8AQEZXyZ6hsZ5Wjw==
+"@chaingraph.io/hasura-client@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@chaingraph.io/hasura-client/-/hasura-client-1.0.1.tgz#99b27ecc1dc89c853647d6d9ea523d0bef61c8e1"
+  integrity sha512-0G0OpJQvdwU87YpqOWHxQy3p0cFg87PMn3l7lORb+wHEjMA+14EE0OuJdiER2TPVJ5tZerkK0pGIWQnZv+LGZw==
   dependencies:
     apollo-link "^1.2.2"
     apollo-link-ws "^1.0.8"
@@ -589,6 +589,11 @@
     make-error "^1"
     ts-node "^9"
     tslib "^2"
+
+"@eoscafe/hyperion@^3.2.7":
+  version "3.2.7"
+  resolved "https://registry.yarnpkg.com/@eoscafe/hyperion/-/hyperion-3.2.7.tgz#60e50d01338cad12ca8cb28405c151cbba1405cc"
+  integrity sha512-Dv+hri8ApX0bhY/DhTPqdFz+dv/1PuoO3EYs3OOxRbhmpiacr/48q4EqcqvIMmqfwKSxKrdlLZ8SWpfBqoYCLQ==
 
 "@eosrio/node-abieos@^2.1.1":
   version "2.1.1"
@@ -1073,6 +1078,11 @@
   integrity sha512-2S6IuBRhqUnH1/AUx9k8KWtY3Esg4eqri946MnxTG5HwehF1S5mqLln8fcyMiuQkY72p2gH3W+rIPqp5li0LyQ==
   dependencies:
     "@types/node" "*"
+
+"@types/isomorphic-fetch@^0.0.35":
+  version "0.0.35"
+  resolved "https://registry.yarnpkg.com/@types/isomorphic-fetch/-/isomorphic-fetch-0.0.35.tgz#c1c0d402daac324582b6186b91f8905340ea3361"
+  integrity sha512-DaZNUvLDCAnCTjgwxgiL1eQdxIKEpNLOlTNtAgnZc50bG2copGhRrFN9/PxPBuJe+tZVLCbQ7ls0xveXVRPkvw==
 
 "@types/js-yaml@^4.0.0":
   version "4.0.1"

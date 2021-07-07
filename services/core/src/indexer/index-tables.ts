@@ -1,7 +1,4 @@
-import {
-  EosioReaderTableRowsStreamData,
-  Subject,
-} from '@blockmatic/eosio-ship-reader'
+import { EosioReaderTableRowsStreamData } from '@blockmatic/eosio-ship-reader'
 import { asset } from 'eos-common'
 import {
   Balances_Insert_Input,

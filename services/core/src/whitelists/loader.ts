@@ -45,7 +45,7 @@ type DataMappingsType = {
 
 const onData = (data: unknown) => {
   console.log('-UPDATE MAPPING-')
-  console.dir(data, { depth: null })
+  // console.dir(data, { depth: null })
   try {
     const {
       data: { mappings },
