@@ -10,9 +10,6 @@ import { getInfo } from '../utils/eosio'
 
 export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
   let info = await getInfo()
-  setInterval(async () => {
-    info = await getInfo()
-  }, 300)
 
   console.log('Indexing actions ...')
   blocks$.subscribe(async ({ chain_id, block_num, block_id, actions }) => {
@@ -21,17 +18,18 @@ export const indexActions = async (blocks$: Subject<EosioReaderLightBlock>) => {
       const transactions = [
         ...new Set(actions?.map(({ transaction_id }) => transaction_id)),
       ]
-      const transactionsInsertInput: Transactions_Insert_Input[] = transactions.map(
-        (transaction_id) => ({
+      const transactionsInsertInput: Transactions_Insert_Input[] =
+        transactions.map((transaction_id) => ({
           chain_id,
           block_num,
           block_id,
           transaction_id,
-        }),
-      )
+        }))
       const insertedTransactions =
         transactions &&
-        (await hasura.query.insert_transaction({ objects: transactionsInsertInput }))
+        (await hasura.query.insert_transaction({
+          objects: transactionsInsertInput,
+        }))
 
       // insert the whitelisted actions
       let actionsInsertInput: Actions_Insert_Input[]

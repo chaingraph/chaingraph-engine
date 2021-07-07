@@ -1,9 +1,12 @@
 import { populateTableRows } from './populate-tables'
 import { populateTokens } from './populate-tokens'
+import { LoaderBuffer } from './../whitelists/loader'
 
-export const populate = async () => {
+export const populate = async (whitelistReader: LoaderBuffer) => {
   console.log('Populating db with current state ...')
 
-  populateTokens()
-  populateTableRows()
+  await populateTokens(whitelistReader)
+  await populateTableRows(whitelistReader)
+  // TODO:R add populate actions
+  // populateActions()
 }

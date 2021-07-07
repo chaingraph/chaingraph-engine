@@ -14,10 +14,10 @@ tasks:
   
   up:
     cmds:
-      - docker-compose up -d --build hasura auth # nginx
-      # - docker-compose up -d --build nginx-letsencrypt nginx-gen
-      # - docker-compose restart nginx
-      # - docker-compose up -d --build core
+      - docker-compose up -d --build hasura auth nginx
+      - docker-compose up -d --build nginx-letsencrypt nginx-gen
+      - docker-compose restart nginx
+      - docker-compose up -d --build core
   
   down:
     cmds:

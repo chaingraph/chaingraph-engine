@@ -5,7 +5,7 @@ import {
 import { rpc } from '../utils/eosio'
 import { hasura } from '../hasura'
 import { asset } from 'eos-common'
-import { chaingraph_token_registry } from '../whitelists/tokens'
+import { LoaderBuffer } from './../whitelists/loader'
 
 const populateToken = async (token_contract: string) => {
   const { rows } = await rpc.get_table_by_scope({
@@ -15,12 +15,12 @@ const populateToken = async (token_contract: string) => {
   })
 
   const statsRequests = rows.map(async ({ scope }: { scope: string }) => {
-      const { rows: rows2 } = await rpc.get_table_rows({
-        code: token_contract,
-        table: 'stat',
-        scope,
-      })
-      return rows2
+    const { rows: rows2 } = await rpc.get_table_rows({
+      code: token_contract,
+      table: 'stat',
+      scope,
+    })
+    return rows2
   })
 
   type Stat = {
@@ -42,7 +42,7 @@ const populateToken = async (token_contract: string) => {
       precision: symbol.precision(),
       ...stat,
     }
-    return async () => hasura.query.upsert_token({ object: tokenObj })
+    return hasura.query.upsert_token({ object: tokenObj })
   })
 
   await Promise.all(insertStatRequests)
@@ -55,7 +55,8 @@ const populateBalances = async (token_contract: string) => {
     limit: 10000000,
   })
 
-  const table_rows_requests = scopes.map(async ({ scope }: { scope: string }) => {
+  const table_rows_requests = scopes.map(
+    async ({ scope }: { scope: string }) => {
       const { rows } = await rpc.get_table_rows({
         code: token_contract,
         table: 'accounts',
@@ -73,21 +74,27 @@ const populateBalances = async (token_contract: string) => {
         }
       })
       return balancesData
-  })
+    },
+  )
 
-  const balances = (await Promise.all(table_rows_requests)).flat() as Balances_Insert_Input[]
+  const balances = (
+    await Promise.all(table_rows_requests)
+  ).flat() as Balances_Insert_Input[]
 
   hasura.query.upsert_balances({ objects: balances })
+
 }
 
-export const populateTokens = () => {
-  chaingraph_token_registry.forEach(async (token_contract) => {
-    try {
-      await populateToken(token_contract)
-      await populateBalances(token_contract)
-    } catch (error) {
-      console.log(JSON.stringify(error, null, 2))
-      throw new Error('Error populating tokens')
-    }
-  })
+export const populateTokens = async (whitelistReader: LoaderBuffer) => {
+  whitelistReader
+    .token_list()
+    .forEach(async (token_contract: string) => {
+      try {
+        await populateToken(token_contract)
+        await populateBalances(token_contract)
+      } catch (error) {
+        console.log(JSON.stringify(error, null, 2))
+        // throw new Error('Error populating tokens')
+      }
+    })
 }

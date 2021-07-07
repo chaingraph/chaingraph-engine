@@ -1,7 +1,7 @@
 {
   "name": "chaingraph",
   "version": "1.0.0",
-  "description": "Chaingraph Community Edition",
+  "description": "Chaingraph Core",
   "main": "index.js",
   "repository": "git@github.com:chaingraph/chaingraph.git",
   "author": "blockmatic.io",
@@ -53,7 +53,7 @@
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.3"
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "@blockmatic/eosio-ship-reader": "^0.3.1",
@@ -72,6 +72,7 @@
     "node-fetch": "^2.6.1",
     "node-worker-threads-pool": "^1.5.0",
     "p-queue": "^7.1.0",
+    "rxjs": "^6.6.3",
     "text-encoding": "^0.7.0",
     "winston": "^3.3.3",
     "ws": "^7.5.2"

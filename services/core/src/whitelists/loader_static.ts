@@ -20,14 +20,30 @@ export const chaingraph_table_registry: ChainGraphTableRegistry[] = [
   ...chaingraph_token_tables_registry, // Required for whitelisting on eosio-ship-reader
 ]
 
-export const table_rows_whitelist: EosioReaderTableRowFilter[] =
+const table_rows_whitelist: () => EosioReaderTableRowFilter[] = () =>
   chaingraph_table_registry.map((reg) => ({
     code: reg.code,
     scope: reg.scope,
     table: reg.table,
   }))
 
-export const actions_whitelist: EosioReaderActionFilter[] = [
+const actions_whitelist: () => EosioReaderActionFilter[] = () => [
   { code: 'bitcashtests', action: '*' },
   { code: 'bitcashbank1', action: '*' },
 ]
+
+export interface LoaderBuffer {
+  chaingraph_table_registry: () => ChainGraphTableRegistry[]
+  chaingraph_token_registry: () => any
+  table_rows_whitelist: () => EosioReaderTableRowFilter[]
+  actions_whitelist: () => EosioReaderActionFilter[]
+}
+
+export const initWhiteList = async () => {
+  return {
+    chaingraph_table_registry: () => chaingraph_table_registry,
+    chaingraph_token_registry: () => chaingraph_token_tables_registry,
+    table_rows_whitelist,
+    actions_whitelist,
+  } as LoaderBuffer
+}
