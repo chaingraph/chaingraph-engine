@@ -36,6 +36,7 @@ const populateToken = async (token_contract: string) => {
 
     const tokenObj: Tokens_Insert_Input = {
       chain_id:
+        process.env.CHAIN_ID ||
         'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
       contract: token_contract,
       symbol: symbol.code().toString(),
@@ -66,6 +67,7 @@ const populateBalances = async (token_contract: string) => {
       const balancesData = rows.map(({ balance }: { balance: string }) => {
         return {
           chain_id:
+            process.env.CHAIN_ID ||
             'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
           contract: token_contract,
           account: scope,
@@ -82,19 +84,16 @@ const populateBalances = async (token_contract: string) => {
   ).flat() as Balances_Insert_Input[]
 
   hasura.query.upsert_balances({ objects: balances })
-
 }
 
 export const populateTokens = async (whitelistReader: LoaderBuffer) => {
-  whitelistReader
-    .token_list()
-    .forEach(async (token_contract: string) => {
-      try {
-        await populateToken(token_contract)
-        await populateBalances(token_contract)
-      } catch (error) {
-        console.log(JSON.stringify(error, null, 2))
-        // throw new Error('Error populating tokens')
-      }
-    })
+  whitelistReader.token_list().forEach(async (token_contract: string) => {
+    try {
+      await populateToken(token_contract)
+      await populateBalances(token_contract)
+    } catch (error) {
+      console.log(JSON.stringify(error, null, 2))
+      // throw new Error('Error populating tokens')
+    }
+  })
 }
