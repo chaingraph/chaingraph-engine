@@ -557,10 +557,10 @@
   resolved "https://registry.yarnpkg.com/@blockmatic/tsconfig/-/tsconfig-2.0.0.tgz#e2b470d23a767256705728620e6e0138d5dd9171"
   integrity sha512-UsQoOvaX5nAFdIaRDoHXPWNo5kTLtuO33UxKjLrCt9FhiXttkRjN6OAKRm7Qgd7VA8KpDbg3x7Tk8ZGcY21Llw==
 
-"@chaingraph.io/hasura-client@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@chaingraph.io/hasura-client/-/hasura-client-1.0.2.tgz#f928ba9d6663d1f4be1145dec434e121fe62eaf0"
-  integrity sha512-LPOqrZXj9jbpoLYyAPUpQp80lXaofRbKlKSBDpqLT7uVV0btexgo1KGWt/bbPqvTkDo9npxQK3oDeeDe82w5VQ==
+"@chaingraph.io/hasura-client@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@chaingraph.io/hasura-client/-/hasura-client-1.0.3.tgz#2ec01200a3a467555e140bfce2013d9126f0b446"
+  integrity sha512-AtpXWq8C2MRL7ficMGts1HJvq78eNEfPdq0ffU6U4R6tkVghEHCDp/uJLQGcMh/5vKdAIwPdA18E7cK9qArkzQ==
   dependencies:
     apollo-link "^1.2.2"
     apollo-link-ws "^1.0.8"

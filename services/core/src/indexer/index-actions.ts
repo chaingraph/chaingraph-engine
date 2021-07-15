@@ -2,7 +2,7 @@ import { EosioReaderLightBlock, Subject } from '@blockmatic/eosio-ship-reader'
 import {
   Transactions_Insert_Input,
   Actions_Insert_Input,
-} from '@chaingraph.io/hasura-client/dist/generated/hasura-graphql'
+} from '@chaingraph.io/hasura-client'
 import omit from 'lodash.omit'
 import chunk from 'lodash.chunk'
 import { hasura } from '../hasura'
