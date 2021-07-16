@@ -5,26 +5,13 @@
   - role: api_user
     permission:
       columns:
-      - chain_id
-      - account_name
+      - chain
+      - account
       - permissions
       filter: {}
 - table:
     schema: public
     name: actions
-  select_permissions:
-  - role: api_user
-    permission:
-      columns:
-      - chain_id
-      - transaction_id
-      - contract
-      - action_name
-      - data
-      - authorization
-      - global_sequence
-      - created_at
-      filter: {}
 - table:
     schema: public
     name: api_users
@@ -47,32 +34,14 @@
           schema: public
           name: tokens
         column_mapping:
-          chain_id: chain_id
           contract: contract
-  select_permissions:
-  - role: api_user
-    permission:
-      columns:
-      - chain_id
-      - contract
-      - account
-      - balance
-      - updated_at
-      - symbol
-      filter: {}
+          chain: chain
+- table:
+    schema: public
+    name: blocks
 - table:
     schema: public
     name: chains
-  select_permissions:
-  - role: api_user
-    permission:
-      columns:
-      - name
-      - chain_id
-      - rpc_endpoint
-      - block_num
-      - block_id
-      filter: {}
 - table:
     schema: public
     name: mappings
@@ -107,45 +76,9 @@
 - table:
     schema: public
     name: table_rows
-  select_permissions:
-  - role: api_user
-    permission:
-      columns:
-      - chain_id
-      - contract
-      - table
-      - scope
-      - primary_key
-      - data
-      - updated_at
-      filter: {}
 - table:
     schema: public
     name: tokens
-  select_permissions:
-  - role: api_user
-    permission:
-      columns:
-      - chain_id
-      - contract
-      - symbol
-      - precision
-      - supply
-      - max_supply
-      - issuer
-      - updated_at
-      filter: {}
 - table:
     schema: public
     name: transactions
-  select_permissions:
-  - role: api_user
-    permission:
-      columns:
-      - chain_id
-      - block_id
-      - transaction_id
-      - data
-      - block_num
-      - created_at
-      filter: {}
