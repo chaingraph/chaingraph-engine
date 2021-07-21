@@ -494,14 +494,15 @@
     "@babel/helper-validator-identifier" "^7.14.5"
     to-fast-properties "^2.0.0"
 
-"@blockmatic/eosio-ship-reader@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@blockmatic/eosio-ship-reader/-/eosio-ship-reader-0.3.1.tgz#8f3f175846e8bed5d2b0229600a4b8f53c32601b"
-  integrity sha512-W93yr5OLqNLyvYrmBDW3QXkYeE7iH7MP9OtvyBmZVk1zKuPBXg0U4hQtLm/oidw8pRO404iVA7HQeH1w5bAdoA==
+"@blockmatic/eosio-ship-reader@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@blockmatic/eosio-ship-reader/-/eosio-ship-reader-0.4.1.tgz#facd2d7fcd9fb29648dbe7f244daacbd0511b14b"
+  integrity sha512-1TuqeQlowMFaH3V0srVgCasISwxe4cB8VWO1fWxAO4Cwvz7oywocYob+fKw8Sl7h494D6sRm2+k547mDCRT6hA==
   dependencies:
     "@eosrio/node-abieos" "^2.1.1"
     "@types/node-fetch" "^2.5.10"
     eosjs "^22.0.0"
+    lodash.omit "^4.5.0"
     node-fetch "^2.6.1"
     node-worker-threads-pool "1.4.3"
     p-queue "6.6.2"
