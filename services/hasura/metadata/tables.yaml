@@ -22,6 +22,28 @@
         column_mapping:
           transaction_id: transaction_id
           chain: chain
+  select_permissions:
+  - role: api_user
+    permission:
+      columns:
+      - chain
+      - transaction_id
+      - contract
+      - action
+      - data
+      - authorization
+      - global_sequence
+      - action_ordinal
+      - creator_action_ordinal
+      - account_ram_deltas
+      - inline_count
+      - inline_filtered
+      - receipts
+      - code_sequence
+      - abi_sequence
+      - context_free
+      - account_disk_deltas
+      filter: {}
 - table:
     schema: public
     name: api_users
@@ -46,12 +68,40 @@
         column_mapping:
           contract: contract
           chain: chain
+  select_permissions:
+  - role: api_user
+    permission:
+      columns:
+      - chain
+      - contract
+      - account
+      - balance
+      - symbol
+      filter: {}
 - table:
     schema: public
     name: blocks
+  select_permissions:
+  - role: api_user
+    permission:
+      columns:
+      - chain
+      - block_num
+      - block_id
+      - timestamp
+      - producer
+      filter: {}
 - table:
     schema: public
     name: chains
+  select_permissions:
+  - role: api_user
+    permission:
+      columns:
+      - chain_name
+      - chain_id
+      - rpc_endpoint
+      filter: {}
 - table:
     schema: public
     name: mappings
@@ -59,36 +109,35 @@
   - name: api_user
     using:
       foreign_key_constraint_on: api_user_id
-  insert_permissions:
-  - role: api_user
-    permission:
-      check:
-        api_user_id:
-          _eq: X-Hasura-User-Id
-      columns:
-      - mapping
-      backend_only: false
+- table:
+    schema: public
+    name: table_rows
   select_permissions:
   - role: api_user
     permission:
       columns:
-      - contract_name
-      - mapping
+      - chain
+      - contract
+      - table
+      - scope
+      - primary_key
+      - data
       filter: {}
-  update_permissions:
-  - role: api_user
-    permission:
-      columns: []
-      filter:
-        api_user_id:
-          _eq: X-Hasura-User-Id
-      check: null
-- table:
-    schema: public
-    name: table_rows
 - table:
     schema: public
     name: tokens
+  select_permissions:
+  - role: api_user
+    permission:
+      columns:
+      - chain
+      - contract
+      - symbol
+      - precision
+      - supply
+      - max_supply
+      - issuer
+      filter: {}
 - table:
     schema: public
     name: transactions
@@ -112,3 +161,14 @@
         column_mapping:
           transaction_id: transaction_id
           chain: chain
+  select_permissions:
+  - role: api_user
+    permission:
+      columns:
+      - chain
+      - transaction_id
+      - block_num
+      - cpu_usage_us
+      - net_usage_words
+      - net_usage
+      filter: {}
