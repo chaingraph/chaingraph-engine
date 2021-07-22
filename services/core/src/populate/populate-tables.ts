@@ -36,9 +36,10 @@ const populateTableRow = async (
     }
 
     const variables = {
-      chain_id:
-        process.env.CHAIN_ID ||
-        'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+      // chain_id:
+      //   process.env.CHAIN_ID ||
+      //   'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+      chain: 'eos',
       contract: table_registry.code,
       table: table_registry.table,
       scope: row.scope,

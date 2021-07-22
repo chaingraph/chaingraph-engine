@@ -35,9 +35,10 @@ const populateToken = async (token_contract: string) => {
     const { symbol } = asset(stat.supply)
 
     const tokenObj: Tokens_Insert_Input = {
-      chain_id:
-        process.env.CHAIN_ID ||
-        'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+      // chain_id:
+      //   process.env.CHAIN_ID ||
+      //   'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906',
+      chain: 'eos',
       contract: token_contract,
       symbol: symbol.code().toString(),
       precision: symbol.precision(),

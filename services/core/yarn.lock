@@ -558,10 +558,10 @@
   resolved "https://registry.yarnpkg.com/@blockmatic/tsconfig/-/tsconfig-2.0.0.tgz#e2b470d23a767256705728620e6e0138d5dd9171"
   integrity sha512-UsQoOvaX5nAFdIaRDoHXPWNo5kTLtuO33UxKjLrCt9FhiXttkRjN6OAKRm7Qgd7VA8KpDbg3x7Tk8ZGcY21Llw==
 
-"@chaingraph.io/hasura-client@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@chaingraph.io/hasura-client/-/hasura-client-1.0.3.tgz#2ec01200a3a467555e140bfce2013d9126f0b446"
-  integrity sha512-AtpXWq8C2MRL7ficMGts1HJvq78eNEfPdq0ffU6U4R6tkVghEHCDp/uJLQGcMh/5vKdAIwPdA18E7cK9qArkzQ==
+"@chaingraph.io/hasura-client@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@chaingraph.io/hasura-client/-/hasura-client-1.3.0.tgz#fc54feb0251abf0f8fb420ee8853a39b75ce06d6"
+  integrity sha512-/mNPsdMXBALg+GthSypzEZLpbUoM6tJFp3tj0l6NFm6HTacdRTsvcB0Y7WOvWiM6PDVZLCmX2RvlpjwEDRSmig==
   dependencies:
     apollo-link "^1.2.2"
     apollo-link-ws "^1.0.8"
@@ -2481,9 +2481,9 @@ ecdsa-sig-formatter@1.0.11:
     safe-buffer "^5.0.1"
 
 electron-to-chromium@^1.3.723:
-  version "1.3.782"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.782.tgz#522740fe6b4b5255ca754c68d9c406a17b0998e2"
-  integrity sha512-6AI2se1NqWA1SBf/tlD6tQD/6ZOt+yAhqmrTlh4XZw4/g0Mt3p6JhTQPZxRPxPZiOg0o7ss1EBP/CpYejfnoIA==
+  version "1.3.784"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.784.tgz#c370be79374b02b7f13e8a8fb0d7a02641161dac"
+  integrity sha512-JTPxdUibkefeomWNaYs8lI/x/Zb4cOhZWX+d7kpzsNKzUd07pNuo/AcHeNJ/qgEchxM1IAxda9aaGUhKN/poOg==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -4103,9 +4103,9 @@ lines-and-columns@^1.1.6:
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
 lint-staged@^11.0.0:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-11.0.1.tgz#1b8ae8ed5a52ed87252db95fe008c2618c85f55a"
-  integrity sha512-RkTA1ulE6jAGFskxpGAwxfVRXjHp7D9gFg/+KMARUWMPiVFP0t28Em2u0gL8sA0w3/ck3TC57F2v2RNeQ5XPnw==
+  version "11.1.0"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-11.1.0.tgz#a21d67ffe4516e907635adeaf6d6450d8cffb4e4"
+  integrity sha512-pzwEf+NKbTauAlk7gPPwTfulRXESEPZCSFXYfg20F220UOObebxu5uL5mkr9csQLNOM2Ydfrt3DJXakzAL7aaQ==
   dependencies:
     chalk "^4.1.1"
     cli-truncate "^2.1.0"

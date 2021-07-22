@@ -12,6 +12,16 @@
 - table:
     schema: public
     name: actions
+  object_relationships:
+  - name: transaction
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: transactions
+        column_mapping:
+          transaction_id: transaction_id
+          chain: chain
 - table:
     schema: public
     name: api_users
@@ -82,3 +92,23 @@
 - table:
     schema: public
     name: transactions
+  object_relationships:
+  - name: block
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: blocks
+        column_mapping:
+          chain: chain
+          block_num: block_num
+  array_relationships:
+  - name: actions
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: actions
+        column_mapping:
+          transaction_id: transaction_id
+          chain: chain
