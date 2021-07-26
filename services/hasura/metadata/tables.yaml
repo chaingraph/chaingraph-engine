@@ -38,7 +38,7 @@
       - account_ram_deltas
       - inline_count
       - inline_filtered
-      - receipts
+      - receipt
       - code_sequence
       - abi_sequence
       - context_free
