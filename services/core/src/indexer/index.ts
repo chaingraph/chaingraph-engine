@@ -70,11 +70,19 @@ export const startIndexer = async (whitelistReader: LoaderBuffer) => {
 
     // insert action traces
     const actions = block.actions.map((action) => ({
-      ...action,
+      ...omit(action, 'account', 'name', 'elapsed', 'return_value'),
+      contract: action.account,
+      action: action.name,
       chain: 'eos',
     }))
 
-    hasura.query.upsert_actions({ objects: actions })
+    try {
+      hasura.query.upsert_actions({ objects: actions })
+    } catch (error) {
+      console.log('=============================')
+      console.log({ actions })
+      process.exit(1)
+    }
   })
 
   // indexActions(blocks$)

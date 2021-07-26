@@ -36,13 +36,13 @@
       - action_ordinal
       - creator_action_ordinal
       - account_ram_deltas
-      - inline_count
-      - inline_filtered
       - receipt
       - code_sequence
       - abi_sequence
       - context_free
       - account_disk_deltas
+      - console
+      - receiver
       filter: {}
 - table:
     schema: public
