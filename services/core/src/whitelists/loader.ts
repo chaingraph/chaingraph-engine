@@ -117,11 +117,8 @@ const onError = (error: unknown) => {
   console.log('-ERROR ON MAPPING-', error)
 }
 
-const subscribe = () => {
-  return new Promise((resolve) => {
-    getSubscription({ resolve, onData, onError })
-  })
-}
+const subscribe = () =>
+  new Promise((resolve) => getSubscription({ resolve, onData, onError }))
 
 export const initWhiteList = async () => {
   await subscribe()
