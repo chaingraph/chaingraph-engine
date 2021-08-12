@@ -1,5 +1,5 @@
 import { log } from '../utils/logger'
-import { LoaderBuffer } from 'whitelists/loader'
+import { LoaderBuffer } from '../whitelists'
 
 export const loadHistory = async (whitelistReader: LoaderBuffer) => {
   log.info(

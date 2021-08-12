@@ -1,4 +1,4 @@
-import { LoaderBuffer } from '../whitelists/loader'
+import { LoaderBuffer } from '../whitelists'
 import { EosioReaderTableRow } from '@blockmatic/eosio-ship-reader'
 import omit from 'lodash.omit'
 
@@ -7,7 +7,7 @@ export const getTableRegistry = (
   whitelistReader: LoaderBuffer,
 ) => {
   const table_registry = whitelistReader
-    .chaingraph_table_registry()
+    .get_chaingraph_table_registry()
     .find(({ code, scope, table }) => {
       return (
         code === row.code &&
@@ -61,10 +61,12 @@ export const getPrimaryKey = (
 export const getChainGraphTableRowData = (
   row: EosioReaderTableRow,
   whitelistReader: LoaderBuffer,
-) => ({
-  primary_key: getPrimaryKey(row, whitelistReader),
-  ...omit(row, 'value', 'code', 'present', 'primary_key'),
-  data: row.value,
-  contract: row.code,
-  chain: 'eos',
-})
+) => {
+  return {
+    primary_key: getPrimaryKey(row, whitelistReader).toString(),
+    ...omit(row, 'value', 'code', 'present', 'primary_key'),
+    data: row.value,
+    contract: row.code,
+    chain: 'eos',
+  }
+}

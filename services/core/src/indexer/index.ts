@@ -1,7 +1,8 @@
-import { initWhiteList } from './../whitelists/loader'
+import { initWhiteList } from '../whitelists'
 import { startRealTimeStreaming } from './real-time'
 import { loadCurrentTableState } from './load-state'
 import { loadHistory } from './load-history'
+import { log } from '../utils/logger'
 
 export const startIndexer = async () => {
   // get an instance of the whitelist reader

@@ -1,5 +1,5 @@
 import { loadReader } from './ship-reader'
-import { LoaderBuffer } from './../whitelists/loader'
+import { LoaderBuffer } from '../whitelists'
 import { hasura } from '../hasura'
 import omit from 'lodash.omit'
 import { log } from '../utils/logger'

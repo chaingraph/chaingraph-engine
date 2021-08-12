@@ -5,7 +5,7 @@ import {
 } from '@blockmatic/eosio-ship-reader'
 import fetch from 'node-fetch'
 import { eosioApi, eosioHost, fecthAbi } from '../utils/eosio'
-import { LoaderBuffer } from '../whitelists/loader'
+import { LoaderBuffer } from '../whitelists'
 
 export const loadReader = async (whitelistReader: LoaderBuffer) => {
   const info = await fetch(`${eosioApi}/v1/chain/get_info`).then((res: any) =>
@@ -14,7 +14,7 @@ export const loadReader = async (whitelistReader: LoaderBuffer) => {
 
   const uniqueContractNames = [
     ...new Set(
-      whitelistReader.table_rows_whitelist().map((row: any) => row.code),
+      whitelistReader.get_table_rows_whitelist().map((row: any) => row.code),
     ),
   ]
   const abisArr = await Promise.all(
@@ -37,8 +37,8 @@ export const loadReader = async (whitelistReader: LoaderBuffer) => {
       'contract_row',
       'contract_index64',
     ],
-    table_rows_whitelist: whitelistReader.table_rows_whitelist,
-    actions_whitelist: whitelistReader.actions_whitelist,
+    table_rows_whitelist: whitelistReader.get_table_rows_whitelist,
+    actions_whitelist: whitelistReader.get_actions_whitelist,
     contract_abis,
     request: {
       start_block_num: info.head_block_num + 10,
