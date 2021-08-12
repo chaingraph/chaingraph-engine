@@ -2,6 +2,7 @@ import {
   EosioReaderActionFilter,
   EosioReaderTableRowFilter,
 } from '@blockmatic/eosio-ship-reader'
+import { log } from '../utils/logger'
 import { getSubscription } from './subscriptions'
 export interface ChainGraphTableRegistry extends EosioReaderTableRowFilter {
   table_key: string
@@ -44,8 +45,7 @@ type DataMappingsType = {
 }
 
 const onData = (data: unknown) => {
-  console.log('-UPDATE MAPPING-')
-  // console.dir(data, { depth: null })
+  log.info('Updating contract mappings in memory ...')
   try {
     const {
       data: { mappings },
@@ -107,20 +107,20 @@ const onData = (data: unknown) => {
       actions_registry,
       token_list,
     ]
-    console.log('-UPDATE MAPPINGS COMPLETED-')
   } catch (error) {
-    console.error('error on update mappings', error)
+    log.error('Error updating contract mappings', error)
   }
 }
 
 const onError = (error: unknown) => {
-  console.log('-ERROR ON MAPPING-', error)
+  log.error('Error updating contract mappings', error)
 }
 
 const subscribe = () =>
   new Promise((resolve) => getSubscription({ resolve, onData, onError }))
 
 export const initWhiteList = async () => {
+  log.info('Subscribing to contract mappings ...')
   await subscribe()
   return {
     chaingraph_table_registry,

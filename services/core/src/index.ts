@@ -1,12 +1,6 @@
-import { initWhiteList } from './whitelists/loader'
+import { log } from './utils/logger'
 import { startIndexer } from './indexer'
-// import { populate } from './populate'
-;(async () => {
-  try {
-    const whitelistReader = await initWhiteList()
-    // await populate(whitelistReader)
-    await startIndexer(whitelistReader)
-  } catch (error) {
-    console.log('global error', error)
-  }
-})()
+
+log.info('Chaingraph is loading up ...')
+
+startIndexer()
