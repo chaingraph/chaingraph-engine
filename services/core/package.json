@@ -60,6 +60,7 @@
   "dependencies": {
     "@blockmatic/eosio-ship-reader": "^0.4.3",
     "@chaingraph.io/hasura-client": "^1.3.2",
+    "@dfuse/client": "^0.3.20",
     "@eoscafe/hyperion": "^3.2.7",
     "@eosrio/node-abieos": "^2.1.1",
     "@greymass/eosio": "^0.4.6",

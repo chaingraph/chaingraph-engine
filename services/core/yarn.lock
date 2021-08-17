@@ -586,6 +586,14 @@
     enabled "2.0.x"
     kuler "^2.0.0"
 
+"@dfuse/client@^0.3.20":
+  version "0.3.20"
+  resolved "https://registry.yarnpkg.com/@dfuse/client/-/client-0.3.20.tgz#43bb07607132c454489aca3f2f05d3cb74967601"
+  integrity sha512-KzBIiSh+AHv9oVZb0RDCYjy8tnN761bRxyW6DSMxDYBObB1p1m2GpPNxbIvBgeJNddO7/kK8xL6HNY9mGjWJww==
+  dependencies:
+    "@types/debug" "^0.0.31"
+    debug "^4.1.0"
+
 "@endemolshinegroup/cosmiconfig-typescript-loader@3.0.2":
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/@endemolshinegroup/cosmiconfig-typescript-loader/-/cosmiconfig-typescript-loader-3.0.2.tgz#eea4635828dde372838b0909693ebd9aafeec22d"
@@ -1212,6 +1220,11 @@
   version "3.5.36"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.36.tgz#00d9301d4dc35c2f6465a8aec634bb533674c652"
   integrity sha512-HBNx4lhkxN7bx6P0++W8E289foSu8kO8GCk2unhuVggO+cE7rh9DhZUyPhUxNRG9m+5B5BTKxZQ5ZP92x/mx9Q==
+
+"@types/debug@^0.0.31":
+  version "0.0.31"
+  resolved "https://registry.yarnpkg.com/@types/debug/-/debug-0.0.31.tgz#bac8d8aab6a823e91deb7f79083b2a35fa638f33"
+  integrity sha512-LS1MCPaQKqspg7FvexuhmDbWUhE2yIJ+4AgVIyObfc06/UKZ8REgxGNjZc82wPLWmbeOm7S+gSsLgo75TanG4A==
 
 "@types/glob@^7.1.1":
   version "7.1.4"
