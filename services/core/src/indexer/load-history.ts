@@ -11,12 +11,11 @@ import { hasura } from '../hasura'
 import uniqBy from 'lodash.uniqby'
 import pThrottle from 'p-throttle'
 import { whilst } from '../utils/promises'
-import { longStackTraces } from 'bluebird'
 
 const endpoint =
   process.env.HYPERION_ENDPOINT || 'https://eos.hyperion.eosrio.io'
 const rpc = new JsonRpc(endpoint, { fetch })
-const PAGE_SIZE = 10 // parseInt(process.env.MAX_ACTIONS_LIMIT || '1000')
+const PAGE_SIZE = 1000 // parseInt(process.env.MAX_ACTIONS_LIMIT || '1000')
 
 export const loadHistory = async (whitelistReader: LoaderBuffer) => {
   log.info('Loading action and transaction history ...')
@@ -98,8 +97,13 @@ const loadHyperionActions = async (hyperion_actions: HyperionAction<any>[]) => {
 
     return true
   } catch (error) {
-    log.error(error)
-    throw error
+    log.error(
+      'ERRROOOR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+      Object.keys(error.response),
+      error.response.errors,
+    )
+    // throw error
+    return true // ignore the error for now - Gabo
   }
 }
 
@@ -143,12 +147,12 @@ export const loadActionHistory = async (account: string, filter: string) => {
         return false
       }
     } catch (error) {
-      log.info('hyperion request failed', JSON.stringify(error.response))
+      log.info('hyperion request failed')
       return true // keep trying
     }
   }
 
   await whilst(hasMorePages, loadHyperionPages)
 
-  log.info('Succesfully loaded history from Hyperion!')
+  log.info('Succesfully loaded history from Hyperion!', 'LOL ???')
 }
