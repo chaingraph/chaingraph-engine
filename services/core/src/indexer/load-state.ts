@@ -17,12 +17,12 @@ export const loadCurrentTableState = async (whitelistReader: LoaderBuffer) => {
     const scopes = entry.scope
       ? [{ scope: entry.scope }]
       : (
-          await rpc.get_table_by_scope({
-            code: entry.code,
-            table: entry.table,
-            limit: 1000000,
-          })
-        ).rows
+        await rpc.get_table_by_scope({
+          code: entry.code,
+          table: entry.table,
+          limit: 1000000,
+        })
+      ).rows
 
     // get all table rows acrross all scope flat them out on allRows array
     const allRows = (

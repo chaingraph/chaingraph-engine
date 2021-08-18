@@ -43,3 +43,8 @@ tasks:
       - docker-compose up -d --build core
       - docker-compose up -d --build nginx-letsencrypt nginx-gen
       - docker-compose restart nginx
+
+  apply:
+      cmds:
+        - hasura migrate apply --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
+        - hasura metadata apply --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
