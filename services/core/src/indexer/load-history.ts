@@ -11,6 +11,7 @@ import { hasura } from '../hasura'
 import uniqBy from 'lodash.uniqby'
 import pThrottle from 'p-throttle'
 import { whilst } from '../utils/promises'
+import { longStackTraces } from 'bluebird'
 
 const endpoint =
   process.env.HYPERION_ENDPOINT || 'https://eos.hyperion.eosrio.io'
@@ -36,6 +37,7 @@ export const loadHistory = async (whitelistReader: LoaderBuffer) => {
 }
 
 const loadHyperionActions = async (hyperion_actions: HyperionAction<any>[]) => {
+  log.info(`Loading ${hyperion_actions.length} hyperion actions ...`)
   try {
     type UpsertObjects = {
       actions: Actions_Insert_Input[]
@@ -82,17 +84,17 @@ const loadHyperionActions = async (hyperion_actions: HyperionAction<any>[]) => {
     const loaded_blocks = await hasura.query.upsert_blocks({
       objects: objects.blocks,
     })
-    log.info('loaded_blocks', JSON.stringify(loaded_blocks))
+    // log.info('loaded_blocks', JSON.stringify(loaded_blocks))
 
     const loaded_transactions = await hasura.query.upsert_transactions({
       objects: objects.transactions,
     })
-    log.info('loaded_transactions', JSON.stringify(loaded_transactions))
+    // log.info('loaded_transactions', JSON.stringify(loaded_transactions))
 
     const loaded_actions = await hasura.query.upsert_actions({
       objects: objects.actions,
     })
-    log.info('loaded_actions', JSON.stringify(loaded_actions))
+    // log.info('loaded_actions', JSON.stringify(loaded_actions))
 
     return true
   } catch (error) {
@@ -106,7 +108,7 @@ export const loadActionHistory = async (account: string, filter: string) => {
   const now = Date.now()
   const throttleRequest = pThrottle({
     limit: 1,
-    interval: 5000,
+    interval: 1000,
   })
   let page = 0
   let morePages = true
@@ -122,21 +124,27 @@ export const loadActionHistory = async (account: string, filter: string) => {
       skip: PAGE_SIZE * page,
     })
   })
+
   const loadHyperionPages = async () => {
     const filter_page = `filter: ${account}:${filter}, limit: ${PAGE_SIZE}, skip: ${
       PAGE_SIZE * page
     }, page ${page}`
     log.info(`Loading action history from Hyperion for ${filter_page}`)
 
-    const response = await throttledHyperionGetActions(page)
-    if (response.actions) {
-      await loadHyperionActions(response.actions)
-      page++
-      return true
-    } else {
-      log.info(`setting more pages to false for ${filter_page}`)
-      morePages = false
-      return false
+    try {
+      const response = await throttledHyperionGetActions(page)
+      if (response.actions.length > 0) {
+        await loadHyperionActions(response.actions)
+        page++
+        return true
+      } else {
+        log.info(`BAZINGA STOP. setting morePages to false for ${filter_page}`)
+        morePages = false
+        return false
+      }
+    } catch (error) {
+      log.info('hyperion request failed', JSON.stringify(error.response))
+      return true // keep trying
     }
   }
 
