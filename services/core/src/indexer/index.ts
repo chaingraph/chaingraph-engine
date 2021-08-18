@@ -10,9 +10,9 @@ export const startIndexer = async () => {
   // soon this whitelist will come from a smart contract, for now we are using a pg db to get going
   const whitelistReader = await initWhiteList()
   // start indexing state updates in real-time as soon as the server starts
-  // startRealTimeStreaming(whitelistReader)
+  startRealTimeStreaming(whitelistReader)
   // load current state of whitelisted tables, overwritting real-time stream shouldn't be an issue since it's the latest state
-  // loadCurrentTableState(whitelistReader)
+  loadCurrentTableState(whitelistReader)
   // load historical action and transaction data from dFuse community edition
-  loadHistory(whitelistReader)
+  // loadHistory(whitelistReader)
 }
