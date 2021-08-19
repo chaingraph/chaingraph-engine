@@ -1,16 +1,5 @@
 - table:
     schema: public
-    name: accounts
-  select_permissions:
-  - role: api_user
-    permission:
-      columns:
-      - chain
-      - account
-      - permissions
-      filter: {}
-- table:
-    schema: public
     name: actions
   object_relationships:
   - name: transaction
