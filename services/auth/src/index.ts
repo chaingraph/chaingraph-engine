@@ -1,55 +1,47 @@
 const express = require('express')
 require('dotenv').config()
 import { getHasuraSDK } from '@chaingraph.io/hasura-client'
+import { log } from './logger'
 const bodyParser = require('body-parser')
 import { URL } from 'url'
+import { config } from './config'
 
-const hostname = process.env.HOSTNAME || '0.0.0.0'
-const port = Number(process.env.PORT || 3000)
+const hasura = getHasuraSDK({
+  url: config.hasura_api,
+  adminSecret: config.hasura_admin_secret,
+})
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.post('/', async (req: any, res: any) => {
-  console.log({
-    hasuraApi: process.env.HASURA_API!,
-    adminSecret: process.env.HASURA_GRAPHQL_ADMIN_SECRET!,
-  })
+  // log.info('body', req.body)
+  // log.info('headers', req.headers)
 
-  const hasura = getHasuraSDK({
-    url: process.env.HASURA_API!,
-    adminSecret: process.env.HASURA_GRAPHQL_ADMIN_SECRET!,
-  })
-
-  console.log('body', req.body)
-  console.log('headers', req.headers)
-  const hostname = new URL(req.body.headers['Origin'] || req.body.headers['origin']).hostname
-  console.log('hostname:', hostname)
-
+  let user
   const apiKey: string = req.body.headers['x-chaingraph-api-key'] || ''
 
-  const result = await hasura.query.get_api_user_by_key({ api_key: apiKey })
+  // skip validations if using codegen key
+  if (apiKey !== config.chaingraph_codegen_key) {
+    log.info(`running api key validation for non codegen api key = ${apiKey}`)
 
-  console.log('users', result?.data?.api_users)
-  if (result?.data?.api_users.length === 0) {
-    return res.sendStatus(404).end()
+    // find user for this key. keys are unique
+    const result = await hasura.query.get_api_user_by_key({ api_key: apiKey })
+    if (result?.data?.api_users.length === 0) return res.sendStatus(404).end()
+    user = result?.data?.api_users[0]
+
+    // validate it is valid hostname
+    const hostname = new URL(req.body.headers.Origin || req.body.headers.origin).hostname
+    if (!user?.domain_names?.split(',').includes(hostname)) return res.sendStatus(404).end()
   }
 
-  const user = result?.data?.api_users[0]
-
-  if (!user?.domain_names?.split(',').includes(hostname)) {
-    return res.sendStatus(404).end()
-  }
-
-  res.send({
-    'X-Hasura-User-Id': `${user.id}`,
+  return res.send({
+    'X-Hasura-User-Id': user ? user.id : 'codegen',
     'X-Hasura-Role': 'api_user',
     'X-Hasura-Is-Owner': 'true',
     'Cache-Control': 'max-age=600',
   })
 })
 
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
-})
+app.listen(3000, '0.0.0.0', () => log.info('Server running at http://0.0.0.0:3000/'))

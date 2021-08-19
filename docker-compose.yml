@@ -58,6 +58,7 @@ services:
     environment:
       HASURA_API: ${HASURA_API}
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      CHAINGRAPH_CODEGEN_KEY: ${CHAINGRAPH_CODEGEN_KEY}
     ports:
       - '3000:3000'
   
