@@ -18,7 +18,6 @@ app.use(bodyParser.json())
 app.post('/', async (req: any, res: any) => {
   // log.info('body', req.body)
   // log.info('headers', req.headers)
-
   let user
   const apiKey: string = req.body.headers['x-chaingraph-api-key'] || ''
 
@@ -27,7 +26,7 @@ app.post('/', async (req: any, res: any) => {
     log.info(`running api key validation for non codegen api key = ${apiKey}`)
 
     // find user for this key. keys are unique
-    const result = await hasura.query.get_api_user_by_key({ api_key: apiKey })
+    const result = await hasura.query.get_api_user_by_key({ api_key: apiKey.toString() })
     if (result?.data?.api_users.length === 0) return res.sendStatus(404).end()
     user = result?.data?.api_users[0]
 
@@ -37,7 +36,7 @@ app.post('/', async (req: any, res: any) => {
   }
 
   return res.send({
-    'X-Hasura-User-Id': user ? user.id : 'codegen',
+    'X-Hasura-User-Id': user ? user.id.toString() : 'codegen',
     'X-Hasura-Role': 'api_user',
     'X-Hasura-Is-Owner': 'true',
     'Cache-Control': 'max-age=600',
