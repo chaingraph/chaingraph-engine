@@ -2,6 +2,44 @@
 
 A realtime GraphQL API and indexing service for blockchain applications.
 
+## TODO:
+
+- remove hasura-client in favor of node-postgres
+- upgrade hasura engine.
+- update mappings to that it uses primary_key type attrib
+- update schema
+  - review action data saved, reduce space
+  - use pg views for tokens and balances
+- update data indexers 
+- setup jungle and telos streaming
+- improve history loading
+- stress test with eosio.token data
+- restore 
+- update documentation, create a gitbook
+  - document history of the project, philosophy and why not history tools ( cos it's bloated )
+- how to limit socket connections, rate limiting, blacklisting ips.
+- review logger, polluting pm2 logs
+
+### Schemas
+
+Balances
+
+chain - text, primary key
+contract - text, primary key
+account - text, primary key
+balance - text
+symbol - text, primary key
+
+Tokens
+
+chain - text, primary key
+contract - text, primary key
+symbol - text, primary key
+precision - integer
+supply - text
+max_supply - text, nullable
+issuer - text
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -32,6 +70,17 @@ A realtime GraphQL API and indexing service for blockchain applications.
 - Custom offchain data resolvers with Apollo.
 - Supports ad-hoc external graph stitching and federation.
 - Supports ad-hoc offchain graphql resolvers.
+
+## Hasura Resources
+
+- [Building your schema](https://docs.hasura.io/1.0/graphql/manual/schema/index.html)
+- [GraphQL Queries](https://docs.hasura.io/1.0/graphql/manual/queries/index.html)
+- [GraphQL Mutations](https://docs.hasura.io/1.0/graphql/manual/mutations/index.html)
+- [GraphQL Subscriptions](https://docs.hasura.io/1.0/graphql/manual/subscriptions/index.html)
+- [Event Triggers](https://docs.hasura.io/1.0/graphql/manual/event-triggers/index.html)
+- [Authentication/Access control](https://docs.hasura.io/1.0/graphql/manual/auth/index.html)
+- [Database Migrations](https://docs.hasura.io/1.0/graphql/manual/migrations/index.html)
+- [Guides/Tutorials/Resources](https://docs.hasura.io/1.0/graphql/manual/guides/index.html)
 
 ## Architecture
 

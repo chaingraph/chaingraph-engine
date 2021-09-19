@@ -1,19 +1,8 @@
 .history
-dist/
-node_modules/
+
 *.log
 .DS_Store
-abi.json
 
 .env
 !.env.example
 .ssh
-
-# temporary copy hack
-services/auth/modules
-services/core/modules
-
-services/nginx/*
-!services/nginx/nginx.tmpl
-
-services/eos-api/src/data/*

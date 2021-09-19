@@ -5,7 +5,7 @@ services:
     container_name: chaingraph_postgres
     image: postgres:10.4
     volumes: 
-      - chaingraph-postgres-data-volume:/var/lib/postgresql/data
+      - pg-data:/var/lib/postgresql/data
     ports:
       - '5432:5432'
     environment:
@@ -21,61 +21,29 @@ services:
     image: hasura/graphql-engine:v1.3.3.cli-migrations-v2
     ports:
       - '8088:8080'
-    depends_on:
-      - postgres
-    #  - auth
     restart: always
     environment:
       # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html
-      HASURA_GRAPHQL_DATABASE_URL: postgres://user:pass@postgres:5432/chaingraph?sslmode=disable
+      HASURA_GRAPHQL_DATABASE_URL: ${DATABASE_URL}
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
       HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
-      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
-      HASURA_GRAPHQL_AUTH_HOOK: ${HASURA_GRAPHQL_AUTH_HOOK}
+      HASURA_GRAPHQL_ADMIN_SECRET: ${ADMIN_SECRET}
+      HASURA_GRAPHQL_AUTH_HOOK: ${AUTH_HOOK}
       HASURA_GRAPHQL_AUTH_HOOK_MODE: POST
       HASURA_GRAPHQL_DEV_MODE: 'true'
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
       HASURA_GRAPHQL_CORS_DOMAIN: '*'
-    networks:
-      default:
-        aliases:
-          - ${CHAINGRAPH_API_DOMAIN}
     volumes:
-      - ./services/hasura/migrations:/hasura-migrations #  mount hasura migrations folder
-      - ./services/hasura/metadata:/hasura-metadata #  mount hasura metadata folder
+      - ./migrations:/hasura-migrations #  mount hasura migrations folder
+      - ./metadata:/hasura-metadata #  mount hasura metadata folder
     command:
       - graphql-engine
       - serve
-
-  auth:
-    container_name: chaingraph_auth
-    build:
-      context: ./services/auth
-    environment:
-      HASURA_API: ${HASURA_API}
-      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
-      CHAINGRAPH_CODEGEN_KEY: ${CHAINGRAPH_CODEGEN_KEY}
-    ports:
-      - '3000:3000'
-  
-  core:
-    container_name: chaingraph_core
-    build:
-      context: ./services/core
     depends_on:
-      - hasura
-    environment:
-      HASURA_API: ${HASURA_API}
-      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
-      EOS_NODEOS_HOST: ${EOS_NODEOS_HOST}
-      EOS_NODEOS_PORT: ${EOS_NODEOS_PORT}
-      WAIT_HOSTS: ${HASURA_HOST}:8088
-      WAIT_HOSTS_TIMEOUT: 60
-    ports:
-      - '3030:3030'
+      - postgres
 
 volumes:
-  chaingraph-postgres-data-volume:
+  pg-data:
 
 networks:
   default:

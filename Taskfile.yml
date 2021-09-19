@@ -6,11 +6,11 @@ silent: true
 tasks:
   console:
     cmds:
-      - hasura console --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
+      - hasura console --admin-secret=$ADMIN_SECRET
 
   seed:
     cmds:
-      - hasura seeds apply --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
+      - hasura seeds apply --admin-secret=$ADMIN_SECRET
   
   up:
     cmds:
@@ -33,14 +33,13 @@ tasks:
 
   boot:
     cmds:
-      - docker-compose up -d --build hasura auth 
-      - sleep 30
-      - hasura migrate apply --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
-      - hasura metadata apply --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
-      - hasura seeds apply --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
-      - docker-compose up -d --build core
+      - docker-compose up -d --build 
+      - sleep 20
+      - hasura migrate apply --admin-secret=$ADMIN_SECRET
+      - hasura metadata apply --admin-secret=$ADMIN_SECRET
+      - hasura seeds apply --admin-secret=$ADMIN_SECRET
 
   apply:
       cmds:
-        - hasura migrate apply --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
-        - hasura metadata apply --project services/hasura --admin-secret=$HASURA_GRAPHQL_ADMIN_SECRET
+        - hasura migrate apply --admin-secret=$ADMIN_SECRET
+        - hasura metadata apply --admin-secret=$ADMIN_SECRET
