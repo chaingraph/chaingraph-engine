@@ -1,0 +1,11 @@
+table:
+  name: api_users
+  schema: public
+array_relationships:
+- name: mappings
+  using:
+    foreign_key_constraint_on:
+      column: api_user_id
+      table:
+        name: mappings
+        schema: public

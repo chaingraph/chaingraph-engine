@@ -1,0 +1,7 @@
+table:
+  name: mappings
+  schema: public
+object_relationships:
+- name: api_user
+  using:
+    foreign_key_constraint_on: api_user_id

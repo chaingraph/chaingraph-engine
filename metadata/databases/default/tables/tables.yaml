@@ -1,0 +1,7 @@
+- "!include public_actions.yaml"
+- "!include public_api_users.yaml"
+- "!include public_blocks.yaml"
+- "!include public_chains.yaml"
+- "!include public_mappings.yaml"
+- "!include public_table_rows.yaml"
+- "!include public_transactions.yaml"

@@ -1,0 +1,14 @@
+table:
+  name: actions
+  schema: public
+object_relationships:
+- name: transaction
+  using:
+    manual_configuration:
+      column_mapping:
+        chain: chain
+        transaction_id: transaction_id
+      insertion_order: null
+      remote_table:
+        name: transactions
+        schema: public
