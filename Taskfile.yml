@@ -39,7 +39,7 @@ tasks:
       - hasura metadata apply --admin-secret=$ADMIN_SECRET
       - hasura seeds apply --admin-secret=$ADMIN_SECRET
 
-  apply:
+  migrate:
       cmds:
         - hasura migrate apply  --database-name=default --admin-secret=$ADMIN_SECRET
         - hasura metadata apply --admin-secret=$ADMIN_SECRET

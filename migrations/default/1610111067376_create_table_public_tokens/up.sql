@@ -1,1 +1,0 @@
-CREATE TABLE "public"."tokens"("chain_id" text NOT NULL, "contract" text NOT NULL, "ticker" text NOT NULL, "precision" integer NOT NULL, "supply" text NOT NULL, "max_supply" text NOT NULL, "issuer" text NOT NULL, PRIMARY KEY ("chain_id","contract") , FOREIGN KEY ("chain_id") REFERENCES "public"."chains"("chain_id") ON UPDATE restrict ON DELETE restrict);

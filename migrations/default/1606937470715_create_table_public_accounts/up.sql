@@ -1,1 +1,0 @@
-CREATE TABLE "public"."accounts"("chain_id" text NOT NULL, "account_name" text NOT NULL, "permissions" jsonb NOT NULL, PRIMARY KEY ("chain_id","account_name") , FOREIGN KEY ("chain_id") REFERENCES "public"."chains"("chain_id") ON UPDATE restrict ON DELETE restrict);
