@@ -6,11 +6,11 @@ silent: true
 tasks:
   console:
     cmds:
-      - hasura console --admin-secret=$ADMIN_SECRET
+      - hasura console --envfile .env
 
   seed:
     cmds:
-      - hasura seeds apply --admin-secret=$ADMIN_SECRET
+      - hasura seeds apply --envfile .env
   
   up:
     cmds:
@@ -35,11 +35,11 @@ tasks:
     cmds:
       - docker-compose up -d --build 
       - sleep 30
-      - hasura migrate apply --database-name=default --admin-secret=$ADMIN_SECRET
-      - hasura metadata apply --admin-secret=$ADMIN_SECRET
-      - hasura seeds apply --admin-secret=$ADMIN_SECRET
+      - hasura migrate apply --database-name=default --envfile .env
+      - hasura metadata apply --envfile .env
+      - hasura seeds apply --envfile .env
 
   migrate:
       cmds:
-        - hasura migrate apply  --database-name=default --admin-secret=$ADMIN_SECRET
-        - hasura metadata apply --admin-secret=$ADMIN_SECRET
+        - hasura migrate apply  --database-name=default --envfile .env
+        - hasura metadata apply --envfile .env
