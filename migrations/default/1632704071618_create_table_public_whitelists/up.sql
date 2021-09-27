@@ -1,0 +1,1 @@
+CREATE TABLE "public"."whitelists" ("chain" text NOT NULL, "contract" text NOT NULL, "start_block" integer NOT NULL, "actions" jsonb NOT NULL, "tables" jsonb NOT NULL, "app_id" uuid NOT NULL, "history_ready" boolean NOT NULL DEFAULT false, PRIMARY KEY ("chain","contract","app_id") );
