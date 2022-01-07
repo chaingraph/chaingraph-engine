@@ -1,6 +1,6 @@
 # ChainGraph GraphQL engine.
 
-A realtime GraphQL API and indexing service for blockchain applications.
+A realtime GraphQL API for EOSIO applications.
 
 ## Contributing
 
