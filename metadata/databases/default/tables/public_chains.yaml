@@ -1,11 +1,11 @@
 table:
-  name: chains
   schema: public
+  name: chains
 select_permissions:
-- permission:
-    columns:
-    - chain_name
-    - chain_id
-    - rpc_endpoint
-    filter: {}
-  role: api_user
+  - role: api_user
+    permission:
+      columns:
+        - chain_name
+        - chain_id
+        - rpc_endpoint
+      filter: {}

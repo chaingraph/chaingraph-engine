@@ -1,33 +1,33 @@
 table:
-  name: actions
   schema: public
+  name: actions
 object_relationships:
-- name: transaction
-  using:
-    manual_configuration:
-      column_mapping:
-        chain: chain
-        transaction_id: transaction_id
-      insertion_order: null
-      remote_table:
-        name: transactions
-        schema: public
+  - name: transaction
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: transactions
+        insertion_order: null
+        column_mapping:
+          transaction_id: transaction_id
+          chain: chain
 select_permissions:
-- permission:
-    columns:
-    - chain
-    - transaction_id
-    - contract
-    - action
-    - data
-    - authorization
-    - global_sequence
-    - action_ordinal
-    - account_ram_deltas
-    - receipt
-    - context_free
-    - account_disk_deltas
-    - console
-    - receiver
-    filter: {}
-  role: api_user
+  - role: api_user
+    permission:
+      columns:
+        - chain
+        - transaction_id
+        - contract
+        - action
+        - data
+        - authorization
+        - global_sequence
+        - action_ordinal
+        - account_ram_deltas
+        - receipt
+        - context_free
+        - account_disk_deltas
+        - console
+        - receiver
+      filter: {}
