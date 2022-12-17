@@ -1,14 +1,14 @@
 table:
-  name: table_rows
   schema: public
+  name: table_rows
 select_permissions:
-- permission:
-    columns:
-    - chain
-    - contract
-    - table
-    - scope
-    - primary_key
-    - data
-    filter: {}
-  role: api_user
+  - role: api_user
+    permission:
+      columns:
+        - chain
+        - contract
+        - table
+        - scope
+        - primary_key
+        - data
+      filter: {}

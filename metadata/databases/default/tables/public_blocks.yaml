@@ -1,24 +1,24 @@
 table:
-  name: blocks
   schema: public
+  name: blocks
 array_relationships:
-- name: transactions
-  using:
-    manual_configuration:
-      column_mapping:
-        block_num: block_num
-        chain: chain
-      insertion_order: null
-      remote_table:
-        name: transactions
-        schema: public
+  - name: transactions
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: transactions
+        insertion_order: null
+        column_mapping:
+          chain: chain
+          block_num: block_num
 select_permissions:
-- permission:
-    columns:
-    - chain
-    - block_num
-    - block_id
-    - timestamp
-    - producer
-    filter: {}
-  role: api_user
+  - role: api_user
+    permission:
+      columns:
+        - chain
+        - block_num
+        - block_id
+        - timestamp
+        - producer
+      filter: {}
