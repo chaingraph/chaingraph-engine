@@ -3,7 +3,7 @@ version: '3.5'
 services:
   postgres:
     container_name: chaingraph_postgres
-    image: postgres:10.4
+    image: postgres:latest
     volumes: 
       - pg-data:/var/lib/postgresql/data
     ports:
@@ -18,7 +18,7 @@ services:
 
   hasura:
     container_name: chaingraph_hasura
-    image: hasura/graphql-engine:v2.3.0.cli-migrations-v3
+    image: hasura/graphql-engine:latest.cli-migrations-v3
     ports:
       - '8088:8080'
     restart: always
@@ -28,7 +28,7 @@ services:
       HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
       HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
-      HASURA_GRAPHQL_AUTH_HOOK: ${HASURA_GRAPHQL_AUTH_HOOK}
+      # HASURA_GRAPHQL_AUTH_HOOK: ${HASURA_GRAPHQL_AUTH_HOOK}
       HASURA_GRAPHQL_AUTH_HOOK_MODE: POST
       HASURA_GRAPHQL_DEV_MODE: 'true'
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
