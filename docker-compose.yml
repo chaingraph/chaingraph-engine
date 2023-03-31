@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   postgres:
-    container_name: chaingraph_postgres
+    container_name: chaingraph-postgres
     image: postgres:latest
     volumes: 
       - pg-data:/var/lib/postgresql/data
@@ -17,25 +17,23 @@ services:
       POSTGRES_DB: chaingraph
 
   hasura:
-    container_name: chaingraph_hasura
+    container_name: chaingraph-hasura
     image: hasura/graphql-engine:latest.cli-migrations-v3
     ports:
       - '8088:8080'
     restart: always
     environment:
       # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html
-      HASURA_GRAPHQL_DATABASE_URL: ${HASURA_GRAPHQL_DATABASE_URL}
-      HASURA_GRAPHQL_MIGRATIONS_DIR: /hasura-migrations
-      HASURA_GRAPHQL_METADATA_DIR: /hasura-metadata
+      # HASURA_GRAPHQL_DATABASE_URL: ${HASURA_GRAPHQL_DATABASE_URL}
+      HASURA_GRAPHQL_DATABASE_URL: "postgres://user:pass@postgres:5432/chaingraph?sslmode=disable"
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+      HASURA_GRAPHQL_SERVER_PORT: ${HASURA_GRAPHQL_SERVER_PORT}
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_CORS_DOMAIN: "*"
       # HASURA_GRAPHQL_AUTH_HOOK: ${HASURA_GRAPHQL_AUTH_HOOK}
-      HASURA_GRAPHQL_AUTH_HOOK_MODE: POST
-      HASURA_GRAPHQL_DEV_MODE: 'true'
-      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true'
-      HASURA_GRAPHQL_CORS_DOMAIN: '*'
-    volumes:
-      - ./migrations:/hasura-migrations #  mount hasura migrations folder
-      - ./metadata:/hasura-metadata #  mount hasura metadata folder
+      # HASURA_GRAPHQL_AUTH_HOOK_MODE: POST
     command:
       - graphql-engine
       - serve
@@ -48,6 +46,6 @@ volumes:
 networks:
   default:
     name: chaingraph
-    driver: bridge
+    # driver: bridge
 
     
