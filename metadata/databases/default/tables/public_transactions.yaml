@@ -1,36 +1,14 @@
 table:
-  schema: public
   name: transactions
-object_relationships:
-  - name: block
-    using:
-      manual_configuration:
-        remote_table:
-          schema: public
-          name: blocks
-        insertion_order: null
-        column_mapping:
-          chain: chain
-          block_num: block_num
-array_relationships:
-  - name: actions
-    using:
-      manual_configuration:
-        remote_table:
-          schema: public
-          name: actions
-        insertion_order: null
-        column_mapping:
-          transaction_id: transaction_id
-          chain: chain
+  schema: public
 select_permissions:
   - role: api_user
     permission:
       columns:
-        - chain
-        - transaction_id
         - block_num
         - cpu_usage_us
-        - net_usage_words
         - net_usage
+        - net_usage_words
+        - chain
+        - transaction_id
       filter: {}

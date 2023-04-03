@@ -1,3 +1,13 @@
 table:
-  schema: public
   name: mappings
+  schema: public
+select_permissions:
+  - role: api_user
+    permission:
+      columns:
+        - abi
+        - tables
+        - chain
+        - contract
+        - contract_type
+      filter: {}

@@ -1,6 +1,6 @@
 table:
-  schema: public
   name: table_rows
+  schema: public
 select_permissions:
   - role: api_user
     permission:

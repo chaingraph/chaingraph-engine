@@ -1,24 +1,7 @@
 table:
-  schema: public
   name: blocks
-array_relationships:
-  - name: transactions
+  schema: public
+object_relationships:
+  - name: chian
     using:
-      manual_configuration:
-        remote_table:
-          schema: public
-          name: transactions
-        insertion_order: null
-        column_mapping:
-          chain: chain
-          block_num: block_num
-select_permissions:
-  - role: api_user
-    permission:
-      columns:
-        - chain
-        - block_num
-        - block_id
-        - timestamp
-        - producer
-      filter: {}
+      foreign_key_constraint_on: chain

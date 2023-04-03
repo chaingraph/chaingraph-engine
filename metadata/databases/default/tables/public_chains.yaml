@@ -1,11 +1,18 @@
 table:
-  schema: public
   name: chains
-select_permissions:
-  - role: api_user
-    permission:
-      columns:
-        - chain_name
-        - chain_id
-        - rpc_endpoint
-      filter: {}
+  schema: public
+array_relationships:
+  - name: blocks
+    using:
+      foreign_key_constraint_on:
+        column: chain
+        table:
+          name: blocks
+          schema: public
+  - name: table_rows
+    using:
+      foreign_key_constraint_on:
+        column: chain
+        table:
+          name: table_rows
+          schema: public

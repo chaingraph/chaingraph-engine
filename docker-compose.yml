@@ -20,7 +20,7 @@ services:
     container_name: chaingraph-hasura
     image: hasura/graphql-engine:latest.cli-migrations-v3
     ports:
-      - '8088:8080'
+      - "${HASURA_GRAPHQL_SERVER_PORT}:${HASURA_GRAPHQL_SERVER_PORT}"
     restart: always
     environment:
       # https://hasura.io/docs/1.0/graphql/core/deployment/graphql-engine-flags/reference.html
