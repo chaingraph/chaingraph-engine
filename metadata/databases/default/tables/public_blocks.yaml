@@ -5,3 +5,13 @@ object_relationships:
   - name: chian
     using:
       foreign_key_constraint_on: chain
+select_permissions:
+  - role: api_user
+    permission:
+      columns:
+        - block_num
+        - block_id
+        - chain
+        - producer
+        - timestamp
+      filter: {}

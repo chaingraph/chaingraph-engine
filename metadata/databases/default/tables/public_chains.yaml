@@ -16,3 +16,11 @@ array_relationships:
         table:
           name: table_rows
           schema: public
+select_permissions:
+  - role: api_user
+    permission:
+      columns:
+        - chain_id
+        - chain_name
+        - rpc_endpoint
+      filter: {}

@@ -12,3 +12,22 @@ object_relationships:
         remote_table:
           name: transactions
           schema: public
+select_permissions:
+  - role: api_user
+    permission:
+      columns:
+        - context_free
+        - action_ordinal
+        - account_disk_deltas
+        - account_ram_deltas
+        - authorization
+        - data
+        - receipt
+        - action
+        - chain
+        - console
+        - contract
+        - global_sequence
+        - receiver
+        - transaction_id
+      filter: {}
