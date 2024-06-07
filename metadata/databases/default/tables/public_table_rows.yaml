@@ -2,6 +2,17 @@ table:
   name: table_rows
   schema: public
 select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - data
+        - chain
+        - contract
+        - primary_key
+        - scope
+        - table
+      filter: {}
+    comment: ""
   - role: api_user
     permission:
       columns:

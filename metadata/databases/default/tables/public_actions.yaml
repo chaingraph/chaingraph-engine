@@ -13,6 +13,25 @@ object_relationships:
           name: transactions
           schema: public
 select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - context_free
+        - action_ordinal
+        - account_disk_deltas
+        - account_ram_deltas
+        - authorization
+        - data
+        - receipt
+        - action
+        - chain
+        - console
+        - contract
+        - global_sequence
+        - receiver
+        - transaction_id
+      filter: {}
+    comment: ""
   - role: api_user
     permission:
       columns:
